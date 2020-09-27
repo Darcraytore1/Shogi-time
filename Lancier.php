@@ -4,5 +4,9 @@
 		function __construct(){
 
 		}
+
+		function __toString(){
+			return "Lancier";
+		}
  	}
 ?>

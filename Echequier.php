@@ -43,6 +43,31 @@
 		public function getPieceCellule() {
 			return $this->pieceCellule;		// Sans mettre le this, on me dit que pieceCellule n'a pas été initiliase etrange, peut etre une specifite du php
 		}
+
+		
+
+		// Pour voir a quoi ressemble le tableau
+		public function __toString(){
+
+			$i = 0;
+			$string = "";
+			foreach ($this->pieceCellule as $value) {
+				$string.= "$i = ";
+				foreach ($value as $value2) {
+					if ($value2 == null){
+						$string.=" ";
+					}
+					else {
+						$string.="$value2 ";
+					}
+				}
+				$string.= "<br>";
+				$i ++;
+				//$string += "$value";
+			}
+			return $string;
+			//return "L'etat actuelle de l'echequier est ". $this->pieceCellule;
+		}
 	}
 
 
