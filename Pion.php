@@ -1,7 +1,7 @@
 <?php
-	class Pion {
-		function __constuct(){
-			print "Dans le constructeur ";
+	class Pion extends Piece{
+		function __construct(){
+
 		}
  	}
 ?>

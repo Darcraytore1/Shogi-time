@@ -1,6 +1,6 @@
 <?php
-class GeneralArgent {
-	function __constuct(){
+class GeneralArgent extends Piece{
+	function __construct(){
 			
 	}
  }

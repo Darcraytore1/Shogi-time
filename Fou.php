@@ -1,6 +1,6 @@
 <?php
-class Fou {
- 	function __constuct(){
+class Fou extends Piece{
+ 	function __construct(){
 
 	}
 }

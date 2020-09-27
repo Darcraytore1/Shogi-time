@@ -1,6 +1,6 @@
 <?php
- 	class GeneralOr {
- 		function __constuct(){
+ 	class GeneralOr extends Piece{
+ 		function __construct(){
 			
 		}
  	}

@@ -1,7 +1,7 @@
 <?php
 
-class Roi {
-	function __constuct(){
+class Roi extends Piece{
+	function __construct(){
 			
 	}
 }

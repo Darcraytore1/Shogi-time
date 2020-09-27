@@ -21,7 +21,7 @@
 	$Echequier = new Echequier();
 	//$Lancier = new Lancier();		//Lancier peut bien etre appele 
 
-	print_r($Echequier->numCellule);
+	print_r($Echequier->getPieceCellule());
 	//print($Lancier->lancier);
 	
 ?>

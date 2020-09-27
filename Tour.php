@@ -1,7 +1,7 @@
 <?php
 
-class Tour {
-	function __constuct(){
+class Tour extends Piece {
+	function __construct(){
 
 	}
 }

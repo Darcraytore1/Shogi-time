@@ -1,7 +1,5 @@
 <?php 
-	class Lancier {
-
-		public $lancier = 1;
+	class Lancier extends Piece{
 
 		function __construct(){
 

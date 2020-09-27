@@ -1,5 +1,5 @@
 <?php
-class Cavalier{
+class Cavalier extends Piece{
 	function __construct(){
 		
 	}
