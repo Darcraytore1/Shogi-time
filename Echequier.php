@@ -44,7 +44,9 @@
 			return $this->pieceCellule;		// Sans mettre le this, on me dit que pieceCellule n'a pas été initiliase etrange, peut etre une specifite du php
 		}
 
-		
+		public function changeCellule($x,$y,$value){
+			$this->pieceCellule[$y][$x] = $value;
+		}
 
 		// Pour voir a quoi ressemble le tableau
 		public function __toString(){

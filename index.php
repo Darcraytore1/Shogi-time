@@ -27,6 +27,22 @@
 
 	$player = new Player($echequier);
 	print($player->getEchequier());
-	print($player->playPiece(2,3,4,5));
+	print($player->Player1playPiece(2,2,2,3));		// Ne pas oublier que dans les faits le 0 est compte, alors que sur un plateau le 0, n'existe pas
+	?> <br> <?php
+	print($player->getEchequier());
+	print($player->Player1playPiece(2,3,2,4));		// Le authorizedMouvement pose probleme sur les cases null, si null return false
+	?> <br> <?php
+	print($player->getEchequier());
+	print($player->Player1playPiece(2,4,2,5));
+	?> <br> <?php
+	print($player->getEchequier());
+	print($player->Player1playPiece(2,4,2,6));
+	?> <br> <?php
+	print($player->getEchequier());
+	print($player->Player1playPiece(2,5,2,7));		// Les differents cas de figures de refus de mouvement de la piece 
+	?> <br> <?php
+	print($player->getEchequier());
+	
+	//print(false);	// Le false n'affiche rien et le true affiche 1
 	
 ?>
