@@ -28,7 +28,21 @@
 
 					if ($piece == "Fou"){
 
+						if ($x - $j > 0 and $y - $k > 0){
 
+						}
+
+						if ($x - $j < 0 and $y - $k < 0){
+							
+						}
+
+						if ($x - $j > 0 and $y - $k < 0){
+							
+						}
+
+						if ($x - $j < 0 and $y - $k > 0){
+							
+						}
 						echo "prout";		// Caluler ici le fait que les cases par lequel passe le fou sont vides 
 					}
 
