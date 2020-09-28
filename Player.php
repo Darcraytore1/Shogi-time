@@ -23,7 +23,14 @@
 			$string = "le mouvement demande n'est pas authorise par cette piece";
 			if ($piece->isAuthorizedMovementPlayer1($x,$y,$j,$k)){		// Si le mouvement qu'essaie de faire la piece est authorise par rapport a la piece choisie
 				$string = "la case de destination n'est pas vide";
-				if ($this->echequier->getPieceCellule()[$k][$j] == null){		// Si l'endroit ou veut aller la piece n'a pas deja une piece sur cette position
+
+				if ($this->echequier->getPieceCellule()[$k][$j] == null){		// Si l'endroit ou veut aller la piece n'a pas deja une piece sur cette position ou bien si c'est une piece ennemi
+
+					if ($piece == "Fou"){
+
+
+						echo "prout";		// Caluler ici le fait que les cases par lequel passe le fou sont vides 
+					}
 
 					$this->echequier->changeCellule($j,$k,$piece);
 					$this->echequier->changeCellule($x,$y,null);
@@ -38,7 +45,7 @@
 				}
 			}
 
-			echo "Le mouvement demande n'est pas executable ".$string;
+			echo $string;
 
 
 			return (false);
