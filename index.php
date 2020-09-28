@@ -48,11 +48,16 @@
 	*/
 
 	// Test avec les fous
+	// ça a l'air environ de fonctionner a tester avec un bot 
 	/*
-	print($player->Player1playPiece(7,1,3,5)); 		// Faire en sorte que le fou ne puisse pas passer au dessus des autres pieces 
+	print($player->Player1playPiece(6,2,6,3));
 	?> <br> <?php
 	print($player->getEchequier());
 
+	print($player->Player1playPiece(7,1,5,3)); 		// Faire en sorte que le fou ne puisse pas passer au dessus des autres pieces 
+	?> <br> <?php
+	print($player->getEchequier());
+	
 	print($player->Player1playPiece(3,5,1,3));
 	?> <br> <?php
 	print($player->getEchequier());
@@ -126,8 +131,55 @@
 
 	// Test avec le cavalier pour plus tard 
 
+
+	// Test avec la tour 
+	// ça a l'air environ de fonctionner a tester avec un bot
+	/*
+	print($player->Player1playPiece(1,1,3,1)); 		
+	?> <br> <?php
+	print($player->getEchequier());
 	
+	print($player->Player1playPiece(3,1,3,4));
+	?> <br> <?php
+	print($player->getEchequier());
+
+	print($player->Player1playPiece(3,2,3,3));
+	?> <br> <?php
+	print($player->getEchequier());
+
+	print($player->Player1playPiece(3,3,3,4));
+	?> <br> <?php
+	print($player->getEchequier());
 	
+	print($player->Player1playPiece(3,1,3,3)); 		
+	?> <br> <?php
+	print($player->getEchequier());
+
+	print($player->Player1playPiece(3,3,1,3)); 		
+	?> <br> <?php
+	print($player->getEchequier());
+
+	print($player->Player1playPiece(1,3,1,1)); 		
+	?> <br> <?php
+	print($player->getEchequier());
+	*/
+
+	// Test avec le lancier
+	/*
+	print($player->Player1playPiece(0,0,0,4)); 		
+	?> <br> <?php
+	print($player->getEchequier());
+	*/
+	
+	/*
+	print($player->Player1playPiece(3,1,3,4));
+	?> <br> <?php
+	print($player->getEchequier());
+
+	print($player->Player1playPiece(3,2,3,3));
+	?> <br> <?php
+	print($player->getEchequier());
+	*/
 
 	/*
 	print($player->Player1playPiece(0,4,-1,5));		// ça a l'air de bloque à gauche du tableau 

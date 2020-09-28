@@ -26,25 +26,115 @@
 
 				if ($this->echequier->getPieceCellule()[$k][$j] == null){		// Si l'endroit ou veut aller la piece n'a pas deja une piece sur cette position ou bien si c'est une piece ennemi
 
+
+					// Test si il y a des pieces sur le chemin pour aller a la case destination pour le fou
 					if ($piece == "Fou"){
 
 						if ($x - $j > 0 and $y - $k > 0){
+							//echo "1";
+							for ($i = 1;$i< $x - $j;$i++){
+								if($this->echequier->getPieceCellule()[$y - $i][$x - $i] != null){
+									echo "Il y a des pieces sur le chemin de ton deplacement petit galopin";
+									return false;
+								}
+							}
 
 						}
 
 						if ($x - $j < 0 and $y - $k < 0){
-							
+							//echo "2";
+							for ($i = 1;$i< $j - $x;$i++){
+								if($this->echequier->getPieceCellule()[$y + $i][$x + $i] != null){
+									echo "Il y a des pieces sur le chemin de ton deplacement petit galopin";
+									return false;
+								}
+							}
+
 						}
 
 						if ($x - $j > 0 and $y - $k < 0){
-							
+							//echo "3";
+							for ($i = 1;$i < $x - $j;$i++){
+								
+								if($this->echequier->getPieceCellule()[$y + $i][$x - $i] != null){
+									echo "$i";
+									echo "Il y a des pieces sur le chemin de ton deplacement petit galopin";
+									return false;
+								}
+							}
+
 						}
 
 						if ($x - $j < 0 and $y - $k > 0){
-							
+							//echo "4";
+							for ($i = 1;$i< $j - $x;$i++){
+								if($this->echequier->getPieceCellule()[$y - $i][$x + $i] != null){
+									echo "Il y a des pieces sur le chemin de ton deplacement petit galopin";
+									return false;
+								}
+							}
 						}
-						echo "prout";		// Caluler ici le fait que les cases par lequel passe le fou sont vides 
 					}
+
+
+					// Test si il y a des pieces sur le chemin pour aller a la case destination pour la tour
+					if ($piece == "Tour"){
+
+						if ($x - $j > 0 and $y == $k){
+							//echo "1";
+							for ($i = 1;$i< $x - $j;$i++){
+								if($this->echequier->getPieceCellule()[$y][$x - $i] != null){
+									echo "Il y a des pieces sur le chemin de ton deplacement petit galopin";
+									return false;
+								}
+							}
+						}
+
+						if ($x - $j < 0 and $y == $k){
+							//echo "2";
+							for ($i = 1;$i< $j - $x;$i++){
+								if($this->echequier->getPieceCellule()[$y][$x + $i] != null){
+									echo "Il y a des pieces sur le chemin de ton deplacement petit galopin";
+									return false;
+								}
+							}
+						}
+
+						if ($x == $j and $y - $k < 0){
+							//echo "3";
+							for ($i = 1;$i < $k - $y;$i++){
+								
+								if($this->echequier->getPieceCellule()[$y + $i][$x] != null){
+									//echo "$i";
+									echo "Il y a des pieces sur le chemin de ton deplacement petit galopin";
+									return false;
+								}
+							}
+						}
+
+						if ($x == $j and $y - $k > 0){
+							//echo "4";
+							for ($i = 1;$i< $y - $k;$i++){
+								if($this->echequier->getPieceCellule()[$y - $i][$x] != null){
+									echo "Il y a des pieces sur le chemin de ton deplacement petit galopin";
+									return false;
+								}
+							}
+						}
+					}
+
+					if ($piece == "Lancier"){
+						//echo "$k";
+						for ($i = 1; $i < $k-$y;$i ++){
+							//echo "5";
+							if($this->echequier->getPieceCellule()[$y + $i][$x] != null){
+								echo "Il y a des pieces sur le chemin de ton deplacement petit galopin";
+								return false;
+							}
+						}
+					}
+
+
 
 					$this->echequier->changeCellule($j,$k,$piece);
 					$this->echequier->changeCellule($x,$y,null);
