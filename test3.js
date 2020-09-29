@@ -1,5 +1,5 @@
 let test = document.getElementById("test");
-  
+document.write(test);
 // Ce gestionnaire ne sera exécuté qu'une fois
 // lorsque le curseur se déplace sur la liste
 test.addEventListener("mouseenter", function( event ) {   

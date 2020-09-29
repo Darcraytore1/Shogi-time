@@ -1,41 +1,51 @@
+<!DOCTYPE html>
+<html>
 <head>
-
-<style type="text/css">
-<!--
-.caseBlanc, .caseBrun{
-height : 35px;
-width : 35px;
-border : 1px solid #000000;
-}
-.caseBlanc {
-background-color: #efd7b8;
-}
--->
-</style>
-
+	<link rel="stylesheet" type="text/css" href="CSS.css">
+	<title></title>
+</head>
 <body>
-    
-<script language="JavaScript">
-	var nombre=1;
-	var classe="caseBlanc"
-	document.write('<table>');
-	for(var l=1; l<10; l++) { // creer 9 lignes 
+	<?php
+		$nombre=1;
+		//$classe="caseBlanc"
+		//document.write('<table>');
+	?>
+	<table>
+
+	<?php
+	for($l=1; $l<10; $l++) { // creer 9 lignes 
 	
-		document.write('<tr>');
-		for(var c=1; c<10; c++) { // creer 9 cases par lignes
+		//document.write('<tr>');
+		?>
+		<tr>
+		<?php
+		for($c=1; $c<10; $c++) { // creer 9 cases par lignes
 			
 			    
 			//document.write('<td><a onMouseOver="position('+l+','+c+')"><div id="'+l+'|'+c+'" class="'+classe+'"></div></a></td>'); // CREATION DES CASES (position('+l+','+c+') EST COMPLETE PAR UNE FONCTION DE LOCALISATION DES CASES DANS UN AUTRE SCRIPT)
 			// Test pour voir
-			document.write('<td><a onMouseOver="position('+l+','+c+')"><div id="test" class="'+classe+'"></div></a></td>');
-			nombre++;
+			//document.write('<td><a onMouseOver="position('+l+','+c+')"><div id="test" class="'+classe+'"></div></a></td>');
+			?>
+			<!-- <td><a onmouseover="position(<?php $l ?>,<?php $c ?>)"> <div id="<?php $l ?> | <?php $c ?>" class = "caseBlanc"> </div></a></td> -->
+			<td><a onmouseover="position(<?php $l ?>,<?php $c ?>)"> <div id="test" class = "caseBlanc"> </div></a></td>
+			<?php
+			$nombre++;
 			}
-		nombre++;
-		document.write('</tr>');
+		$nombre++;
+		
+		//document.write('</tr>');
+		?>
+		</tr>
+		<?php
 		}
-	document.write('</table>');
-</script>
+		?>
+	<!-- document.write('</table>'); -->
+	</table>
 
+	<script type="text/javascript" src="test3.js"></script>
+</body>
+
+<!--
 <script language="JavaScript">
 	let test = document.getElementById("test");
   
@@ -64,5 +74,6 @@ test.addEventListener("mouseover", function( event ) {
 }, false);
 
 </script>
-    
-</body>
+-->
+</html>
+
