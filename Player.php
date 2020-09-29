@@ -183,7 +183,13 @@
 		// Parachute une piece et doit influencer en consequence l'echequier
 		function parachutagePiece($piece,$x,$y){
 
-			if (in_array($piece, $this->listePieceGagne)){
+			if ($piece == null){
+				echo "La piece selectionne n'existe pas";
+				return false;
+			}
+			
+			if($this->echequier->getPieceCellule()[$y][$x] == null and in_array($piece, $this->listePieceGagne)){
+				$this->echequier->changeCellule($x,$y,$piece);
 				return true;
 			}
 
@@ -197,6 +203,7 @@
 		function __toString(){
 			$string = "";
 			foreach ($this->listePieceGagne as $value) {
+
 				$string.=$value." ,";
 			}
 

@@ -2,6 +2,7 @@
 <html>
 <head>
 	<link rel="stylesheet" type="text/css" href="CSS.css">
+	<script type="text/javascript" src="test.js"></script> 
 	<title> Site shogi de ouf (J'espère un jour) </title>
 </head>
 <body> 
@@ -216,6 +217,7 @@
 	*/
 
 	// Test parachutage piece 
+	/*
 	print($player->getEchequier());
 	print($player->Player1playPiece(2,2,2,3));	
 	?> <br> <?php
@@ -230,6 +232,42 @@
 	?> <br> <?php
 	print($player->getEchequier());
 	print($player->parachutagePiece(new Pion(2),4,5));		// Le  numero du pion est important, à voir comment régler ça 
+	?> <br> <?php
+	print($player->getEchequier());
+	*/
+
+	// Test js 
+
+
+	// Test du jeu 
+	/*
+	print($player->getEchequier());
+	print($player->Player1playPiece(0,2,0,3));
+	?> <br> <?php
+	print($player->getEchequier());
+
+	print($player->Player1playPiece(0,3,0,4));
+	?> <br> <?php
+	print($player->getEchequier());
+
+	print($player->Player1playPiece(0,4,0,5));
+	?> <br> <?php
+	print($player->getEchequier());
+
+	print($player->Player1playPiece(0,5,0,6));
+	?> <br> <?php
+	print($player->getEchequier());
+
+	print($player->parachutagePiece(new Pion(2),0,0));
+	?> <br> <?php
+	print($player->getEchequier());
+
+	print($player->parachutagePiece(new Pion(2),0,3));
+	?> <br> <?php
+	print($player->getEchequier());
+	*/
+
+
 
 
 
