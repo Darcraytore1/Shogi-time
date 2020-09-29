@@ -1,11 +1,14 @@
 <?php
 class GeneralArgent extends Piece{
-	function __construct(){
-			
+
+	private $campDeLaPiece;
+
+	function __construct($campDeLaPiece){
+		$this->campDeLaPiece = $campDeLaPiece;
 	}
 
 	function __toString(){
-		return "GeneralArgent";
+		return "GeneralArgent ".$this->campDeLaPiece;
 	}
 
 	// ça a l'air correct
@@ -31,6 +34,10 @@ class GeneralArgent extends Piece{
 		}
 
 		return false;
+	}
+
+	function getCampDeLaPiece(){
+		return $this->campDeLaPieces;
 	}
 
 

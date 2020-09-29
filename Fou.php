@@ -1,11 +1,14 @@
 <?php
 class Fou extends Piece{
- 	function __construct(){
 
+ 	private $campDeLaPiece;
+
+	function __construct($campDeLaPiece){
+		$this->campDeLaPiece = $campDeLaPiece;
 	}
 
 	function __toString(){
-		return "Fou";
+		return "Fou ".$this->campDeLaPiece;
 	}
 
 	// Calcul des diagonals du tableau 
@@ -24,6 +27,10 @@ class Fou extends Piece{
 		}
 
 		return false;
+	}
+
+	function getCampDeLaPiece(){
+		return $this->campDeLaPiece;
 	}
 }
 ?>

@@ -1,11 +1,14 @@
 <?php
 	class Pion extends Piece{
-		function __construct(){
 
+		private $campDeLaPiece;
+
+		function __construct($campDeLaPiece){
+			$this->campDeLaPiece = $campDeLaPiece;
 		}
 
 		function __toString(){
-			return "Pion";
+			return "Pion ".$this->campDeLaPiece;
 		}
 
 		// Si le mouvement est authorise renvoie true sinon false
@@ -21,6 +24,11 @@
 				return true;
 			}
 			return false;
+		}
+
+		// Attention ne pas oublier le this
+		function getCampDeLaPiece(){
+			return $this->campDeLaPiece;
 		}
 
  	}

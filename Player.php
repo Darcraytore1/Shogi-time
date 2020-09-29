@@ -2,9 +2,11 @@
 	class Player {
 
 		private $echequier;
+		private $listePieceGagne;
 
 		function __construct($echequier){
 			$this->echequier = $echequier;
+			$this->listePieceGagne = [];
 		}
 
 		// Joue une piece et doit influencer en consequence l'echequier
@@ -24,7 +26,7 @@
 			if ($piece->isAuthorizedMovementPlayer1($x,$y,$j,$k)){		// Si le mouvement qu'essaie de faire la piece est authorise par rapport a la piece choisie
 				$string = "la case de destination n'est pas vide";
 
-				if ($this->echequier->getPieceCellule()[$k][$j] == null){		// Si l'endroit ou veut aller la piece n'a pas deja une piece sur cette position ou bien si c'est une piece ennemi
+				if ($this->echequier->getPieceCellule()[$k][$j] == null or $this->echequier->getPieceCellule()[$k][$j]->getCampDeLaPiece() != $this->echequier->getPieceCellule()[$y][$x]->getCampDeLaPiece()){		// Si l'endroit ou veut aller la piece n'a pas deja une piece sur cette position ou bien si c'est une piece ennemi
 
 
 					// Test si il y a des pieces sur le chemin pour aller a la case destination pour le fou
@@ -123,6 +125,8 @@
 						}
 					}
 
+
+					// Test si il y a des pieces sur le chemin pour aller a la case destination pour le lancier
 					if ($piece == "Lancier"){
 						//echo "$k";
 						for ($i = 1; $i < $k-$y;$i ++){
@@ -136,8 +140,20 @@
 
 
 
-					$this->echequier->changeCellule($j,$k,$piece);
-					$this->echequier->changeCellule($x,$y,null);
+
+					if ($this->echequier->getPieceCellule()[$k][$j] == null){
+
+						$this->echequier->changeCellule($j,$k,$piece);
+						$this->echequier->changeCellule($x,$y,null);
+
+					}
+
+					else{
+
+						$this->listePieceGagne[] = $this->echequier->getPieceCellule()[$k][$j]->getCampDeLaPiece();
+						$this->echequier->changeCellule($j,$k,$piece);
+						$this->echequier->changeCellule($x,$y,null);
+					}
 
 					/*
 					$this->echequier->getPieceCellule()[$k][$j] = $piece;

@@ -18,15 +18,15 @@
 		private $numCellule; // Dans ce tableau je dois initialiser chaque case
 
 		public function __construct() {
-			$this->pieceCellule = array(array(new Lancier(),new Cavalier(),new GeneralArgent(),new GeneralOr(), new Roi(),new GeneralOr(), new GeneralArgent(),new Cavalier(),new Lancier()),
-										array(null,new Tour(),null,null,null,null,null,new Fou(),null),
-										array(new Pion(),new Pion(),new Pion(),new Pion(),new Pion(),new Pion(),new Pion(),new Pion(),new Pion()),
+			$this->pieceCellule = array(array(new Lancier(1),new Cavalier(1),new GeneralArgent(1),new GeneralOr(1), new Roi(1),new GeneralOr(1), new GeneralArgent(1),new Cavalier(1),new Lancier(1)),
+										array(null,new Tour(1),null,null,null,null,null,new Fou(1),null),
+										array(new Pion(1),new Pion(1),new Pion(1),new Pion(1),new Pion(1),new Pion(1),new Pion(1),new Pion(1),new Pion(1)),
 										array(null,null,null,null,null,null,null,null,null),
 										array(null,null,null,null,null,null,null,null,null),
 										array(null,null,null,null,null,null,null,null,null),
-										array(new Pion(),new Pion(),new Pion(),new Pion(),new Pion(),new Pion(),new Pion(),new Pion(),new Pion()),
-										array(null,new Tour(),null,null,null,null,null,new Fou(),null),
-										array(new Lancier(),new Cavalier(),new GeneralArgent(),new GeneralOr(), new Roi(),new GeneralOr(), new GeneralArgent(),new Cavalier(),new Lancier()));
+										array(new Pion(2),new Pion(2),new Pion(2),new Pion(2),new Pion(2),new Pion(2),new Pion(2),new Pion(2),new Pion(2)),
+										array(null,new Tour(2),null,null,null,null,null,new Fou(2),null),
+										array(new Lancier(2),new Cavalier(2),new GeneralArgent(2),new GeneralOr(2), new Roi(2),new GeneralOr(2), new GeneralArgent(2),new Cavalier(2),new Lancier(2)));
 
 			$this->numCellule = array(array(1,2,3,4,5,6,7,8,9),
 								   array(1,2,3,4,5,6,7,8,9), 

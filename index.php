@@ -28,7 +28,7 @@
 	$player = new Player($echequier);
 
 	// Multiples test avec les pions
-	/*
+	
 	print($player->getEchequier());
 	print($player->Player1playPiece(2,2,2,3));		// Ne pas oublier que dans les faits le 0 est compte, alors que sur un plateau le 0, n'existe pas
 	?> <br> <?php
@@ -39,9 +39,10 @@
 	print($player->Player1playPiece(2,4,2,5));
 	?> <br> <?php
 	print($player->getEchequier());
-	print($player->Player1playPiece(2,4,2,6));
+	print($player->Player1playPiece(2,5,2,6));
 	?> <br> <?php
 	print($player->getEchequier());
+	/*
 	print($player->Player1playPiece(2,5,2,7));		// Les differents cas de figures de refus de mouvement de la piece affiche des messages differents
 	?> <br> <?php
 	print($player->getEchequier());
@@ -187,6 +188,30 @@
 	print($player->getEchequier());
 	*/
 
+	// Test pour manger des pieces
+	/*
+	print($player->Player1playPiece(0,2,0,3)); 		
+	?> <br> <?php
+	print($player->getEchequier());
+	
+	print($player->Player1playPiece(0,3,0,4));
+	?> <br> <?php
+	print($player->getEchequier());
+
+	print($player->Player1playPiece(0,4,0,5));
+	?> <br> <?php
+	print($player->getEchequier());
+
+	print($player->Player1playPiece(0,5,0,6));
+	?> <br> <?php
+	print($player->getEchequier());
+	*/
+	
+	// Test du getCampDeLaPiece
+	/*
+	$pion = new Pion(1);
+	echo $pion->getCampDeLaPiece();
+	*/
 
 	//print(false);	// Le false n'affiche rien et le true affiche 1
 

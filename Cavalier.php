@@ -1,11 +1,15 @@
 <?php
 class Cavalier extends Piece{
-	function __construct(){
-		
+
+
+	private $campDeLaPiece;
+
+	function __construct($campDeLaPiece){
+		$this->campDeLaPiece = $campDeLaPiece;
 	}
 
 	function __toString(){
-		return "Cavalier";
+		return "Cavalier ".$this->campDeLaPiece;
 	}
 
 	function isAuthorizedMovementPlayer1($x,$y,$j,$k){
@@ -29,7 +33,10 @@ class Cavalier extends Piece{
 		}
 
 		return false;
+	}
 
+	function getCampDeLaPiece(){
+		return $this->campDeLaPiece;
 	}
 }
 ?>

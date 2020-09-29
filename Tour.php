@@ -1,12 +1,15 @@
 <?php
 
 class Tour extends Piece {
-	function __construct(){
 
+	private $campDeLaPiece;
+
+	function __construct($campDeLaPiece){
+		$this->campDeLaPiece = $campDeLaPiece;
 	}
 
 	function __toString(){
-		return "Tour";
+		return "Tour ".$this->campDeLaPiece;
 	}
 
 	function isAuthorizedMovementPlayer1($x,$y,$j,$k){
@@ -20,6 +23,10 @@ class Tour extends Piece {
 		}
 
 		return false;
+	}
+
+	function getCampDeLaPiece(){
+		return $this->campDeLaPiece;
 	}
 }
 ?>

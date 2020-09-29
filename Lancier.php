@@ -1,12 +1,14 @@
 <?php 
 	class Lancier extends Piece{
 
-		function __construct(){
+		private $campDeLaPiece;
 
+		function __construct($campDeLaPiece){
+			$this->campDeLaPiece = $campDeLaPiece;
 		}
 
 		function __toString(){
-			return "Lancier";
+			return "Lancier ".$this->campDeLaPiece;
 		}
 
 		function isAuthorizedMovementPlayer1($x,$y,$j,$k){
@@ -31,6 +33,10 @@
 			}
 
 			return false;
+		}
+
+		function getCampDeLaPiece(){
+			return $this->campDeLaPiece;
 		}
  	}
 ?>

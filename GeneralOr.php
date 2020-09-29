@@ -1,12 +1,15 @@
 <?php
  	class GeneralOr extends Piece{
- 		function __construct(){
-			
+
+		private $campDeLaPiece;
+
+		function __construct($campDeLaPiece){
+			$this->campDeLaPiece = $campDeLaPiece;
 		}
 
 		function __toString(){
 		
-			return "GeneralOr";
+			return "GeneralOr ".$this->campDeLaPiece;
 
 		}
 
@@ -34,6 +37,10 @@
 			}
 
 			return false;
+		}
+
+		function getCampDeLaPiece(){
+			return $this->campDeLaPiece;
 		}
  	}
 ?>

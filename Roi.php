@@ -1,12 +1,15 @@
 <?php
 
 class Roi extends Piece{
-	function __construct(){
-			
+
+	private $campDeLaPiece;
+
+	function __construct($campDeLaPiece){
+		$this->campDeLaPiece = $campDeLaPiece;
 	}
 
 	function __toString(){
-		return "Roi";
+		return "Roi ".$this->campDeLaPiece;
 	}
 
 	function isAuthorizedMovementPlayer1($x,$y,$j,$k){
@@ -20,7 +23,10 @@ class Roi extends Piece{
 		}
 
 		return false;
+	}
 
+	function getCampDeLaPiece(){
+		return $this->campDeLaPiece;
 	}
 }
 
