@@ -22,6 +22,7 @@
 				echo "La piece selectionne n'existe pas";
 				return false;
 			}
+
 			$string = "le mouvement demande n'est pas authorise par cette piece";
 			if ($piece->isAuthorizedMovementPlayer1($x,$y,$j,$k)){		// Si le mouvement qu'essaie de faire la piece est authorise par rapport a la piece choisie
 				$string = "la case de destination n'est pas vide";
@@ -150,7 +151,7 @@
 
 					else{
 
-						$this->listePieceGagne[] = $this->echequier->getPieceCellule()[$k][$j]->getCampDeLaPiece();
+						$this->listePieceGagne[] = $this->echequier->getPieceCellule()[$k][$j];
 						$this->echequier->changeCellule($j,$k,$piece);
 						$this->echequier->changeCellule($x,$y,null);
 					}
@@ -180,12 +181,26 @@
 		}
 
 		// Parachute une piece et doit influencer en consequence l'echequier
-		function parachutagePiece(){
+		function parachutagePiece($piece,$x,$y){
 
+			if (in_array($piece, $this->listePieceGagne)){
+				return true;
+			}
+
+			return false;
 		}
 
 		function getEchequier(){
 			return $this->echequier;
+		}
+
+		function __toString(){
+			$string = "";
+			foreach ($this->listePieceGagne as $value) {
+				$string.=$value." ,";
+			}
+
+			return $string;
 		}
 	}
 

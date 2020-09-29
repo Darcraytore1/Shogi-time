@@ -27,8 +27,8 @@
 
 	$player = new Player($echequier);
 
-	// Multiples test avec les pions
-	
+	// Multiples test avec les pions + mangeage de piece 
+	/*
 	print($player->getEchequier());
 	print($player->Player1playPiece(2,2,2,3));		// Ne pas oublier que dans les faits le 0 est compte, alors que sur un plateau le 0, n'existe pas
 	?> <br> <?php
@@ -42,10 +42,12 @@
 	print($player->Player1playPiece(2,5,2,6));
 	?> <br> <?php
 	print($player->getEchequier());
-	/*
-	print($player->Player1playPiece(2,5,2,7));		// Les differents cas de figures de refus de mouvement de la piece affiche des messages differents
+	print($player->Player1playPiece(2,6,2,7));		// Les differents cas de figures de refus de mouvement de la piece affiche des messages differents
 	?> <br> <?php
 	print($player->getEchequier());
+	
+
+	print($player);		// On peut manger des pieces 
 	*/
 
 	// Test avec les fous
@@ -212,6 +214,24 @@
 	$pion = new Pion(1);
 	echo $pion->getCampDeLaPiece();
 	*/
+
+	// Test parachutage piece 
+	print($player->getEchequier());
+	print($player->Player1playPiece(2,2,2,3));	
+	?> <br> <?php
+	print($player->getEchequier());
+	print($player->Player1playPiece(2,3,2,4));	
+	?> <br> <?php
+	print($player->getEchequier());
+	print($player->Player1playPiece(2,4,2,5));
+	?> <br> <?php
+	print($player->getEchequier());
+	print($player->Player1playPiece(2,5,2,6));
+	?> <br> <?php
+	print($player->getEchequier());
+	print($player->parachutagePiece(new Pion(2),4,5));		// Le  numero du pion est important, à voir comment régler ça 
+
+
 
 	//print(false);	// Le false n'affiche rien et le true affiche 1
 
