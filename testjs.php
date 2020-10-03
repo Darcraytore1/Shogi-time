@@ -10,7 +10,7 @@
 		//$classe="caseBlanc"
 		//document.write('<table>');
 	?>
-	<table>
+	<table id ="test">
 
 	<?php
 	for($l=1; $l<10; $l++) { // creer 9 lignes 
@@ -27,7 +27,7 @@
 			//document.write('<td><a onMouseOver="position('+l+','+c+')"><div id="test" class="'+classe+'"></div></a></td>');
 			?>
 			<!-- <td><a onmouseover="position(<?php $l ?>,<?php $c ?>)"> <div id="<?php $l ?> | <?php $c ?>" class = "caseBlanc"> </div></a></td> -->
-			<td><a onmouseover="position(<?php $l ?>,<?php $c ?>)"> <div id="test" class = "caseBlanc"> </div></a></td>
+			<td><a onmouseover="position(<?php $l ?>,<?php $c ?>)"> <div  class = "caseBlanc"> </div></a></td>
 			<?php
 			$nombre++;
 			}
@@ -39,9 +39,30 @@
 		<?php
 		}
 		?>
-	<!-- document.write('</table>'); -->
+	<!-- Test pour voir si le probleme vient des cases -->
+<!--
 	</table>
 
+	<table id="test">
+	<?php
+	//for($l=1; $l<10; $l++) { 
+	?>
+		<tr>
+		<?php
+		//for($c=1; $c<10; $c++) { 
+
+			?>
+
+			<td><p>caca</p></td>
+			<?php
+			//}
+			?>
+		</tr>
+		<?php
+		//}
+		?>
+	</table>
+-->
 	<script type="text/javascript" src="test3.js"></script>
 </body>
 
