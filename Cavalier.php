@@ -38,5 +38,9 @@ class Cavalier extends Piece{
 	function getCampDeLaPiece(){
 		return $this->campDeLaPiece;
 	}
+
+	function printImgPiece(){
+		echo "<img src='image/cavalier.png'></img>";
+	}
 }
 ?>

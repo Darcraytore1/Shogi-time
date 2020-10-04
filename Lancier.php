@@ -38,5 +38,9 @@
 		function getCampDeLaPiece(){
 			return $this->campDeLaPiece;
 		}
+
+		function printImgPiece(){
+			echo "<img src='image/lancier.png'></img>";
+		}
  	}
 ?>

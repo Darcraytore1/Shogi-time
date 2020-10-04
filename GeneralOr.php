@@ -42,5 +42,9 @@
 		function getCampDeLaPiece(){
 			return $this->campDeLaPiece;
 		}
+
+		function printImgPiece(){
+			echo "<img src='image/generalOr.png'></img>";
+		}
  	}
 ?>

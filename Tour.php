@@ -28,5 +28,9 @@ class Tour extends Piece {
 	function getCampDeLaPiece(){
 		return $this->campDeLaPiece;
 	}
+
+	function printImgPiece(){
+		echo "<img src='image/tour.png'></img>";
+	}
 }
 ?>

@@ -1,5 +1,9 @@
 <!DOCTYPE html>
 <html>
+<?php
+	require_once("Echequier.php");
+	require_once("Player.php");
+?>
 <head>
 	<link rel="stylesheet" type="text/css" href="CSS.css">
 	<title></title>
@@ -9,36 +13,69 @@
 		$nombre=1;
 		//$classe="caseBlanc"
 		//document.write('<table>');
+		$echequier1 = new Echequier();
+		$player1 = new Player($echequier1);
+		$player1->Player1playPiece(2,2,2,3);
+		
 	?>
 	<table id ="test">
 
 	<?php
-	for($l=0; $l<9; $l++) { // creer 9 lignes 
-	
-		//document.write('<tr>');
-		?>
-		<tr>
-		<?php
-		for($c=0; $c<9; $c++) { // creer 9 cases par lignes
-			
-			    
-			//document.write('<td><a onMouseOver="position('+l+','+c+')"><div id="'+l+'|'+c+'" class="'+classe+'"></div></a></td>'); // CREATION DES CASES (position('+l+','+c+') EST COMPLETE PAR UNE FONCTION DE LOCALISATION DES CASES DANS UN AUTRE SCRIPT)
-			// Test pour voir
-			//document.write('<td><a onMouseOver="position('+l+','+c+')"><div id="test" class="'+classe+'"></div></a></td>');
-			?>
-			<!-- <td><a onmouseover="position(<?php $l ?>,<?php $c ?>)"> <div id="<?php $l ?> | <?php $c ?>" class = "caseBlanc"> </div></a></td> -->
-			<td><a onmouseover="position(<?php $l ?>,<?php $c ?>)"> <div  class = "caseBlanc"> </div></a></td>
-			<?php
-			$nombre++;
-			}
-		$nombre++;
+	// Je pourrais directement le mettre dans echequier
+	function affichageEchequier($echequier) {
+
+		$pieceCellule = $echequier->getPieceCellule();
+
+		for($l=0; $l<9; $l++) { // creer 9 lignes 
 		
-		//document.write('</tr>');
-		?>
-		</tr>
-		<?php
-		}
-		?>
+			//document.write('<tr>');
+			?>
+			<tr>
+			<?php
+			for($c=0; $c<9	; $c++) { // creer 9 cases par lignes
+				
+					
+				//document.write('<td><a onMouseOver="position('+l+','+c+')"><div id="'+l+'|'+c+'" class="'+classe+'"></div></a></td>'); // CREATION DES CASES (position('+l+','+c+') EST COMPLETE PAR UNE FONCTION DE LOCALISATION DES CASES DANS UN AUTRE SCRIPT)
+				// Test pour voir
+				//document.write('<td><a onMouseOver="position('+l+','+c+')"><div id="test" class="'+classe+'"></div></a></td>');
+				?>
+				<!-- <td><a onmouseover="position(<?php// $l ?>,<?php //$c ?>)"> <div id="<?php //$l ?> | <?php //$c ?>" class = "caseBlanc"> </div></a></td> -->
+				<td><a onmouseover="position(<?php echo $c ?>,<?php echo $l ?>);"><div  class = "caseBlanc"><?php 
+					if ($pieceCellule[$l][$c] != null){
+						$pieceCellule[$l][$c]->printImgPiece();
+					}
+				?></div></a></td>
+				<!-- <td><a id="<?php //echo $l ?>,<?php //echo $c ?>" onmouseover="onMouseOver(event);"><div  class = "caseBlanc"></div></a></td> -->
+				<?php
+				//$nombre++;
+				}
+			//$nombre++;
+			
+			//document.write('</tr>');
+			?>
+			</tr>
+			<?php
+			}
+	}
+
+	function bougerPiece(){
+		
+	}
+
+	affichageEchequier($echequier1);
+
+	?>
+
+
+
+
+
+
+
+
+
+
+
 	<!-- Test pour voir si le probleme vient des cases -->
 <!--
 	</table>

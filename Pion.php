@@ -31,5 +31,9 @@
 			return $this->campDeLaPiece;
 		}
 
+		function printImgPiece(){
+			echo "<img src='image/pion.png'></img>";
+		}
+
  	}
 ?>

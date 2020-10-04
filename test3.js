@@ -1,4 +1,5 @@
 let test = document.getElementById("test");
+//let test = document.getElementById("0,0");
 //document.write(test);
 
 var number = 0;
@@ -43,6 +44,8 @@ test.addEventListener("click", function( event ){
 },false);
 */
 
+// Test drag and drop
+/*
 function onDragStart(event) {
 
 	event
@@ -71,3 +74,34 @@ function onDrop(event) {
 		.dataTransfer
 		.clearData();
 }
+*/
+
+// Test position
+function position(x,y){
+  document.write(x,y);
+}
+
+/*
+function onMouseOver(event) {
+  document.write("caca");
+}
+*/
+
+/*
+function onmouseover(x,y){
+  document.write("x,y");
+}
+*/
+
+// une methode pour rattraper les coordonnee après avoir clicke sur une case 
+/*
+test.addEventListener("click", function( event ) {   
+  // on met l'accent sur la cible de mouseenter
+  document.write("caca");
+
+  // on réinitialise la couleur après quelques instants
+  setTimeout(function() {
+    event.target.style.color = "";
+  }, 500);
+}, false);
+*/

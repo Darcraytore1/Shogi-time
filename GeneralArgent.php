@@ -40,7 +40,9 @@ class GeneralArgent extends Piece{
 		return $this->campDeLaPieces;
 	}
 
-
+	function printImgPiece(){
+		echo "<img src='image/generalArgent.png'></img>";
+	}
 
  }
 ?>

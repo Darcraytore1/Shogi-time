@@ -28,6 +28,10 @@ class Roi extends Piece{
 	function getCampDeLaPiece(){
 		return $this->campDeLaPiece;
 	}
+
+	function printImgPiece(){
+		echo "<img src='image/roi.png'></img>";
+	}
 }
 
 ?>

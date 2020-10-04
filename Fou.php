@@ -32,5 +32,9 @@ class Fou extends Piece{
 	function getCampDeLaPiece(){
 		return $this->campDeLaPiece;
 	}
+
+	function printImgPiece(){
+		echo "<img src='image/fou.png'></img>";
+	}
 }
 ?>
