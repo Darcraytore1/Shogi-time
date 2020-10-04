@@ -13,13 +13,13 @@
 	<table id ="test">
 
 	<?php
-	for($l=1; $l<10; $l++) { // creer 9 lignes 
+	for($l=0; $l<9; $l++) { // creer 9 lignes 
 	
 		//document.write('<tr>');
 		?>
 		<tr>
 		<?php
-		for($c=1; $c<10; $c++) { // creer 9 cases par lignes
+		for($c=0; $c<9; $c++) { // creer 9 cases par lignes
 			
 			    
 			//document.write('<td><a onMouseOver="position('+l+','+c+')"><div id="'+l+'|'+c+'" class="'+classe+'"></div></a></td>'); // CREATION DES CASES (position('+l+','+c+') EST COMPLETE PAR UNE FONCTION DE LOCALISATION DES CASES DANS UN AUTRE SCRIPT)
