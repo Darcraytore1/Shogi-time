@@ -6,13 +6,13 @@
   </head>
   <body>
 	<div class="example-parent">
-  <div class="example-origin">
-    <div
-      id="draggable-1"
-      class="example-draggable"
-      draggable="true"
-      ondragstart="onDragStart(event);"
-    >
+    <div class="example-origin">
+      <div
+        id="draggable-1"
+        class="example-draggable"
+        draggable="true"
+        ondragstart="onDragStart(event);"
+      >
       draggable
     </div>
   </div>
@@ -25,6 +25,9 @@
     dropzone
   </div>
 </div>
-	<script src="test3.js"></script>
+	<script type="text/javascript" src="test3.js"></script>
   </body>
 </html>
+
+
+

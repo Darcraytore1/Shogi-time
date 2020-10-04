@@ -1,8 +1,8 @@
-let test = document.getElementById("test");
+//let test = document.getElementById("test");
 //let test = document.getElementById("0,0");
 //document.write(test);
 
-var number = 0;
+//var number = 0;
 // Ce gestionnaire ne sera exécuté qu'une fois
 // lorsque le curseur se déplace sur la liste
 
@@ -45,40 +45,37 @@ test.addEventListener("click", function( event ){
 */
 
 // Test drag and drop
-/*
+
 function onDragStart(event) {
 
 	event
 	  .dataTransfer
 	  .setData('text/plain', event.target.id);
 
-	event
-	  .currentTarget
-	  .style
-	  .backgroundColor = 'yellow';
+	//event.currentTarget.style.backgroundColor = 'yellow';
 
-	}
+}
 	
 function onDragOver(event) {
-		event.preventDefault();	
+  
+  event.preventDefault();	
+  
 }
 
 function onDrop(event) {
 
-	const id = evet.dataTransfer.getData('text');
+	const id = event.dataTransfer.getData('text');
 	const draggableElement = document.getElementById(id);
 	const dropzone = event.target;
-	dropzone.appendChild(draggableElement);
+  dropzone.appendChild(draggableElement);
 
-	event
-		.dataTransfer
-		.clearData();
+	event.dataTransfer.clearData();
 }
-*/
+
 
 // Test position
 function position(x,y){
-  document.write(x,y);
+  //document.write(x,y);
 }
 
 /*

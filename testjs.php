@@ -40,7 +40,8 @@
 				//document.write('<td><a onMouseOver="position('+l+','+c+')"><div id="test" class="'+classe+'"></div></a></td>');
 				?>
 				<!-- <td><a onmouseover="position(<?php// $l ?>,<?php //$c ?>)"> <div id="<?php //$l ?> | <?php //$c ?>" class = "caseBlanc"> </div></a></td> -->
-				<td><a onmouseover="position(<?php echo $c ?>,<?php echo $l ?>);"><div  class = "caseBlanc"><?php 
+				<td><a onmouseover="position(<?php echo $c ?>,<?php echo $l ?>);" id="<?php echo $c,$l ?>" draggable="true" ondragstart="onDragStart(event);" ondragover="onDragOver(event);" 
+				ondrop="onDrop(event);"><div class = "caseBlanc"><?php 
 					if ($pieceCellule[$l][$c] != null){
 						$pieceCellule[$l][$c]->printImgPiece();
 					}
