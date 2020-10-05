@@ -43,8 +43,8 @@
 			return $this->campDeLaPiece;
 		}
 
-		function printImgPiece(){
-			echo "<img src='image/generalOr.png'></img>";
+		function printImgPiece($x,$y){
+			echo "<img src='image/generalOr.png' id='$x,$y' draggable='true' ondragstart='onDragStart(event);'></img>";
 		}
  	}
 ?>

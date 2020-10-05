@@ -40,8 +40,8 @@ class GeneralArgent extends Piece{
 		return $this->campDeLaPieces;
 	}
 
-	function printImgPiece(){
-		echo "<img src='image/generalArgent.png'></img>";
+	function printImgPiece($x,$y){
+		echo "<img src='image/generalArgent.png' id='$x,$y' draggable='true' ondragstart='onDragStart(event);'></img>";
 	}
 
  }

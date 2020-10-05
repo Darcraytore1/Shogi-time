@@ -1,13 +1,13 @@
 <?php
-	require_once("/Piece/Piece.php");
-	require_once("/Piece/Lancier.php");   // Peut être compacté pour mettre toutes les classes de pièces dans un seul fichier, à voir
-	require_once("/Piece/GeneralArgent.php");
-	require_once("/Piece/GeneralOr.php");
-	require_once("/Piece/Pion.php");
-	require_once("/Piece/Roi.php");
-	require_once("/Piece/Tour.php");
-	require_once("/Piece/Fou.php");
-	require_once("/Piece/Cavalier.php");
+	require_once("Piece/Piece.php");
+	require_once("Piece/Lancier.php");   // Peut être compacté pour mettre toutes les classes de pièces dans un seul fichier, à voir
+	require_once("Piece/GeneralArgent.php");
+	require_once("Piece/GeneralOr.php");
+	require_once("Piece/Pion.php");
+	require_once("Piece/Roi.php");
+	require_once("Piece/Tour.php");
+	require_once("Piece/Fou.php");
+	require_once("Piece/Cavalier.php");
 
 	// La visibilite public pour les classes ne fonctionnent pas chercher pourquoi
 	class Echequier {

@@ -29,8 +29,8 @@ class Tour extends Piece {
 		return $this->campDeLaPiece;
 	}
 
-	function printImgPiece(){
-		echo "<img src='image/tour.png'></img>";
+	function printImgPiece($x,$y){
+		echo "<img src='image/tour.png' id='$x,$y' draggable='true' ondragstart='onDragStart(event);'></img>";
 	}
 }
 ?>

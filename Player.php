@@ -13,6 +13,7 @@
 		// x et y sont les coordonnees de la piece choisi et j, k sont 
 		// les coordonnees de l'endroit ou on veut que la piece aille 
 		function Player1playPiece($x,$y,$j,$k){
+
 			if ($x == $j and $y == $k){		// L'endroit de depart et d'arrive sont les memes donc il ne faut rien faire
 				return (false);
 			}
@@ -173,11 +174,13 @@
 		}
 
 		function Player2playPiece($x,$y,$j,$k){
+
 			$piece = $this->echequier->getPieceCellule()[$y][$x];
 			if ($piece->isAuthorizedMovementPlayer2($x,$y,$j,$k)){
 
 			}
 			return(false);
+			
 		}
 
 		// Parachute une piece et doit influencer en consequence l'echequier

@@ -1,3 +1,5 @@
+//import * from 'Cavalier';
+
 //let test = document.getElementById("test");
 //let test = document.getElementById("0,0");
 //document.write(test);
@@ -62,14 +64,17 @@ function onDragOver(event) {
   
 }
 
-function onDrop(event) {
+function onDrop(event,x,y) {
+  
+  // Mettre une condition if qui regarde si le mouvement est valide 
+  // Je vais mettre des conditions en php dans le code pour l'instant mais à voir, c'est surement pas le mieux à faire 
 
-	const id = event.dataTransfer.getData('text');
-	const draggableElement = document.getElementById(id);
-	const dropzone = event.target;
+  const id = event.dataTransfer.getData('text');
+  const draggableElement = document.getElementById(id);
+  const dropzone = event.target;
   dropzone.appendChild(draggableElement);
 
-	event.dataTransfer.clearData();
+  event.dataTransfer.clearData();
 }
 
 

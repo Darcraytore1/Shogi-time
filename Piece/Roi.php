@@ -29,8 +29,8 @@ class Roi extends Piece{
 		return $this->campDeLaPiece;
 	}
 
-	function printImgPiece(){
-		echo "<img src='image/roi.png'></img>";
+	function printImgPiece($x,$y){
+		echo "<img src='image/roi.png' id='$x,$y' draggable='true' ondragstart='onDragStart(event);'></img>";
 	}
 }
 
