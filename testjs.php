@@ -6,6 +6,7 @@
 ?>
 <head>
 	<link rel="stylesheet" type="text/css" href="CSS.css">
+	<script type="text/javascript" src="event.js"></script>
 	<title></title>
 </head>
 <body>
@@ -39,12 +40,19 @@
 				// Test pour voir
 				//document.write('<td><a onMouseOver="position('+l+','+c+')"><div id="test" class="'+classe+'"></div></a></td>');
 				?>
-				<!-- <td><a onmouseover="position(<?php// $l ?>,<?php //$c ?>)"> <div id="<?php //$l ?> | <?php //$c ?>" class = "caseBlanc"> </div></a></td> -->
-				<td><a onmouseover="position(<?php echo $c ?>,<?php echo $l ?>);" id="<?php echo $c,$l ?>"><div ondragover="onDragOver(event);" 
-					ondrop="onDrop(event,<?php echo $l ?>,<?php echo $c ?>);" class = "caseBlanc"><?php 
+				<!-- <td><a onmouseover="position(<?php// echo $l ?>,<?php // echo $c ?>)"> <div id="<?php //$l ?> | <?php //$c ?>" class = "caseBlanc"> </div></a></td> -->
+
+				<td><a id="<?php echo $c,$l ?>">
+				<div ondragover="onDragOver(event);" 
+			onclick="onClick(event);"
+			ondrop="onDrop(event);" 
+			class = "caseBlanc" 
+			x = "<?php echo $l ?>" 
+			y = "<?php echo $c ?>"><?php 
 					if ($pieceCellule[$l][$c] != null){
 						$pieceCellule[$l][$c]->printImgPiece($c,$l);
 					}
+					
 				?></div></a></td>
 				<!-- <td><a id="<?php //echo $l ?>,<?php //echo $c ?>" onmouseover="onMouseOver(event);"><div  class = "caseBlanc"></div></a></td> -->
 				<?php
@@ -101,7 +109,6 @@
 		?>
 	</table>
 -->
-	<script type="text/javascript" src="test3.js"></script>
 </body>
 
 <!--

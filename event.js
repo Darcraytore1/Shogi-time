@@ -50,31 +50,74 @@ test.addEventListener("click", function( event ){
 
 function onDragStart(event) {
 
-	event
-	  .dataTransfer
-	  .setData('text/plain', event.target.id);
+    event
+        .dataTransfer
+        .setData('text/plain', event.target.id);
 
-	//event.currentTarget.style.backgroundColor = 'yellow';
+    
+    //event.currentTarget.style.backgroundColor = 'yellow';
 
 }
 	
 function onDragOver(event) {
-  
-  event.preventDefault();	
+    
+    event.preventDefault();	
   
 }
 
-function onDrop(event,x,y) {
+/*
+function onClick(event){
+    //const id = event.dataTransfer.getData('text');
+    //document.write(document.getElementById(id));
+    //document.write(element);
+
+    const x = event.target.x;
+    //const x = element.getAttribute(x);
+    document.write(x);
+    document.write("3");
+}
+*/
+
+function onDrop(event) {
   
-  // Mettre une condition if qui regarde si le mouvement est valide 
-  // Je vais mettre des conditions en php dans le code pour l'instant mais à voir, c'est surement pas le mieux à faire 
+    // Mettre une condition if qui regarde si le mouvement est valide 
+    // Je vais mettre des conditions en php dans le code pour l'instant mais à voir, c'est surement pas le mieux à faire 
 
-  const id = event.dataTransfer.getData('text');
-  const draggableElement = document.getElementById(id);
-  const dropzone = event.target;
-  dropzone.appendChild(draggableElement);
+    //document.write(echequier); // On ne peut pas faire rentrer des objects php 
 
-  event.dataTransfer.clearData();
+    const id = event.dataTransfer.getData('text');
+    const draggableElement = document.getElementById(id);
+
+    const dropzone = event.target;
+
+    // Possibilite de mettre un if avec le joueur qui soit devenue une class js
+
+    // Valeurs cases departs
+    const x1 = draggableElement.getAttribute("x");
+    const y1 = draggableElement.getAttribute("y");
+
+    // Les valeurs de la case d'arrivee
+    const x2 = dropzone.getAttribute("x");
+    const y2 = dropzone.getAttribute("y");
+
+    draggableElement.setAttribute("x",x2);
+
+    document.write(draggableElement.getAttribute("x"));
+    
+    //document.write(x);
+    //document.write(y);
+
+    //const x = event;
+    //document.write(x);
+    
+    //document.write(draggableElement);
+    //x = dropzone.getData(x);
+    //const y = dropzone.getData.y();
+
+    dropzone.appendChild(draggableElement);
+
+    event.dataTransfer.clearData();
+
 }
 
 
