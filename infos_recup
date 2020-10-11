@@ -1,0 +1,17 @@
+Dans mon interface graphique je dois récupérer :
+
+- la case de départ de la piece 
+- la case d'arriver de la piece 
+- le type de la piece en question 
+
+Je dois ensuite faire un test sur ces informations :
+
+- le mouvement a effectué est il possible 
+
+Pour finir je dois changer mon back en fonction :
+
+- SI le mouvement est possible 
+    changer la piece au bon emplacement dans le tableau 
+
+- SINON 
+    Ne rien faire, et indiquer au joueur que son coup n'est pas permis 

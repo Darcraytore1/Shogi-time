@@ -1,4 +1,4 @@
-class Cavalier{
+export default class Cavalier{
 
 
 	campDeLaPiece;

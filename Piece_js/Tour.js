@@ -1,4 +1,4 @@
-class Tour{
+export default class Tour{
 
 	campDeLaPiece;
 

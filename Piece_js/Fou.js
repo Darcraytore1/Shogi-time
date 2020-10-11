@@ -1,5 +1,5 @@
 
-class Fou {
+export default class Fou {
 
     campDeLaPiece;
 

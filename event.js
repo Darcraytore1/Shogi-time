@@ -1,82 +1,47 @@
-//import * from 'Cavalier';
+// main 
+var echequier = new Echequier();
+var player = new Player(echequier);
+player.getEchequier();
 
-//let test = document.getElementById("test");
-//let test = document.getElementById("0,0");
-//document.write(test);
-
-//var number = 0;
-// Ce gestionnaire ne sera exécuté qu'une fois
-// lorsque le curseur se déplace sur la liste
-
-// Test n°1
-/*
-test.addEventListener("mouseenter", function( event ) {   
-  // on met l'accent sur la cible de mouseenter
-  event.target.style.color = "purple";
-
-  // on réinitialise la couleur après quelques instants
-  setTimeout(function() {
-    event.target.style.color = "";
-  }, 500);
-}, false);
-
-// Ce gestionnaire sera exécuté à chaque fois que le curseur
-// se déplacera sur un autre élément de la liste
-test.addEventListener("mouseover", function( event ) {   
-  // on met l'accent sur la cible de mouseover
-  event.target.style.color = "orange";
-
-  // on réinitialise la couleur après quelques instants
-  setTimeout(function() {
-    event.target.style.color = "";
-  }, 500);
-}, false);
-*/
-
-// Test n°2
-/*
-test.addEventListener("click", function( event ){
-  if (number == 0){
-    document.write("<p id='test'>caca</p>");
-  }
-  else {
-    document.write("<p id='test'>prout</p>");
-  }
-
-},false);
-*/
 
 // Test drag and drop
 
 function onDragStart(event) {
 
-    event
-        .dataTransfer
-        .setData('text/plain', event.target.id);
+  event
+      .dataTransfer
+      .setData('text/plain', event.target.id);
 
-    
-    //event.currentTarget.style.backgroundColor = 'yellow';
-
-}
-	
-function onDragOver(event) {
-    
-    event.preventDefault();	
   
+  //event.currentTarget.style.backgroundColor = 'yellow';
+
 }
 
 /*
-function onClick(event){
-    //const id = event.dataTransfer.getData('text');
-    //document.write(document.getElementById(id));
-    //document.write(element);
+var pieces = document.querySelector("img")[0];
+console.log(echequier);
 
-    const x = event.target.x;
-    //const x = element.getAttribute(x);
-    document.write(x);
-    document.write("3");
-}
+document.addEventListener("drag",function(event){
+  event
+  .dataTransfer
+  .setData('text/plain', event.target.id);
+})
 */
+
+
+function onDragOver(event) {
+  
+  event.preventDefault();	
+
+}
+
+
+/*
+document.addEventListener("dragover",function(event){
+  event.preventDefault();
+})
+*/
+
 
 function onDrop(event) {
   
@@ -120,6 +85,32 @@ function onDrop(event) {
 
 }
 
+
+/*
+document.addEventListener("drop",function(event){
+
+
+    const dropzone = event.target;
+
+    // Possibilite de mettre un if avec le joueur qui soit devenue une class js
+
+    // Valeurs cases departs
+    //const x1 = pieces.getAttribute("x");
+    //const y1 = pieces.getAttribute("y");
+
+    // Les valeurs de la case d'arrivee
+    //const x2 = dropzone.getAttribute("x");
+    //const y2 = dropzone.getAttribute("y");
+
+    pieces.setAttribute("x",x2);
+
+    document.write(pieces.getAttribute("x"));
+
+    dropzone.appendChild(pieces);
+
+    event.dataTransfer.clearData();
+})
+*/
 
 // Test position
 function position(x,y){

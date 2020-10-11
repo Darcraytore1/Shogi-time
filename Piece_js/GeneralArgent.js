@@ -1,4 +1,4 @@
-class GeneralArgent {
+export default class GeneralArgent {
 
 	campDeLaPiece;
 

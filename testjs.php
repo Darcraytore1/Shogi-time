@@ -6,7 +6,7 @@
 ?>
 <head>
 	<link rel="stylesheet" type="text/css" href="CSS.css">
-	<script type="text/javascript" src="event.js"></script>
+	<!-- <script type="text/javascript" src="event.js"></script> -->
 	<title></title>
 </head>
 <body>
@@ -19,53 +19,57 @@
 		$player1->Player1playPiece(2,2,2,3);
 		
 	?>
-	<table id ="test">
+	<table id ="echequier">
 
 	<?php
 	// Je pourrais directement le mettre dans echequier
 	function affichageEchequier($echequier) {
 
 		$pieceCellule = $echequier->getPieceCellule();
+		?>
 
+		<?php 
 		for($l=0; $l<9; $l++) { // creer 9 lignes 
 		
-			//document.write('<tr>');
+
 			?>
 			<tr>
 			<?php
 			for($c=0; $c<9	; $c++) { // creer 9 cases par lignes
-				
-					
-				//document.write('<td><a onMouseOver="position('+l+','+c+')"><div id="'+l+'|'+c+'" class="'+classe+'"></div></a></td>'); // CREATION DES CASES (position('+l+','+c+') EST COMPLETE PAR UNE FONCTION DE LOCALISATION DES CASES DANS UN AUTRE SCRIPT)
-				// Test pour voir
-				//document.write('<td><a onMouseOver="position('+l+','+c+')"><div id="test" class="'+classe+'"></div></a></td>');
 				?>
-				<!-- <td><a onmouseover="position(<?php// echo $l ?>,<?php // echo $c ?>)"> <div id="<?php //$l ?> | <?php //$c ?>" class = "caseBlanc"> </div></a></td> -->
+					
 
-				<td><a id="<?php echo $c,$l ?>">
+				<td>
+				<!--
 				<div ondragover="onDragOver(event);" 
 			onclick="onClick(event);"
 			ondrop="onDrop(event);" 
 			class = "caseBlanc" 
-			x = "<?php echo $l ?>" 
-			y = "<?php echo $c ?>"><?php 
+			x = "<?php //echo $l ?>" 
+			y = "<?php //echo $c ?>">
+			-->
+			<div class="caseBlanc" ?>
+			<?php 
 					if ($pieceCellule[$l][$c] != null){
 						$pieceCellule[$l][$c]->printImgPiece($c,$l);
 					}
 					
-				?></div></a></td>
-				<!-- <td><a id="<?php //echo $l ?>,<?php //echo $c ?>" onmouseover="onMouseOver(event);"><div  class = "caseBlanc"></div></a></td> -->
+				?></div></td>
+				
 				<?php
-				//$nombre++;
+
 				}
-			//$nombre++;
+
 			
-			//document.write('</tr>');
+
 			?>
 			</tr>
 			<?php
 			}
-	}
+			?>
+			</table>
+			<?php
+		}
 
 	function bougerPiece(){
 		
@@ -75,6 +79,7 @@
 
 	?>
 
+	<script type="text/javascript" src="event.js"></script>
 
 
 

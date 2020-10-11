@@ -1,4 +1,4 @@
-class Roi {
+export default class Roi {
 
 	campDeLaPiece;
 

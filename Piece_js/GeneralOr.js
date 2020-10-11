@@ -1,5 +1,5 @@
 
-class GeneralOr{
+export default class GeneralOr{
 
     campDeLaPiece;
 

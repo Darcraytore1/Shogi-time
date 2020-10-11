@@ -32,7 +32,8 @@
 		}
 
 		function printImgPiece($x,$y){
-			echo "<img src='image/pion.png' id='$x,$y' draggable='true' ondragstart='onDragStart(event);' x='$x' y='$y'></img>";
+			//echo "<img src='image/pion.png' id='$x,$y' draggable='true' ondragstart='onDragStart(event);' x='$x' y='$y'></img>";
+			echo "<img src='image/pion.png' id='$x,$y' draggable='true'></img>";
 		}
 
  	}

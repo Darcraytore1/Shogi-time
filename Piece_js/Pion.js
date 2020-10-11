@@ -1,4 +1,4 @@
-class Pion {
+export default class Pion {
 
     campDeLaPiece;
 

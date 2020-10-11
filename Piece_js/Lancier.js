@@ -1,4 +1,4 @@
-class Lancier {
+export default class Lancier {
 
     campDeLaPiece;
 
