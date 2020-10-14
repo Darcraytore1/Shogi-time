@@ -7,7 +7,7 @@ import Pion from "./Piece_js/Pion.js";
 import Cavalier from "./Piece_js/Cavalier.js";
 import Roi from "./Piece_js/Roi.js";
 
-class Echequier {
+export default class Echequier {
 
 
     //public $piceceCellule = new Lancier(); //[([(new Lancier(),new Cavalier(),new GeneralArgent(),new GeneralOr(), new Roi(),new GeneralOr(), new GeneralArgent(),new Cavalier(),new Lancier())); // Dans le tableau je dois initialiser chacune des pièces 

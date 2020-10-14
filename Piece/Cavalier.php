@@ -40,8 +40,13 @@ class Cavalier extends Piece{
 	}
 
 	function printImgPiece($x,$y){
-		//echo "<img src='image/cavalier.png' id='$x,$y' draggable='true' ondragstart='onDragStart(event);' x='$x' y='$y'></img>";
-		echo "<img src='image/cavalier.png' id='$x,$y' draggable='true'></img>";
+		if ($this->campDeLaPiece == 1){
+			echo "<img src='image/cavalier.png' id='$x,$y' draggable='true' ondragstart='onDragStart(event);' x='$x' y='$y' camp='1'></img>";
+		}
+		else {
+			echo "<img src='image/cavalier.png' id='$x,$y' draggable='true' ondragstart='onDragStart(event);' x='$x' y='$y' camp='2'></img>";
+		}
+		//echo "<img src='image/cavalier.png' id='$x,$y' draggable='true'></img>";
 	}
 }
 ?>

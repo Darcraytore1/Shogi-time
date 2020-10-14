@@ -40,15 +40,14 @@
 					
 
 				<td>
-				<!--
-				<div ondragover="onDragOver(event);" 
-			onclick="onClick(event);"
+				
+				<!--<div ondragover="onDragOver(event);" 
 			ondrop="onDrop(event);" 
 			class = "caseBlanc" 
 			x = "<?php //echo $l ?>" 
 			y = "<?php //echo $c ?>">
 			-->
-			<div class="caseBlanc" ?>
+			<div class="caseBlanc" x="<?php echo $c ?>" y ="<?php echo $l ?>"> 
 			<?php 
 					if ($pieceCellule[$l][$c] != null){
 						$pieceCellule[$l][$c]->printImgPiece($c,$l);
@@ -78,8 +77,7 @@
 	affichageEchequier($echequier1);
 
 	?>
-
-	<script type="text/javascript" src="event.js"></script>
+	<script type="module" src="event.js"></script>
 
 
 

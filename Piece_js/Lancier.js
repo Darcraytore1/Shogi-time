@@ -7,7 +7,7 @@ export default class Lancier {
     }
 
     toString(){
-        return "Lancier " + campDeLaPiece;
+        return "Lancier " + this.campDeLaPiece;
     }
 
     isAuthorizedMovementPlayer1(x,y,j,k){
@@ -35,7 +35,7 @@ export default class Lancier {
     }
 
     getCampDeLaPiece(){
-        return campDeLaPiece;
+        return this.campDeLaPiece;
     }
 
     printImgPiece(x,y){

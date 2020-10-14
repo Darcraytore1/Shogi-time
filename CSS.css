@@ -9,6 +9,11 @@ border : 1px solid #000000;
 background-color: #efd7b8;
 }
 
+.caseGreen{
+	border : 1px solid #6DB65B;
+	background-color: #6DB65B;
+}
+
 .example-parent {
 	border: 2px solid #DFA612;
 	color: black;

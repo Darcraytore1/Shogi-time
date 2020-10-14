@@ -11,7 +11,8 @@ export default class Tour{
 	}
 
 	isAuthorizedMovementPlayer1(x,y,j,k){
-
+		var i;
+		
 		for (i = 0; i<9;i++){
 
 			if ((x + i == j && y == k && x + i < 9) || (x - i == j && y == k && x - i > -1) 

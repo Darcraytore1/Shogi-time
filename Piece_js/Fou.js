@@ -13,6 +13,7 @@ export default class Fou {
 
 	// Calcul des diagonals du tableau 
 	isAuthorizedMovementPlayer1(x,y,j,k){
+		var i;
 		for (i = 0; i<9;i++){
 
 			/*
