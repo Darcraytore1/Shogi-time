@@ -7,6 +7,13 @@ import Pion from "./Piece_js/Pion.js";
 import Cavalier from "./Piece_js/Cavalier.js";
 import Roi from "./Piece_js/Roi.js";
 
+import Lancier_u from "./Piece_js/Lancier_u.js";
+import Fou_u from "./Piece_js/Fou_u.js";
+import GeneralArgent_u from "./Piece_js/GeneralArgent_u.js";
+import Tour_u from "./Piece_js/Tour_u.js";
+import Pion_u from "./Piece_js/Pion_u.js";
+import Cavalier_u from "./Piece_js/Cavalier_u.js";
+
 export default class Echequier {
 
 
@@ -45,6 +52,10 @@ export default class Echequier {
         this.pieceCellule[y][x] = value;
     }
 
+    pieceEvolve(x,y,piece){
+        this.pieceCellule[y][x] = piece;
+    }
+
     // Pour voir a quoi ressemble le tableau
     toString(){
 
@@ -68,15 +79,21 @@ export default class Echequier {
         return string;
         //return "L'etat actuelle de l'echequier est ". $this->pieceCellule;
     }
+
+    affiche(){
+        var casesBlanc = document.querySelectorAll(".caseBlanc");
+        var element = null;
+        var number = 0;
+        for (var i = 0; i < this.pieceCellule.length;i++){
+            for (var j = 0; j < i; i++){
+                if (this.pieceCellule[i][j] != null){
+                    element = document.createElement(this.pieceCellule[i][j].printImgPiece(casesBlanc[number].getAttribute("x"),casesBlanc[number].getAttribute("y")));
+                    casesBlanc[number].appendChild(element);
+                }
+                number++;
+            }
+        }   
+    }
 }
-
-//var echequier = new Echequier();
-//console.log(echequier);
-//document.write(echequier);
-
-/*
-$Echequier = new Echequier();
-echo($Echequier -> getPieceCellule());
-*/
 
 

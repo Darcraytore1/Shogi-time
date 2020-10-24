@@ -16,7 +16,7 @@
 		//document.write('<table>');
 		$echequier1 = new Echequier();
 		$player1 = new Player($echequier1);
-		$player1->Player1playPiece(2,2,2,3);
+		//$player1->Player1playPiece(2,2,2,3);
 		
 	?>
 	<table id ="echequier">
@@ -67,6 +67,15 @@
 			}
 			?>
 			</table>
+			<br><br>
+			<div class="bancPiece">
+
+			</div>
+
+			<br><br>
+			<div class="bancPiece">
+
+			</div>
 			<?php
 		}
 

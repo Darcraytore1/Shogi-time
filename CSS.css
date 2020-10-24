@@ -14,6 +14,23 @@ background-color: #efd7b8;
 	background-color: #6DB65B;
 }
 
+.bancPiece{
+	height : 120px;
+	width : 300px;
+	border : 1px solid #000000;
+	background-color: #efd7b8;
+}
+
+.reverse {
+	-webkit-transform: scaleY(-1);
+	transform: scaleY(-1);
+}
+
+.active {
+	-webkit-transform: scaleY(-1);
+	transform: scaleY(-1);
+}
+
 .example-parent {
 	border: 2px solid #DFA612;
 	color: black;

@@ -42,7 +42,7 @@ class GeneralArgent extends Piece{
 
 	function printImgPiece($x,$y){
 		if ($this->campDeLaPiece == 1){
-			echo "<img src='image/generalArgent.png' id='$x,$y' draggable='true' ondragstart='onDragStart(event);' x='$x' y='$y' camp='1'></img>";
+			echo "<img src='image/generalArgent.png' class='reverse' id='$x,$y' draggable='true' ondragstart='onDragStart(event);' x='$x' y='$y' camp='1'></img>";
 		}
 		else {
 			echo "<img src='image/generalArgent.png' id='$x,$y' draggable='true' ondragstart='onDragStart(event);' x='$x' y='$y' camp='2'></img>";

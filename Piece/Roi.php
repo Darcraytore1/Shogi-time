@@ -30,8 +30,8 @@ class Roi extends Piece{
 	}
 
 	function printImgPiece($x,$y){
-		if($this->campDeLaPiece){
-			echo "<img src='image/roi.png' id='$x,$y' draggable='true' ondragstart='onDragStart(event);' x='$x' y='$y' camp='1'></img>";
+		if($this->campDeLaPiece == 1){
+			echo "<img src='image/roi.png' class='reverse' id='$x,$y' draggable='true' ondragstart='onDragStart(event);' x='$x' y='$y' camp='1'></img>";
 		}
 		else {
 			echo "<img src='image/roi.png' id='$x,$y' draggable='true' ondragstart='onDragStart(event);' x='$x' y='$y' camp='2'></img>";

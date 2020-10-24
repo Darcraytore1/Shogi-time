@@ -1,23 +1,19 @@
+import Pion from "./Pion.js";
 
-export default class GeneralOr{
-
-    campDeLaPiece;
+export default class Pion_u extends Pion{
 
     constructor(campDeLaPiece){
-        this.campDeLaPiece = campDeLaPiece;
-    }
+		super(campDeLaPiece);
+	}
 
     toString(){
-    
-        return "GeneralOr "+this.campDeLaPiece;
-
+        return super.toString() + " upgrade";
     }
 
     type(){
-		return "GeneralOr";
-	}
+		return "Pion_u";
+    }
 
-    // ça a l'air correct
     isAuthorizedMovementPlayer1(x,y,j,k){
 
         if ( (x == j && y + 1 == k && y + 1 < 9) || (x + 1 == j && y == k && x + 1 < 9) || (x - 1 == j && y == k && x - 1 > -1)
@@ -41,13 +37,5 @@ export default class GeneralOr{
         }
 
         return false;
-    }
-
-    getCampDeLaPiece(){
-        return this.campDeLaPiece;
-    }
-
-    printImgPiece(x,y){
-        return "<img src='image/generalOr.png' id='x,y' draggable='true' ondragstart='onDragStart(event);'></img>";
     }
 }

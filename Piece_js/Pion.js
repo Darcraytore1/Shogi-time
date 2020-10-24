@@ -10,6 +10,10 @@ export default class Pion {
         return "Pion " + this.campDeLaPiece;
     }
 
+    type(){
+		return "Pion";
+	}
+
     // Si le mouvement est authorise renvoie true sinon false
     isAuthorizedMovementPlayer1(x,y,j,k){
         if (x == j && y + 1 == k && y + 1 < 9){
@@ -31,7 +35,6 @@ export default class Pion {
     }
 
     printImgPiece(x,y){
-        document.write("<img src='image/pion.png' id='x,y' draggable='true' ondragstart='onDragStart(event);'></img>");
+        return "<img src='image/pion.png' id='x,y' draggable='true' ondragstart='onDragStart(event);'></img>";
     }
-
 }

@@ -10,6 +10,10 @@ export default class GeneralArgent {
 		return "GeneralArgent "+this.campDeLaPiece;
 	}
 
+	type(){
+		return "GeneralArgent";
+	}
+
 	// ça a l'air correct
 	isAuthorizedMovementPlayer1(x,y,j,k){	
 		
@@ -23,10 +27,10 @@ export default class GeneralArgent {
 		return false;
 	}
 
-	fisAuthorizedMovementPlayer2(x,y,j,k){	
+	isAuthorizedMovementPlayer2(x,y,j,k){	
 		
-		if ( (x == j && y - 1 == k && y - 1 > -1) || (x - 1 == j && y - 1 == k && x - 1 > -1 && y - 1 > -1)  || (x + 1 == j && y - 1 == k && x + 1 < 9 && y - 1 > -1)
-			|| (x - 1 == j && y + 1 == k && x - 1 > -1 && y + 1 < 9) || (x + 1 == j && y + 1 == k && x + 1 < 9 && y + 1 < 9)){
+		if ( (x == j && y - 1 == k && y - 1 > -1) || (x + 1 == j && y + 1 == k && x + 1 < 9 && y + 1 < 9)  || (x - 1 == j && y + 1 == k && x - 1 > -1 && y + 1 < 9)
+			|| (x + 1 == j && y - 1 == k && x + 1 < 9 && y - 1 > -1) || (x - 1 == j && y - 1 == k && x - 1 > -1 && y - 1 > -1)){
 
 			return true;
 
@@ -40,7 +44,6 @@ export default class GeneralArgent {
 	}
 
 	printImgPiece(x,y){
-		document.write("<img src='image/generalArgent.png' id='x,y' draggable='true' ondragstart='onDragStart(event);'></img>");
+		return "<img src='image/generalArgent.png' id='x,y' draggable='true' ondragstart='onDragStart(event);'></img>";
 	}
-
  }

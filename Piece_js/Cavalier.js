@@ -11,9 +11,13 @@ export default class Cavalier{
 		return "Cavalier "+this.campDeLaPiece;
 	}
 
+	type(){
+		return "Cavalier";
+	}
+
 	isAuthorizedMovementPlayer1(x,y,j,k){
 
-		if ((x - 1 == j && y - 2 == k && x -1 > -1 && y - 2 > -1) || (x + 1 == j && y - 2 == k && x + 1 < 9 && y - 2 > -1)){
+		if ((x - 1 == j && y + 2 == k && x - 1 > -1 && y + 2 < 9) || (x + 1 == j && y + 2 == k && x + 1 < 9 && y + 2 < 9)){
 
 			return true;
 
@@ -25,7 +29,7 @@ export default class Cavalier{
 
 	isAuthorizedMovementPlayer2(x,y,j,k){
 
-		if ((x - 1 == j && y + 2 == k && x -1 > -1 && y + 2 < 9) || (x + 1 == j && y + 2 == k && x + 1 < 9 && y - 2 < 9)){
+		if ((x + 1 == j && y - 2 == k && x +1 < 9 && y - 2 > -1) || (x - 1 == j && y - 2 == k && x - 1 > -1 && y - 2 > -1)){
 
 			return true;
 
@@ -39,7 +43,7 @@ export default class Cavalier{
 	}
 
 	printImgPiece(x,y){
-		document.write("<img src='image/cavalier.png' id='x,y' draggable='true' ondragstart='onDragStart(event);' ></img>");
+		return "<img src='image/cavalier.png' id='x,y' draggable='true' ondragstart='onDragStart(event);' ></img>";
 	}
 }
 

@@ -5,24 +5,34 @@ import Echequier from "./Echequier_js.js";
 
 var echequier = new Echequier();
 var player = new Player(echequier);
-console.log(player.getEchequier());
+var player2 = new Player(echequier);
 //console.log(player.Player1playPiece(0,2,0,3));
-console.log(player.getEchequier());
-
+//console.log(player.getEchequier());
+//console.log(player);
+echequier.affiche();
 
 //Test clique sur une case, tp sur une autre, fonctionne, reste a ajouter les contraintes de mouvements des pièces
 // Enfin je peux tenter d'implémenter les contraintes de deplacements des pieces
 
 var caseBlanc = document.querySelectorAll(".caseBlanc");
+var activeBanc = document.querySelector(".active");
+//console.log(activeBanc);
 //instantCase = caseBlanc[i];
+var whoPlay = "1";
+
 
 var movePiece = function(){
 
+  console.log(echequier);
+  //console.log(player);
+  //console.log(player2);
+  console.log(activeBanc);
   var caseGreen = document.querySelector(".caseGreen");
   
+  // Si il a une case qui est deja verte
   if(caseGreen != null){
     // Mettre une condition ou, si la pièce adversaire est dans le camp adverse
-    //caseGreen.getAttribute("camp") != this.firstElementChild.getAttribute()
+    // caseGreen.getAttribute("camp") != this.firstElementChild.getAttribute()
     if (this.firstElementChild == null){
       
       var x1 = parseInt(caseGreen.firstElementChild.getAttribute("x"));
@@ -30,18 +40,38 @@ var movePiece = function(){
 
       var x2 = parseInt(this.getAttribute("x"),10);
       var y2 = parseInt(this.getAttribute("y"),10);
+      console.log(x1,y1)
 
-      if (player.Player1playPiece(x1,y1,x2,y2)){
+      // Possibilite de changer les methodes Player1playPiece et 2, pour qu'elle renvoie seulement
+      // un boolean et qu'elle ne fasse pas l'action par la meme occasion
+      if (whoPlay == "1"){
+        if(player.Player1playPiece(x1,y1,x2,y2)){
+          caseGreen.firstElementChild.setAttribute("x",x2);
+          caseGreen.firstElementChild.setAttribute("y",y2);
 
-        caseGreen.firstElementChild.setAttribute("x",x2);
-        caseGreen.firstElementChild.setAttribute("y",y2);
-
-        this.append(caseGreen.firstElementChild);
-        caseGreen.classList.remove("caseGreen");
+          this.append(caseGreen.firstElementChild);
+          caseGreen.classList.remove("caseGreen");
+          whoPlay = "2";
+        }
       }
+      
+      // a ajouter quand la methode Player2PlayPiece sera complete
+
+      else if (whoPlay == "2"){
+        if (player2.Player2playPiece(x1,y1,x2,y2)){
+          caseGreen.firstElementChild.setAttribute("x",x2);
+          caseGreen.firstElementChild.setAttribute("y",y2);
+          
+          this.append(caseGreen.firstElementChild);
+          caseGreen.classList.remove("caseGreen");
+          whoPlay = "1";
+        }
+      }
+      
 
     }
 
+    
     else if (caseGreen.firstElementChild.getAttribute("camp") != this.firstElementChild.getAttribute("camp")){
       
       var x1 = parseInt(caseGreen.firstElementChild.getAttribute("x"));
@@ -49,27 +79,54 @@ var movePiece = function(){
 
       var x2 = parseInt(this.getAttribute("x"),10);
       var y2 = parseInt(this.getAttribute("y"),10);
+      var bancPieces = document.querySelectorAll(".bancPiece");
 
-      if (player.Player1playPiece(x1,y1,x2,y2)){
-
-        caseGreen.firstElementChild.setAttribute("x",x2);
-        caseGreen.firstElementChild.setAttribute("y",y2);
-
-        this.append(caseGreen.firstElementChild);
-        caseGreen.classList.remove("caseGreen");
+      if (whoPlay == "1"){
+        if (player.Player1playPiece(x1,y1,x2,y2)){
+          
+          bancPieces[0].append(this.firstElementChild);
+          //this.firstElementChild.remove();
+          caseGreen.firstElementChild.setAttribute("x",x2);
+          caseGreen.firstElementChild.setAttribute("y",y2);
+  
+          this.append(caseGreen.firstElementChild);
+          caseGreen.classList.remove("caseGreen");
+          whoPlay = "2";
+        }
       }
 
-    }
+      if (whoPlay == "2"){
+        if (player2.Player2playPiece(x1,y1,x2,y2)){
 
-    else {
+          bancPieces[1].append(this.firstElementChild);
+          //this.firstElementChild.remove();
+          caseGreen.firstElementChild.setAttribute("x",x2);
+          caseGreen.firstElementChild.setAttribute("y",y2);
+  
+          this.append(caseGreen.firstElementChild);
+          caseGreen.classList.remove("caseGreen");
+          whoPlay = "1";
+        }
+      }
+    }
+    
+
+    // Une autre case devient verte
+    else if(this.firstElementChild.getAttribute("camp") == whoPlay) {
+
       caseGreen.classList.remove("caseGreen");
       this.classList.add("caseGreen");
     }
   }
 
-  else if (this.firstElementChild != null){
+  else if ((this.firstElementChild != null) && (this.firstElementChild.getAttribute("camp") == whoPlay)){
     //console.log(this.firstElementChild);
     this.classList.add("caseGreen");
+  }
+
+  // gérer le parachutage
+  else if (activeBanc != null){
+    this.append(activeBanc);
   }
 }
 
@@ -77,6 +134,20 @@ var movePiece = function(){
 for (var i = 0; i<caseBlanc.length;i++){
   caseBlanc[i].addEventListener('click',movePiece)
 }
+
+var bancPiece = document.querySelectorAll(".bancPiece");
+
+// Dans cette methode rajouter une classe ou un attribut active, puis dans la deuxième fonction listener 
+// gérer le fait de placer une pièce sur les cases null 
+var parachutagePiece = function(){
+  this.classList.add("active");
+}
+
+for (var i = 0; i<bancPiece.length;i++){
+  bancPiece[i].addEventListener('click',parachutagePiece);
+}
+
+
 
 //console.log(caseBlanc[9].firstElementChild);
 

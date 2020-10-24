@@ -10,9 +10,13 @@ export default class Lancier {
         return "Lancier " + this.campDeLaPiece;
     }
 
+    type(){
+		return "Lancier";
+	}
+
     isAuthorizedMovementPlayer1(x,y,j,k){
 
-        for (i = 0; i<9;i++){
+        for (var i = 0; i<9;i++){
 
             if (x == j && y + i == k && y + i < 9){
                 return true;
@@ -24,9 +28,9 @@ export default class Lancier {
 
     isAuthorizedMovementPlayer2(x,y,j,k){
 
-        for (i = 0; i<9;i++){
+        for (var i = 0; i<9;i++){
             
-            if (x == j && y + i == k && y - i > -1){
+            if (x == j && y - i == k && y - i > -1){
                 return true;
             }
         }
@@ -39,6 +43,7 @@ export default class Lancier {
     }
 
     printImgPiece(x,y){
-        document.write("<img src='image/lancier.png' id='x,y' draggable='true' ondragstart='onDragStart(event);' x='x' y='y'></img>");
+        return "<img src='image/lancier.png' id='x,y' draggable='true' ondragstart='onDragStart(event);'></img>";
     }
+
  }

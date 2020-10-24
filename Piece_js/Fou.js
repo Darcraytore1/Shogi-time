@@ -11,6 +11,10 @@ export default class Fou {
 		return "Fou "+this.campDeLaPiece;
 	}
 
+	type(){
+		return "Fou";
+	}
+
 	// Calcul des diagonals du tableau 
 	isAuthorizedMovementPlayer1(x,y,j,k){
 		var i;
@@ -30,11 +34,25 @@ export default class Fou {
 		return false;
 	}
 
+	isAuthorizedMovementPlayer2(x,y,j,k){
+		var i;
+		for (i = 0; i<9;i++){
+			
+			if ((x - i == j && y - i == k && y - i > -1 && x - i > -1) || (x + i == j && y + i == k && y + i < 9 && x + i < 9) 
+				|| (x - i == j && y + i == k && y + i < 9 && x - i > -1) || (x + i == j && y - i == k && y - i > -1 && x + i < 9)){
+				return true;
+			}
+		}
+
+		return false;
+	}
+
 	getCampDeLaPiece(){
 		return this.campDeLaPiece;
 	}
 
 	printImgPiece(x,y){
-		document.write("<img src='image/fou.png' id='x,y' draggable='true' ondragstart='onDragStart(event);' x='x' y='y'></img>");
+		return "<img src='image/fou.png' id='x,y' draggable='true' ondragstart='onDragStart(event);' x='x' y='y'></img>";
 	}
+
 }
