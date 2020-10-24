@@ -6,10 +6,13 @@ import Echequier from "./Echequier_js.js";
 var echequier = new Echequier();
 var player = new Player(echequier);
 var player2 = new Player(echequier);
+
+var echequier = new Echequier();
+echequier.affiche();
+
 //console.log(player.Player1playPiece(0,2,0,3));
 //console.log(player.getEchequier());
 //console.log(player);
-echequier.affiche();
 
 //Test clique sur une case, tp sur une autre, fonctionne, reste a ajouter les contraintes de mouvements des pièces
 // Enfin je peux tenter d'implémenter les contraintes de deplacements des pieces

@@ -51,6 +51,10 @@ export default class Fou {
 		return this.campDeLaPiece;
 	}
 
+	href(){
+		return 'image/fou.png';
+	}
+
 	printImgPiece(x,y){
 		return "<img src='image/fou.png' id='x,y' draggable='true' ondragstart='onDragStart(event);' x='x' y='y'></img>";
 	}

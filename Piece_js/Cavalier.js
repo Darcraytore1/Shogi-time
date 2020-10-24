@@ -42,6 +42,10 @@ export default class Cavalier{
 		return this.campDeLaPiece;
 	}
 
+	href(){
+		return 'image/cavalier.png';
+	}
+
 	printImgPiece(x,y){
 		return "<img src='image/cavalier.png' id='x,y' draggable='true' ondragstart='onDragStart(event);' ></img>";
 	}

@@ -43,6 +43,10 @@ export default class GeneralArgent {
 		return this.campDeLaPieces;
 	}
 
+	href(){
+		return 'image/generalArgent.png';
+	}
+
 	printImgPiece(x,y){
 		return "<img src='image/generalArgent.png' id='x,y' draggable='true' ondragstart='onDragStart(event);'></img>";
 	}

@@ -34,6 +34,10 @@ export default class Pion {
         return this.campDeLaPiece;
     }
 
+    href(){
+		return 'image/pion.png';
+	}
+
     printImgPiece(x,y){
         return "<img src='image/pion.png' id='x,y' draggable='true' ondragstart='onDragStart(event);'></img>";
     }

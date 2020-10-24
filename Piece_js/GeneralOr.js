@@ -47,6 +47,10 @@ export default class GeneralOr{
         return this.campDeLaPiece;
     }
 
+    href(){
+		return 'image/generalOr.png';
+	}
+
     printImgPiece(x,y){
         return "<img src='image/generalOr.png' id='x,y' draggable='true' ondragstart='onDragStart(event);'></img>";
     }

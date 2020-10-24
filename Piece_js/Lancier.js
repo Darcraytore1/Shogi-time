@@ -42,6 +42,10 @@ export default class Lancier {
         return this.campDeLaPiece;
     }
 
+    href(){
+		return 'image/lancier.png';
+	}
+
     printImgPiece(x,y){
         return "<img src='image/lancier.png' id='x,y' draggable='true' ondragstart='onDragStart(event);'></img>";
     }

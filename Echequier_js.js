@@ -82,16 +82,28 @@ export default class Echequier {
 
     affiche(){
         var casesBlanc = document.querySelectorAll(".caseBlanc");
-        var element = null;
+        var img = null;
         var number = 0;
-        for (var i = 0; i < this.pieceCellule.length;i++){
-            for (var j = 0; j < i; i++){
-                if (this.pieceCellule[i][j] != null){
-                    element = document.createElement(this.pieceCellule[i][j].printImgPiece(casesBlanc[number].getAttribute("x"),casesBlanc[number].getAttribute("y")));
-                    casesBlanc[number].appendChild(element);
+        var x = 0;
+        var y = 0;
+        for (var value of this.pieceCellule){
+            if (x != 0) y++;
+            x = 0;
+            for (var value2 of value){
+                if (value2 != null){
+                    //element = document.createElement(this.pieceCellule[i][j].printImgPiece(casesBlanc[number].getAttribute("x"),casesBlanc[number].getAttribute("y")));
+                    img = document.createElement('img');
+                    img.src = value2.href();
+                    img.setAttribute("x",""+x);
+                    img.setAttribute("y",""+y);
+                    img.setAttribute("camp",value2.getCampDeLaPiece());
+                    img.id = x+","+y;
+                    casesBlanc[number].appendChild(img);
                 }
                 number++;
+                x++;
             }
+            
         }   
     }
 }

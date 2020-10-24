@@ -46,7 +46,10 @@ export default class Tour{
 	getCampDeLaPiece(){
 		return this.campDeLaPiece;
 	}
-
+	href(){
+		return 'image/tour.png';
+	}
+	
 	printImgPiece(x,y){
 		return "<img src='image/tour.png' id='x,y' draggable='true' ondragstart='onDragStart(event);'></img>";
 	}

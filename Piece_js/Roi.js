@@ -44,7 +44,11 @@ export default class Roi {
 		return this.campDeLaPiece;
 	}
 
-	 printImgPiece(x,y){
+	href(){
+		return 'image/roi.png';
+	}
+
+	printImgPiece(x,y){
 		return "<img src='image/roi.png' id='x,y' draggable='true' ondragstart='onDragStart(event);'></img>";
 	}
 }
