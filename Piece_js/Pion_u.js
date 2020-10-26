@@ -38,4 +38,12 @@ export default class Pion_u extends Pion{
 
         return false;
     }
+
+    href(){
+        return 'image/pion_u.png';
+    }
+
+    isEvolve(){
+		return true;
+	}
 }

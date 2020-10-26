@@ -39,5 +39,11 @@ export default class Lancier_u extends Lancier{
         return false;
     }
 
+    href(){
+        return 'image/lancier_u.png';
+    }
 
+    isEvolve(){
+		return true;
+	}
 }

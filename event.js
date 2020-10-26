@@ -7,7 +7,6 @@ var echequier = new Echequier();
 var player = new Player(echequier);
 var player2 = new Player(echequier);
 
-var echequier = new Echequier();
 echequier.affiche();
 
 //console.log(player.Player1playPiece(0,2,0,3));
@@ -26,7 +25,7 @@ var whoPlay = "1";
 
 var movePiece = function(){
 
-  console.log(echequier);
+  console.log(player.getEchequier());
   //console.log(player);
   //console.log(player2);
   console.log(activeBanc);
@@ -45,6 +44,7 @@ var movePiece = function(){
       var y2 = parseInt(this.getAttribute("y"),10);
       console.log(x1,y1)
 
+
       // Possibilite de changer les methodes Player1playPiece et 2, pour qu'elle renvoie seulement
       // un boolean et qu'elle ne fasse pas l'action par la meme occasion
       if (whoPlay == "1"){
@@ -54,6 +54,7 @@ var movePiece = function(){
 
           this.append(caseGreen.firstElementChild);
           caseGreen.classList.remove("caseGreen");
+
           whoPlay = "2";
         }
       }
@@ -62,11 +63,13 @@ var movePiece = function(){
 
       else if (whoPlay == "2"){
         if (player2.Player2playPiece(x1,y1,x2,y2)){
+
           caseGreen.firstElementChild.setAttribute("x",x2);
           caseGreen.firstElementChild.setAttribute("y",y2);
-          
+
           this.append(caseGreen.firstElementChild);
           caseGreen.classList.remove("caseGreen");
+
           whoPlay = "1";
         }
       }
@@ -84,6 +87,8 @@ var movePiece = function(){
       var y2 = parseInt(this.getAttribute("y"),10);
       var bancPieces = document.querySelectorAll(".bancPiece");
 
+    
+
       if (whoPlay == "1"){
         if (player.Player1playPiece(x1,y1,x2,y2)){
           
@@ -91,9 +96,10 @@ var movePiece = function(){
           //this.firstElementChild.remove();
           caseGreen.firstElementChild.setAttribute("x",x2);
           caseGreen.firstElementChild.setAttribute("y",y2);
-  
+
           this.append(caseGreen.firstElementChild);
           caseGreen.classList.remove("caseGreen");
+              
           whoPlay = "2";
         }
       }
@@ -102,12 +108,12 @@ var movePiece = function(){
         if (player2.Player2playPiece(x1,y1,x2,y2)){
 
           bancPieces[1].append(this.firstElementChild);
-          //this.firstElementChild.remove();
           caseGreen.firstElementChild.setAttribute("x",x2);
           caseGreen.firstElementChild.setAttribute("y",y2);
-  
+
           this.append(caseGreen.firstElementChild);
           caseGreen.classList.remove("caseGreen");
+
           whoPlay = "1";
         }
       }

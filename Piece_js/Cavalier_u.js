@@ -38,4 +38,12 @@ export default class Cavalier_u extends Cavalier{
 
         return false;
     }
+
+    href(){
+        return 'image/cavalier_u.png';
+    }
+
+    isEvolve(){
+		return true;
+	}
 }

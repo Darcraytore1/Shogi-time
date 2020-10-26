@@ -52,8 +52,28 @@ export default class Echequier {
         this.pieceCellule[y][x] = value;
     }
 
-    pieceEvolve(x,y,piece){
-        this.pieceCellule[y][x] = piece;
+    createImg(piece,x,y){
+
+        var img = null;
+        img = document.createElement('img');
+        img.src = piece.href();
+        img.setAttribute("x",""+x);
+        img.setAttribute("y",""+y);
+        img.setAttribute("camp",piece.getCampDeLaPiece());
+        if (piece.getCampDeLaPiece() == 1) img.classList.add("reverse");
+        img.id = x+","+y;
+        return img
+        
+    }
+
+    pieceEvolve(x,y,j,k,piece){
+
+        
+        var elementPiece = document.getElementById(x+", "+y).firstElementChild
+        elementPiece.src = piece.href()
+        
+
+        this.pieceCellule[k][j] = piece;
     }
 
     // Pour voir a quoi ressemble le tableau
@@ -92,12 +112,7 @@ export default class Echequier {
             for (var value2 of value){
                 if (value2 != null){
                     //element = document.createElement(this.pieceCellule[i][j].printImgPiece(casesBlanc[number].getAttribute("x"),casesBlanc[number].getAttribute("y")));
-                    img = document.createElement('img');
-                    img.src = value2.href();
-                    img.setAttribute("x",""+x);
-                    img.setAttribute("y",""+y);
-                    img.setAttribute("camp",value2.getCampDeLaPiece());
-                    img.id = x+","+y;
+                    img = this.createImg(value2,x,y)
                     casesBlanc[number].appendChild(img);
                 }
                 number++;

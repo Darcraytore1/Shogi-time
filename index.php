@@ -32,7 +32,7 @@
 			x = "<?php //echo $l ?>" 
 			y = "<?php //echo $c ?>">
 			-->
-			<div class="caseBlanc" x="<?php echo $c ?>" y ="<?php echo $l ?>"> 
+			<div class="caseBlanc" id="<?php echo $c ?>, <?php echo $l ?>"   x="<?php echo $c ?>" y ="<?php echo $l ?>"> 
 			</div></td>
 				
 			<?php

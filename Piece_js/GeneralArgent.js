@@ -50,4 +50,8 @@ export default class GeneralArgent {
 	printImgPiece(x,y){
 		return "<img src='image/generalArgent.png' id='x,y' draggable='true' ondragstart='onDragStart(event);'></img>";
 	}
+
+	isEvolve(){
+		return false;
+	}
  }

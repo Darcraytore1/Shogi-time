@@ -39,4 +39,11 @@ export default class GeneralArgent_u extends GeneralArgent{
         return false;
     }
 
+    href(){
+        return 'image/generalArgent_u.png';
+    }
+
+    isEvolve(){
+		return true;
+	}
 }

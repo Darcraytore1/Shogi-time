@@ -49,5 +49,9 @@ export default class Cavalier{
 	printImgPiece(x,y){
 		return "<img src='image/cavalier.png' id='x,y' draggable='true' ondragstart='onDragStart(event);' ></img>";
 	}
+
+	isEvolve(){
+		return false;
+	}
 }
 

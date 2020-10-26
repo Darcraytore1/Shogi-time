@@ -59,4 +59,8 @@ export default class Fou {
 		return "<img src='image/fou.png' id='x,y' draggable='true' ondragstart='onDragStart(event);' x='x' y='y'></img>";
 	}
 
+	isEvolve(){
+		return false;
+	}
+
 }

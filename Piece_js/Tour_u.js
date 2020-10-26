@@ -26,5 +26,12 @@ export default class Tour_u extends Tour{
 		return ((super.isAuthorizedMovementPlayer2) || (x + 1 == j && y + 1 == k && x + 1 < 9 && y + 1 < 9)  || (x - 1 == j && y + 1 == k && x - 1 > -1 && y + 1 < 9)
         || (x + 1 == j && y - 1 == k && x + 1 < 9 && y - 1 > -1) || (x - 1 == j && y - 1 == k && x - 1 > -1 && y - 1 > -1));
     }
-    
+	
+	href(){
+        return 'image/tour_u.png';
+	}
+	
+	isEvolve(){
+		return true;
+	}
 }

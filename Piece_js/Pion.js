@@ -41,4 +41,8 @@ export default class Pion {
     printImgPiece(x,y){
         return "<img src='image/pion.png' id='x,y' draggable='true' ondragstart='onDragStart(event);'></img>";
     }
+
+    isEvolve(){
+		return false;
+	}
 }

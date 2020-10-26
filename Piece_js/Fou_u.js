@@ -27,4 +27,12 @@ export default class Fou_u extends Fou{
         || (x == j && y - 1 == k && y - 1 > -1)));
 
 	}
+
+	href(){
+        return 'image/fou_u.png';
+	}
+	
+	isEvolve(){
+		return true;
+	}
 }

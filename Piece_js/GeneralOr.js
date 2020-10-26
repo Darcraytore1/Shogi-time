@@ -54,4 +54,8 @@ export default class GeneralOr{
     printImgPiece(x,y){
         return "<img src='image/generalOr.png' id='x,y' draggable='true' ondragstart='onDragStart(event);'></img>";
     }
+
+    isEvolve(){
+		return false;
+	}
 }

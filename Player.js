@@ -26,32 +26,78 @@ export default class Player {
         this.listePieceGagne = [];
     }
 
-    evolvePiece(j,k,piece){
+    evolvePiece(x,y,j,k,piece,sure){
         if (!(piece.type() == "Roi" || piece.type() == "GeneralOr")){
 
-            if (piece.type() == "Fou"){
-                this.echequier.pieceEvolve(j,k,new Fou_u(piece.getCampDeLaPiece()));
+            var newPiece = null;
+            if (sure == false){
+                if (window.confirm("Voulez vous faire évoluer votre pièce") == true){
+                    if (piece.type() == "Fou"){
+                        newPiece = new Fou_u(piece.getCampDeLaPiece())
+                        this.echequier.pieceEvolve(x,y,j,k,new Fou_u(piece.getCampDeLaPiece()));
+                    }
+
+                    if (piece.type() == "Tour"){
+                        newPiece = new Tour_u(piece.getCampDeLaPiece())
+                        this.echequier.pieceEvolve(x,y,j,k,new Tour_u(piece.getCampDeLaPiece()));
+                    }
+
+                    if (piece.type() == "GeneralArgent"){
+                        newPiece = new GeneralArgent_u(piece.getCampDeLaPiece());
+                        this.echequier.pieceEvolve(x,y,j,k,new GeneralArgent_u(piece.getCampDeLaPiece()));
+                    }
+
+                    if (piece.type() == "Pion"){
+                        newPiece = new Pion_u(piece.getCampDeLaPiece());
+                        this.echequier.pieceEvolve(x,y,j,k,new Pion_u(piece.getCampDeLaPiece()));
+                    }
+
+                    if (piece.type() == "Lancier"){
+                        newPiece = new Lancier_u(piece.getCampDeLaPiece());
+                        this.echequier.pieceEvolve(x,y,j,k,new Lancier_u(piece.getCampDeLaPiece()));
+                    }
+
+                    if (piece.type() == "Cavalier"){
+                        newPiece = new Cavalier_u(piece.getCampDeLaPiece());
+                        this.echequier.pieceEvolve(x,y,j,k,new Cavalier_u(piece.getCampDeLaPiece()));
+                    }
+                }
             }
 
-            if (piece.type() == "Tour"){
-                this.echequier.pieceEvolve(j,k,new Tour_u(piece.getCampDeLaPiece()));
-            }
+            else {
+                if (piece.type() == "Fou"){
+                    newPiece = new Fou_u(piece.getCampDeLaPiece())
+                    this.echequier.pieceEvolve(x,y,j,k,new Fou_u(piece.getCampDeLaPiece()));
+                }
 
-            if (piece.type() == "GeneralArgent"){
-                this.echequier.pieceEvolve(j,k,new GeneralArgent_u(piece.getCampDeLaPiece()));
-            }
+                if (piece.type() == "Tour"){
+                    newPiece = new Tour_u(piece.getCampDeLaPiece())
+                    this.echequier.pieceEvolve(x,y,j,k,new Tour_u(piece.getCampDeLaPiece()));
+                }
 
-            if (piece.type() == "Pion"){
-                this.echequier.pieceEvolve(j,k,new Pion_u(piece.getCampDeLaPiece()));
-            }
+                if (piece.type() == "GeneralArgent"){
+                    newPiece = new GeneralArgent_u(piece.getCampDeLaPiece());
+                    this.echequier.pieceEvolve(x,y,j,k,new GeneralArgent_u(piece.getCampDeLaPiece()));
+                }
 
-            if (piece.type() == "Lancier"){
-                this.echequier.pieceEvolve(j,k,new Lancier_u(piece.getCampDeLaPiece()));
-            }
+                if (piece.type() == "Pion"){
+                    newPiece = new Pion_u(piece.getCampDeLaPiece());
+                    this.echequier.pieceEvolve(x,y,j,k,new Pion_u(piece.getCampDeLaPiece()));
+                }
 
-            if (piece.type() == "Cavalier"){
-                this.echequier.pieceEvolve(j,k,new Cavalier_u(piece.getCampDeLaPiece()));
+                if (piece.type() == "Lancier"){
+                    newPiece = new Lancier_u(piece.getCampDeLaPiece());
+                    this.echequier.pieceEvolve(x,y,j,k,new Lancier_u(piece.getCampDeLaPiece()));
+                }
+
+                if (piece.type() == "Cavalier"){
+                    newPiece = new Cavalier_u(piece.getCampDeLaPiece());
+                    this.echequier.pieceEvolve(x,y,j,k,new Cavalier_u(piece.getCampDeLaPiece()));
+                }
             }
+            
+            //var a = document.getElementById(x+", "+y);
+            //a.firstElementChild.src = newPiece.href();
         }
     }
 
@@ -210,7 +256,6 @@ export default class Player {
 
 
                 if (this.echequier.getPieceCellule()[k][j] == null){
-
                     this.echequier.changeCellule(j,k,piece);
                     this.echequier.changeCellule(x,y,null);
 
@@ -223,9 +268,15 @@ export default class Player {
                     this.echequier.changeCellule(x,y,null);
                 }
 
-                if (piece.getCampDeLaPiece() == 1 && k > 5){
-                    this.evolvePiece(j,k,piece);
+                if (piece.getCampDeLaPiece() == 1 && k == 8 && piece.isEvolve() == false){
+                    this.sureEvolvePiece(x,y,j,k,piece,true)
                 }
+
+                else if (piece.getCampDeLaPiece() == 1 && k > 5 && piece.isEvolve() == false){
+                    this.evolvePiece(x,y,j,k,piece,false);
+                }
+
+                
 
                 /*
                 this.echequier.getPieceCellule()[k][j] = piece;
@@ -314,9 +365,15 @@ export default class Player {
                 console.log(piece.getCampDeLaPiece());
                 console.log(k);
 
-                if (piece.getCampDeLaPiece() == 2 && k <= 2){
-                    this.evolvePiece(j,k,piece);
+                if (piece.getCampDeLaPiece() == 2 && k == 0 && (piece.isEvolve() == false)){   
+                    this.evolvePiece(x,y,j,k,piece,true)
                 }
+
+                else if (piece.getCampDeLaPiece() == 2 && k <= 2 && (piece.isEvolve() == false)){
+                    this.evolvePiece(x,y,j,k,piece,false);
+                    // Changer l'image utilisé pour mettre celle de l'evolve.
+                }
+            
 
                 /*
                 this.echequier.getPieceCellule()[k][j] = piece;

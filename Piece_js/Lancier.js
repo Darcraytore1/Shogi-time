@@ -50,4 +50,8 @@ export default class Lancier {
         return "<img src='image/lancier.png' id='x,y' draggable='true' ondragstart='onDragStart(event);'></img>";
     }
 
+    isEvolve(){
+		return false;
+	}
+
  }
