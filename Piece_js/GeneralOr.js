@@ -57,5 +57,63 @@ export default class GeneralOr{
 
     isEvolve(){
 		return false;
+    }
+    
+    getAttackPositions(x,y){
+        var attackPosition = [];
+        
+        if (y + 1 < 9) {
+            if (echequier.getPieceCellule()[x][y+1] == null || echequier.getPieceCellule()[x][y+1].getCampDeLaPiece != 2){
+				attackPosition.push([x,y+1]);
+			}
+        }
+
+        if (x + 1 < 9){
+            if (echequier.getPieceCellule()[x+1][y] == null || echequier.getPieceCellule()[x+1][y].getCampDeLaPiece != 2){
+				attackPosition.push([x+1,y]);
+			}
+        }
+
+        if (y - 1 > -1) {
+            if (echequier.getPieceCellule()[x][y-1] == null || echequier.getPieceCellule()[x][y-1].getCampDeLaPiece != 2){
+				attackPosition.push([x,y-1]);
+			}
+        }
+
+        if (x - 1 > -1) {
+            if (echequier.getPieceCellule()[x-1][y] == null || echequier.getPieceCellule()[x-1][y].getCampDeLaPiece != 2){
+				attackPosition.push([x-1,y]);
+			}
+        }
+
+		if (this.campDeLaPiece == 2){
+            
+            if (x + 1 < 9 && y - 1 > -1) {
+                if (echequier.getPieceCellule()[x+1][y-1] == null || echequier.getPieceCellule()[x+1][y-1].getCampDeLaPiece != 2){
+                    attackPosition.push([x+1,y-1]);
+                }
+            }
+            if (x - 1 > -1 && y - 1 > -1){
+                if (echequier.getPieceCellule()[x-1][y-1] == null || echequier.getPieceCellule()[x-1][y-1].getCampDeLaPiece != 2){
+                    attackPosition.push([x-1,y-1]);
+                }
+            }
+        }
+			
+		else {
+
+            if (x - 1 > -1 && y + 1 < 9){
+                if (echequier.getPieceCellule()[x-1][y+1] == null || echequier.getPieceCellule()[x-1][y+1].getCampDeLaPiece != 2){
+                    attackPosition.push([x-1,y+1]);
+                }
+            }
+            if (x + 1 < 9 && y + 1 < 9){
+                if (echequier.getPieceCellule()[x+1][y+1] == null || echequier.getPieceCellule()[x+1][y+1].getCampDeLaPiece != 2){
+                    attackPosition.push([x+1,y+1]);
+                }
+            }
+        }
+        
+        return attackPosition;
 	}
 }

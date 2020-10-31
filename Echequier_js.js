@@ -100,9 +100,11 @@ export default class Echequier {
         //return "L'etat actuelle de l'echequier est ". $this->pieceCellule;
     }
 
+    // Affiche l'echequier, est pour le moment utilisé pour seulement la première apparition de l'échéquier, après celle ci les pièces sont manipulées avec le js.
     affiche(){
         var casesBlanc = document.querySelectorAll(".caseBlanc");
         var img = null;
+        
         var number = 0;
         var x = 0;
         var y = 0;
@@ -121,6 +123,63 @@ export default class Echequier {
             
         }   
     }
+    
+    // En parametre le numéro du joueur, donc soit 1, soit 2
+    piecesPlayerAlive(playerNum){
+        var piecesAlive = [];
+        this.pieceCellule.forEach(ligne => {
+            ligne.forEach(piece =>{
+                if (piece != null && piece.getCampDeLaPiece() == playerNum){
+                    piecesAlive.push(piece);
+                }
+                });
+        });
+
+        return piecesAlive;
+    }
+
+    // Elle ne va pas être optimisé au début mais faire une fonction qui regarde chacune des pièces d'un côté ou de l'autre, les positions ou elles peuvent arriver.
+    // Compliqué, il manque les arguments dans la méthodes getAttackPositions. Réfléchir ...
+    allPosiblePositions(playerNum){
+        var piecesAlive = this.piecesPlayerAlive(playerNum);
+        var allPossiblePositions = [];
+        piecesAlive.forEach(piece => {
+            allPossiblePositions.push(piece.getAttackPositions());
+        });
+
+        return allPossiblePositions;
+
+    }
+
+    positionRoi(){
+        var i;
+        var j;
+        var x;
+        var y;
+
+        for (i = 0; i < this.pieceCellule.length;i++){
+            for (j = 0; j < this.pieceCellule[i].length;j++){
+
+                if (this.pieceCellule[i][j] != null){
+                    if (this.pieceCellule[i][j].toString() == "Roi 1"){
+                        x = j;
+                        y = i;
+                    }
+                }
+            }
+        }
+
+        return [x,y];
+    }
+
+
+    isFinish(){
+        // exemple pour le joueur 1
+        var positionRoi = this.positionRoi();
+        console.log(positionRoi);
+        
+
+    }
+
+    
 }
-
-

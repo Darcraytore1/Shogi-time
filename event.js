@@ -6,7 +6,6 @@ import Echequier from "./Echequier_js.js";
 var echequier = new Echequier();
 var player = new Player(echequier);
 var player2 = new Player(echequier);
-
 echequier.affiche();
 
 //console.log(player.Player1playPiece(0,2,0,3));
@@ -17,7 +16,6 @@ echequier.affiche();
 // Enfin je peux tenter d'implémenter les contraintes de deplacements des pieces
 
 var caseBlanc = document.querySelectorAll(".caseBlanc");
-var activeBanc = document.querySelector(".active");
 //console.log(activeBanc);
 //instantCase = caseBlanc[i];
 var whoPlay = "1";
@@ -30,6 +28,9 @@ var movePiece = function(){
   //console.log(player2);
   console.log(activeBanc);
   var caseGreen = document.querySelector(".caseGreen");
+  var activeBanc = document.querySelector(".active");
+
+  console.log(echequier.allPosiblePositions());
   
   // Si il a une case qui est deja verte
   if(caseGreen != null){
@@ -91,8 +92,10 @@ var movePiece = function(){
 
       if (whoPlay == "1"){
         if (player.Player1playPiece(x1,y1,x2,y2)){
-          
+
+          this.firstElementChild.setAttribute("camp","1");
           bancPieces[0].append(this.firstElementChild);
+
           //this.firstElementChild.remove();
           caseGreen.firstElementChild.setAttribute("x",x2);
           caseGreen.firstElementChild.setAttribute("y",y2);
@@ -107,6 +110,7 @@ var movePiece = function(){
       if (whoPlay == "2"){
         if (player2.Player2playPiece(x1,y1,x2,y2)){
 
+          this.firstElementChild.setAttribute("camp","2");
           bancPieces[1].append(this.firstElementChild);
           caseGreen.firstElementChild.setAttribute("x",x2);
           caseGreen.firstElementChild.setAttribute("y",y2);
@@ -135,8 +139,18 @@ var movePiece = function(){
 
   // gérer le parachutage
   else if (activeBanc != null){
-    this.append(activeBanc);
+
+    var x = parseInt(this.getAttribute("x"),10);
+    var y = parseInt(this.getAttribute("y"),10);
+
+    player.parachutagePiece(x,y);
+    this.append(activeBanc.firstElementChild);
   }
+  /*
+  if (partieTermine == true){
+      console.log("termine");
+  }
+  */
 }
 
 

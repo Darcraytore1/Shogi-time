@@ -44,5 +44,28 @@ export default class Pion {
 
     isEvolve(){
 		return false;
+    }
+    
+    getAttackPositions(x,y){
+
+		var attackPosition = [];
+
+		if (this.campDeLaPiece == 2){
+            if (y - 1 > -1) {
+                if (echequier.getPieceCellule()[x][y-1] == null || echequier.getPieceCellule()[x][y-1].getCampDeLaPiece != 2){
+                    attackPosition.push([x,y-1]);
+                }
+            }
+        }
+
+		else {
+			if (y + 1 < 9) {
+                if (echequier.getPieceCellule()[x][y+1] == null || echequier.getPieceCellule()[x][y+1].getCampDeLaPiece != 2){
+                    attackPosition.push([x,y+1]);
+                }
+            }
+		}
+
+		return attackPosition;
 	}
 }

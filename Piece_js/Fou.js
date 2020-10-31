@@ -63,4 +63,85 @@ export default class Fou {
 		return false;
 	}
 
+	// Problématique pour toutes les pièces qui attaquent à distance, car je ne peux récupérer les endroits ou elles peuvent réellement aller ici vu que je calcule à un endroit 
+	// les réelle mouvement qu'elles peuvent faire, garder la tour, le fou et le lancier pour la fin pour ses raisons.
+	// ça fonctionne environ, faudra tester plus tard 
+	getAttackPositions(echequier,x,y){
+
+		var attackPosition = [];
+
+		var i = 0;
+		var compteur = 0;
+
+		// Normalement cette condition if est inutile, je sais pas pourquoi je l'enlève pas d'ailleurs, je crois qu'elle me fait plaisir, elle me soulage.
+		
+		if (x - 1 > -1 && y - 1 > -1){
+
+			if (x > y) compteur = x;
+			else compteur = y;
+
+			for (i = 1;i< compteur + 1;i++){
+				if(echequier.getPieceCellule()[y - i][x - i] != null){
+					break;
+				}
+				attackPosition.push([x-i,y-i]);
+			}
+		}
+		
+		
+		
+		if (x + 1 < 9 && y + 1 < 9){
+
+			if (x < y) compteur = x;
+			else compteur = y;
+
+			for (i = 1;i< compteur + 1 ;i++){
+				if(echequier.getPieceCellule()[y + i][x + i] != null){
+					break
+				}
+				attackPosition.push([x+i,y+i]);
+			}
+
+		}
+		
+		
+		if (x - 1 > -1 && y + 1 < 9){
+
+			if (x < (8-y)){
+				compteur = x;
+			}
+			else {
+				compteur = 8-y;
+			}
+			for (i = 1;i < compteur + 1;i++){
+				
+				if(echequier.getPieceCellule()[y + i][x - i] != null){
+					break;
+				}
+				attackPosition.push([x-i,y+i]);
+			}
+
+		}
+		
+		if (x + 1 < 9 && y - 1 > -1){
+
+			if (y < (8-x)){
+				compteur = y;
+			}
+			else {
+				compteur = 8-x;
+			}
+
+			for (i = 1;i< compteur + 1;i++){
+				if(echequier.getPieceCellule()[y - i][x + i] != null){
+					break;
+				}
+				attackPosition.push([x+i,y-i]);
+			}
+		}
+		
+		return attackPosition;
+		
+	}
+
 }

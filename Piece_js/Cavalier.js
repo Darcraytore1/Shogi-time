@@ -53,5 +53,39 @@ export default class Cavalier{
 	isEvolve(){
 		return false;
 	}
+
+	getAttackPositions(echequier,x,y){
+		var attackPosition = [];
+
+		if (this.campDeLaPiece == 2){
+			if (x +1 < 9 && y - 2 > -1 ){
+				if (echequier.getPieceCellule()[x+1][y-2] == null || echequier.getPieceCellule()[x+1][y-2].getCampDeLaPiece != 2){
+					attackPosition.push([x+1,y-2]);
+				}
+			}
+
+			if (x - 1 > -1 && y - 2 > -1){
+				if (echequier.getPieceCellule()[x-1][y-2] == null || echequier.getPieceCellule()[x-1][y-2].getCampDeLaPiece != 2){
+					attackPosition.push([x-1,y-2]);
+				}
+			}
+		}
+		
+		else {
+			if (x - 1 > -1 && y + 2 < 9){
+				if (echequier.getPieceCellule()[x-1][y+2] == null || echequier.getPieceCellule()[x-1][y+2].getCampDeLaPiece == 2){
+					attackPosition.push([x-1,y+2]);
+				}
+			}
+
+			if (x + 1 < 9 && y + 2 < 9){
+				if (echequier.getPieceCellule()[x+1][y+2] == null || echequier.getPieceCellule()[x+1][y+2].getCampDeLaPiece == 2){
+					attackPosition.push([x+1,y+2]);
+				}
+			}
+		}
+
+		return attackPosition;
+	}
 }
 

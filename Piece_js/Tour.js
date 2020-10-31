@@ -57,4 +57,72 @@ export default class Tour{
 	isEvolve(){
 		return false;
 	}
+
+	
+    getAttackPositions(echequier,x,y){
+
+		var attackPosition = [];
+
+		var i = 0;
+		var compteur = 0;
+
+		// Normalement cette condition if est inutile, je sais pas pourquoi je l'enlève pas d'ailleurs, je crois qu'elle me fait plaisir, elle me soulage.
+		
+		if (y - 1 > -1){
+
+			compteur = y;
+
+			for (i = 1;i< compteur + 1;i++){
+				if(echequier.getPieceCellule()[y - i][x] != null){
+					break;
+				}
+				attackPosition.push([x,y-i]);
+			}
+		}
+		
+		
+		
+		if (x + 1 < 9){
+
+			compteur = 8-x;
+
+			for (i = 1;i< compteur + 1 ;i++){
+				if(echequier.getPieceCellule()[y][x + i] != null){
+					break
+				}
+				attackPosition.push([x+i,y]);
+			}
+
+		}
+		
+		
+		if (x - 1 > -1){
+
+			compteur = x;
+
+			for (i = 1;i < compteur + 1;i++){
+				
+				if(echequier.getPieceCellule()[y][x - i] != null){
+					break;
+				}
+				attackPosition.push([x-i,y]);
+			}
+
+		}
+		
+		if (y + 1 < 9){
+
+			compteur = 8 - y;
+
+			for (i = 1;i< compteur + 1;i++){
+				if(echequier.getPieceCellule()[y + i][x] != null){
+					break;
+				}
+				attackPosition.push([x,y+i]);
+			}
+		}
+		
+		return attackPosition;
+		
+	}
 }

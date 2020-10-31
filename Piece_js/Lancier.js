@@ -52,6 +52,48 @@ export default class Lancier {
 
     isEvolve(){
 		return false;
+    }
+    
+
+    getAttackPositions(echequier,x,y){
+
+		var attackPosition = [];
+
+		var i = 0;
+		var compteur = 0;
+
+        // Normalement cette condition if est inutile, je sais pas pourquoi je l'enlève pas d'ailleurs, je crois qu'elle me fait plaisir, elle me soulage.
+        
+        if (this.campDeLaPiece == 2){
+
+            if (y - 1 > -1){
+
+                compteur = y;
+    
+                for (i = 1;i< compteur + 1;i++){
+                    if(echequier.getPieceCellule()[y - i][x] != null){
+                        break;
+                    }
+                    attackPosition.push([x,y-i]);
+                }
+            }       
+        }
+        else{
+            if (y + 1 < 9){
+
+                compteur = 8 - y;
+    
+                for (i = 1;i< compteur + 1;i++){
+                    if(echequier.getPieceCellule()[y + i][x] != null){
+                        break;
+                    }
+                    attackPosition.push([x,y+i]);
+                }
+            }       
+        }
+		
+		return attackPosition;
+		
 	}
 
  }

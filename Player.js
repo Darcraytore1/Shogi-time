@@ -113,7 +113,6 @@ export default class Player {
                     return false;
                 }
             }
-
         }
 
         if (x - j < 0 && y - k < 0){
@@ -148,7 +147,6 @@ export default class Player {
                 }
             }
         }
-
     }
 
     // Test si il y a des pieces sur le chemin de la tour
@@ -393,7 +391,11 @@ export default class Player {
     }
 
     // Parachute une piece et doit influencer en consequence l'echequier
-    parachutagePiece(piece,x,y){
+    parachutagePiece(x,y){
+
+        console.log(x,y)
+
+        var piece = this.echequier.getPieceCellule()[y][x];
 
         if (piece == null){
             console.log( "La piece selectionne n'existe pas");

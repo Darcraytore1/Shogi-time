@@ -29,7 +29,7 @@ export default class GeneralArgent {
 
 	isAuthorizedMovementPlayer2(x,y,j,k){	
 		
-		if ( (x == j && y - 1 == k && y - 1 > -1) || (x + 1 == j && y + 1 == k && x + 1 < 9 && y + 1 < 9)  || (x - 1 == j && y + 1 == k && x - 1 > -1 && y + 1 < 9)
+		if ((x == j && y - 1 == k && y - 1 > -1) || (x + 1 == j && y + 1 == k && x + 1 < 9 && y + 1 < 9)  || (x - 1 == j && y + 1 == k && x - 1 > -1 && y + 1 < 9)
 			|| (x + 1 == j && y - 1 == k && x + 1 < 9 && y - 1 > -1) || (x - 1 == j && y - 1 == k && x - 1 > -1 && y - 1 > -1)){
 
 			return true;
@@ -40,8 +40,8 @@ export default class GeneralArgent {
 	}
 
 	getCampDeLaPiece(){
-		return this.campDeLaPieces;
-	}
+        return this.campDeLaPiece;
+    }
 
 	href(){
 		return 'image/generalArgent.png';
@@ -53,5 +53,52 @@ export default class GeneralArgent {
 
 	isEvolve(){
 		return false;
+	}
+
+	getAttackPositions(echequier,x,y){
+		var attackPosition = [];
+
+		if (x - 1 > -1 && y - 1 > -1){
+			if (echequier.getPieceCellule()[x-1][y-1] == null || echequier.getPieceCellule()[x-1][y-1].getCampDeLaPiece != 2){
+				attackPosition.push([x-1,y-1]);
+			}
+		}
+
+		if (x + 1 < 9 && y - 1 > -1){
+			if (echequier.getPieceCellule()[x+1][y-1] == null || echequier.getPieceCellule()[x+1][y-1].getCampDeLaPiece != 2){
+				attackPosition.push([x+1,y-1]);
+			}
+		}
+
+		if (x - 1 > -1 && y + 1 < 9){
+			if (echequier.getPieceCellule()[x-1][y+1] == null || echequier.getPieceCellule()[x-1][y+1].getCampDeLaPiece != 2){
+				attackPosition.push([x-1,y+1]);
+			}
+		}
+
+		if (x + 1 < 9 && y + 1 < 9){
+			if (echequier.getPieceCellule()[x+1][y+1] == null || echequier.getPieceCellule()[x+1][y+1].getCampDeLaPiece != 2){
+				attackPosition.push([x+1,y-1]);
+			}
+		}
+		
+
+		if (this.campDeLaPiece == 2){
+			if (y - 1 > -1){
+				if (echequier.getPieceCellule()[x][y-1] == null || echequier.getPieceCellule()[x][y-1].getCampDeLaPiece != 2){
+					attackPosition.push([x,y-1]);
+				}
+			}
+		}
+			
+		else {
+			if (y + 1 < 9){
+				if (echequier.getPieceCellule()[x][y+1] == null || echequier.getPieceCellule()[x][y+1].getCampDeLaPiece != 2){
+					attackPosition.push([x,y+1]);
+				}
+			}
+		}
+
+		return attackPosition;
 	}
  }
