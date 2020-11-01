@@ -30,7 +30,8 @@ var movePiece = function(){
   var caseGreen = document.querySelector(".caseGreen");
   var activeBanc = document.querySelector(".active");
 
-  console.log(echequier.allPosiblePositions());
+  //console.log(echequier.isAttacked(0,0,1));
+
   
   // Si il a une case qui est deja verte
   if(caseGreen != null){

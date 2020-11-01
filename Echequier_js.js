@@ -22,15 +22,15 @@ export default class Echequier {
     numCellule; // Dans ce tableau je dois initialiser chaque case
 
     constructor() {
-        this.pieceCellule = [[new Lancier(1),new Cavalier(1),new GeneralArgent(1),new GeneralOr(1), new Roi(1),new GeneralOr(1), new GeneralArgent(1),new Cavalier(1),new Lancier(1)],
-                                    [null,new Tour(1),null,null,null,null,null,new Fou(1),null],
-                                    [new Pion(1),new Pion(1),new Pion(1),new Pion(1),new Pion(1),new Pion(1),new Pion(1),new Pion(1),new Pion(1)],
+        this.pieceCellule = [[new Lancier(1,0,0),new Cavalier(1,1,0),new GeneralArgent(1,2,0),new GeneralOr(1,3,0), new Roi(1,4,0),new GeneralOr(1,5,0), new GeneralArgent(1,6,0),new Cavalier(1,7,0),new Lancier(1,8,0)],
+                                    [null,new Tour(1,1,1),null,null,null,null,null,new Fou(1,7,1),null],
+                                    [new Pion(1,0,2),new Pion(1,1,2),new Pion(1,2,2),new Pion(1,3,2),new Pion(1,4,2),new Pion(1,5,2),new Pion(1,6,2),new Pion(1,7,2),new Pion(1,8,2)],
                                     [null,null,null,null,null,null,null,null,null],
                                     [null,null,null,null,null,null,null,null,null],
                                     [null,null,null,null,null,null,null,null,null],
-                                    [new Pion(2),new Pion(2),new Pion(2),new Pion(2),new Pion(2),new Pion(2),new Pion(2),new Pion(2),new Pion(2)],
-                                    [null,new Tour(2),null,null,null,null,null,new Fou(2),null],
-                                    [new Lancier(2),new Cavalier(2),new GeneralArgent(2),new GeneralOr(2), new Roi(2),new GeneralOr(2), new GeneralArgent(2),new Cavalier(2),new Lancier(2)]];
+                                    [new Pion(2,0,6),new Pion(2,1,6),new Pion(2,2,6),new Pion(2,3,6),new Pion(2,4,6),new Pion(2,5,6),new Pion(2,6,6),new Pion(2,7,6),new Pion(2,8,6)],
+                                    [null,new Tour(2,1,7),null,null,null,null,null,new Fou(2,7,7),null],
+                                    [new Lancier(2,0,8),new Cavalier(2,1,8),new GeneralArgent(2,2,8),new GeneralOr(2,3,8), new Roi(2,4,8),new GeneralOr(2,5,8), new GeneralArgent(2,6,8),new Cavalier(2,7,8),new Lancier(2,8,8)]];
 
         this.numCellule = [[1,2,3,4,5,6,7,8,9],
                                 [1,2,3,4,5,6,7,8,9], 
@@ -49,6 +49,13 @@ export default class Echequier {
     }
 
     changeCellule(x,y,value){
+        
+        if (value != null){
+            value.setX(x);
+            value.setY(y);
+        }
+        
+        
         this.pieceCellule[y][x] = value;
     }
 
@@ -71,7 +78,11 @@ export default class Echequier {
         
         var elementPiece = document.getElementById(x+", "+y).firstElementChild
         elementPiece.src = piece.href()
-        
+
+        if (piece != null){
+            piece.setX(j);
+            piece.setY(k);
+        }
 
         this.pieceCellule[k][j] = piece;
     }
@@ -144,13 +155,12 @@ export default class Echequier {
         var piecesAlive = this.piecesPlayerAlive(playerNum);
         var allPossiblePositions = [];
         piecesAlive.forEach(piece => {
-            allPossiblePositions.push(piece.getAttackPositions());
+            allPossiblePositions.push(piece.getAttackPositions(this));
         });
 
         return allPossiblePositions;
-
     }
-
+    
     positionRoi(){
         var i;
         var j;
@@ -172,12 +182,29 @@ export default class Echequier {
         return [x,y];
     }
 
+    isAttacked(x,y,numPlayer){
+
+        var raison = false;
+
+        var allPositions = this.allPosiblePositions(numPlayer);
+        allPositions.forEach(position => {
+            position.forEach( coordonne => {
+                if (coordonne[0] == x && coordonne[1] == y) raison = true;
+            })
+        })
+
+        return raison;
+    }
+
 
     isFinish(){
         // exemple pour le joueur 1
         var positionRoi = this.positionRoi();
         console.log(positionRoi);
-        
+        var allPositions = allPossiblePositions(1);
+        allPositions.forEach(position => {
+
+        })
 
     }
 

@@ -1,19 +1,9 @@
 import Piece from "./Piece.js";
-export default class GeneralOr extends Piece{
+export default class PieceEvolve extends Piece{
 
     constructor(campDeLaPiece,x,y){
         super(campDeLaPiece,x,y);
     }
-    
-    toString(){
-    
-        return "GeneralOr "+this.campDeLaPiece;
-
-    }
-
-    type(){
-		return "GeneralOr";
-	}
 
     isAuthorizedMovementPlayer(j,k,echequier){
         var raison = false;
@@ -27,19 +17,6 @@ export default class GeneralOr extends Piece{
             }
         });
         return raison;
-    }
-
-
-    href(){
-		return 'image/generalOr.png';
-	}
-
-    printImgPiece(){
-        return "<img src='image/generalOr.png' id='this.x,this.y' draggable='true' ondragstart='onDragStart(event);'></img>";
-    }
-
-    isEvolve(){
-		return false;
     }
     
     getAttackPositions(echequier){

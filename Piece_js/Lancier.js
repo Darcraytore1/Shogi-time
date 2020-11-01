@@ -1,9 +1,10 @@
-export default class Lancier {
+import Piece from "./Piece.js";
+export default class Lancier extends Piece{
 
-    campDeLaPiece;
+    
 
-    constructor(campDeLaPiece){
-        this.campDeLaPiece = campDeLaPiece;
+    constructor(campDeLaPiece,x,y){
+        super(campDeLaPiece,x,y);
     }
 
     toString(){
@@ -12,42 +13,28 @@ export default class Lancier {
 
     type(){
 		return "Lancier";
-	}
-
-    isAuthorizedMovementPlayer1(x,y,j,k){
-
-        for (var i = 0; i<9;i++){
-
-            if (x == j && y + i == k && y + i < 9){
-                return true;
-            }
-        }
-
-        return false;
     }
+    
+    isAuthorizedMovementPlayer(j,k,echequier){
+        var raison = false;
 
-    isAuthorizedMovementPlayer2(x,y,j,k){
-
-        for (var i = 0; i<9;i++){
+        this.getAttackPositions(echequier).forEach(position => {
             
-            if (x == j && y - i == k && y - i > -1){
-                return true;
+            if ((position[0] == j) && (position[1] == k)) {
+                
+                // Je ne comprends pas pourquoi mais si je fais un return ici, ça n'arrête pas ma fonction
+                raison = true;
             }
-        }
-
-        return false;
-    }
-
-    getCampDeLaPiece(){
-        return this.campDeLaPiece;
+        });
+        return raison;
     }
 
     href(){
 		return 'image/lancier.png';
 	}
 
-    printImgPiece(x,y){
-        return "<img src='image/lancier.png' id='x,y' draggable='true' ondragstart='onDragStart(event);'></img>";
+    printImgPiece(){
+        return "<img src='image/lancier.png' id='this.x,this.y' draggable='true' ondragstart='onDragStart(event);'></img>";
     }
 
     isEvolve(){
@@ -55,7 +42,7 @@ export default class Lancier {
     }
     
 
-    getAttackPositions(echequier,x,y){
+    getAttackPositions(echequier){
 
 		var attackPosition = [];
 
@@ -66,34 +53,41 @@ export default class Lancier {
         
         if (this.campDeLaPiece == 2){
 
-            if (y - 1 > -1){
+            if (this.y - 1 > -1){
 
-                compteur = y;
+                compteur = this.y;
     
                 for (i = 1;i< compteur + 1;i++){
-                    if(echequier.getPieceCellule()[y - i][x] != null){
+                    if(echequier.getPieceCellule()[this.y - i][this.x] != null){
+                        if (echequier.getPieceCellule()[this.y - i][this.x].getCampDeLaPiece() != this.campDeLaPiece){
+                            attackPosition.push([this.x,this.y-i]);
+                            break;
+                        }
                         break;
                     }
-                    attackPosition.push([x,y-i]);
+                    attackPosition.push([this.x,this.y-i]);
                 }
             }       
         }
         else{
-            if (y + 1 < 9){
+            if (this.y + 1 < 9){
 
-                compteur = 8 - y;
+                compteur = 8 - this.y;
     
                 for (i = 1;i< compteur + 1;i++){
-                    if(echequier.getPieceCellule()[y + i][x] != null){
+                    if(echequier.getPieceCellule()[this.y + i][this.x] != null){
+                        if (echequier.getPieceCellule()[this.y + i][this.x].getCampDeLaPiece() != this.campDeLaPiece){
+                            attackPosition.push([this.x,this.y+i]);
+                            break;
+                        }
                         break;
                     }
-                    attackPosition.push([x,y+i]);
+                    attackPosition.push([this.x,this.y+i]);
                 }
             }       
         }
 		
 		return attackPosition;
 		
-	}
-
+    }
  }

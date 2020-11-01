@@ -101,100 +101,7 @@ export default class Player {
         }
     }
 
-    // Test si il y a des pieces sur le chemin du fou 
-    testFou(x,y,j,k){
-        var i;
-
-        if (x - j > 0 && y - k > 0){
-            //console.log( "1";
-            for (i = 1;i< x - j;i++){
-                if(this.echequier.getPieceCellule()[y - i][x - i] != null){
-                    console.log( "Il y a des pieces sur le chemin de ton deplacement petit galopin");
-                    return false;
-                }
-            }
-        }
-
-        if (x - j < 0 && y - k < 0){
-            //console.log( "2";
-            for (i = 1;i< j - x;i++){
-                if(this.echequier.getPieceCellule()[y + i][x + i] != null){
-                    console.log( "Il y a des pieces sur le chemin de ton deplacement petit galopin");
-                    return false;
-                }
-            }
-
-        }
-
-        if (x - j > 0 && y - k < 0){
-            //console.log( "3";
-            for (i = 1;i < x - j;i++){
-                
-                if(this.echequier.getPieceCellule()[y + i][x - i] != null){
-                    console.log( "Il y a des pieces sur le chemin de ton deplacement petit galopin");
-                    return false;
-                }
-            }
-
-        }
-
-        if (x - j < 0 && y - k > 0){
-            //console.log( "4";
-            for (i = 1;i< j - x;i++){
-                if(this.echequier.getPieceCellule()[y - i][x + i] != null){
-                    console.log( "Il y a des pieces sur le chemin de ton deplacement petit galopin");
-                    return false;
-                }
-            }
-        }
-    }
-
-    // Test si il y a des pieces sur le chemin de la tour
-    testTour(x,y,j,k){
-        var i;
-        if (x - j > 0 && y == k){
-            //console.log( "1";
-            for (i = 1;i< x - j;i++){
-                if(this.echequier.getPieceCellule()[y][x - i] != null){
-                    console.log( "Il y a des pieces sur le chemin de ton deplacement petit galopin");
-                    return false;
-                }
-            }
-        }
-
-        if (x - j < 0 && y == k){
-            //console.log( "2";
-            for (i = 1;i< j - x;i++){
-                if(this.echequier.getPieceCellule()[y][x + i] != null){
-                    console.log( "Il y a des pieces sur le chemin de ton deplacement petit galopin");
-                    return false;
-                }
-            }
-        }
-
-        if (x == j && y - k < 0){
-            //console.log( "3";
-            for (i = 1;i < k - y;i++){
-                
-                if(this.echequier.getPieceCellule()[y + i][x] != null){
-                    //console.log( "i";
-                    console.log( "Il y a des pieces sur le chemin de ton deplacement petit galopin");
-                    return false;
-                }
-            }
-        }
-
-        if (x == j && y - k > 0){
-            //console.log( "4";
-            for (i = 1;i< y - k;i++){
-                if(this.echequier.getPieceCellule()[y - i][x] != null){
-                    console.log( "Il y a des pieces sur le chemin de ton deplacement petit galopin");
-                    return false;
-                }
-            }
-        }
-    }
-
+    
     // Joue une piece et doit influencer en consequence l'echequier
     // x et y sont les coordonnees de la piece choisi et j, k sont 
     // les coordonnees de l'endroit ou on veut que la piece aille 
@@ -214,44 +121,11 @@ export default class Player {
         }
 
         string = "le mouvement demande n'est pas authorise par cette piece";
-        if (piece.isAuthorizedMovementPlayer1(x,y,j,k)){		// Si le mouvement qu'essaie de faire la piece est authorise par rapport a la piece choisie
+        console.log(piece);
+        if (piece.isAuthorizedMovementPlayer(j,k,this.echequier)){		// Si le mouvement qu'essaie de faire la piece est authorise par rapport a la piece choisie
             string = "la case de destination n'est pas vide";
 
             if (this.echequier.getPieceCellule()[k][j] == null || this.echequier.getPieceCellule()[k][j].getCampDeLaPiece() != this.echequier.getPieceCellule()[y][x].getCampDeLaPiece()){		// Si l'endroit ou veut aller la piece n'a pas deja une piece sur cette position ou bien si c'est une piece ennemi
-
-
-                // Test si il y a des pieces sur le chemin pour aller a la case destination pour le fou
-                if (piece.type() == "Fou"){
-
-                    if(this.testFou(x,y,j,k) == false){
-                        return false;
-                    }
-                }
-
-
-                // Test si il y a des pieces sur le chemin pour aller a la case destination pour la tour
-                if (piece.type() == "Tour"){
-
-                   if(this.testTour(x,y,j,k) == false){
-                       return false;
-                   }
-                }
-
-
-                // Test si il y a des pieces sur le chemin pour aller a la case destination pour le lancier
-                if (piece.type() == "Lancier"){
-                    //console.log( "k");
-                    for (i = 1; i < k-y;i ++){
-                        //console.log( "5");
-                        if(this.echequier.getPieceCellule()[y + i][x] != null){
-                            console.log( "Il y a des pieces sur le chemin de ton deplacement petit galopin");
-                            return false;
-                        }
-                    }
-                }
-
-
-
 
                 if (this.echequier.getPieceCellule()[k][j] == null){
                     this.echequier.changeCellule(j,k,piece);
@@ -309,41 +183,10 @@ export default class Player {
         }
 
         string = "le mouvement demande n'est pas authorise par cette piece";
-        if (piece.isAuthorizedMovementPlayer2(x,y,j,k)){		// Si le mouvement qu'essaie de faire la piece est authorise par rapport a la piece choisie
+        if (piece.isAuthorizedMovementPlayer(j,k,this.echequier)){		// Si le mouvement qu'essaie de faire la piece est authorise par rapport a la piece choisie
             string = "la case de destination n'est pas vide";
 
             if (this.echequier.getPieceCellule()[k][j] == null || this.echequier.getPieceCellule()[k][j].getCampDeLaPiece() != this.echequier.getPieceCellule()[y][x].getCampDeLaPiece()){		// Si l'endroit ou veut aller la piece n'a pas deja une piece sur cette position ou bien si c'est une piece ennemi
-
-
-                // Test si il y a des pieces sur le chemin pour aller a la case destination pour le fou
-                if (piece.type() == "Fou"){
-
-                    if(this.testFou(x,y,j,k) == false){
-                        return false;
-                    }
-                }
-
-
-                // Test si il y a des pieces sur le chemin pour aller a la case destination pour la tour
-                if (piece.type() == "Tour"){
-
-                   if(this.testTour(x,y,j,k) == false){
-                       return false;
-                   }
-                }
-
-
-                // Test si il y a des pieces sur le chemin pour aller a la case destination pour le lancier
-                if (piece.type() == "Lancier"){
-                    //console.log( "k");
-                    for (i = 1; i < k-y;i ++){
-                        //console.log( "5");
-                        if(this.echequier.getPieceCellule()[y - i][x] != null){
-                            console.log( "Il y a des pieces sur le chemin de ton deplacement petit galopin");
-                            return false;
-                        }
-                    }
-                }
 
                 
                 if (this.echequier.getPieceCellule()[k][j] == null){

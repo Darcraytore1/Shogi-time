@@ -1,43 +1,18 @@
-import Cavalier from "./Cavalier.js";
+import PieceEvolve from "./PieceEvolve.js";
 
-export default class Cavalier_u extends Cavalier{
+export default class Cavalier_u extends PieceEvolve{
 
-    constructor(campDeLaPiece){
-		super(campDeLaPiece);
-	}
+    constructor(campDeLaPiece,x,y){
+        super(campDeLaPiece,x,y);
+    }
 
     toString(){
-		return super.toString() + " upgrade";
+		return "Cavalier " + "upgrade";
 	}
 
 	type(){
 		return "Cavalier_u";
 	}
-
-    isAuthorizedMovementPlayer1(x,y,j,k){
-
-        if ( (x == j && y + 1 == k && y + 1 < 9) || (x + 1 == j && y == k && x + 1 < 9) || (x - 1 == j && y == k && x - 1 > -1)
-            || (x == j && y - 1 == k && y - 1 > -1) || (x - 1 == j && y + 1 == k && x - 1 > -1 && y + 1 < 9) || (x + 1 == j && y + 1 == k && x + 1 < 9 && y + 1 < 9)){
-
-            return true;
-
-        }
-
-        return false;
-
-    }
-
-    isAuthorizedMovementPlayer2(x,y,j,k){
-
-        if ( (x == j && y - 1 == k && y - 1 > -1) || (x - 1 == j && y == k && x - 1 > -1) || (x + 1 == j && y == k && x + 1 < 9)
-            || (x == j && y + 1 == k && y + 1 < 9) || (x + 1 == j && y - 1 == k && x + 1 < 9 && y - 1 > -1) || (x - 1 == j && y - 1 == k && x - 1 > -1 && y - 1 > -1)){
-
-            return true;
-
-        }
-
-        return false;
-    }
 
     href(){
         return 'image/cavalier_u.png';
@@ -45,5 +20,5 @@ export default class Cavalier_u extends Cavalier{
 
     isEvolve(){
 		return true;
-	}
+    }
 }

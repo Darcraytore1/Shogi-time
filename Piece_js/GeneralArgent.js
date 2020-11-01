@@ -1,10 +1,9 @@
-export default class GeneralArgent {
+import Piece from "./Piece.js";
+export default class GeneralArgent extends Piece{
 
-	campDeLaPiece;
-
-	constructor(campDeLaPiece){
-		this.campDeLaPiece = campDeLaPiece;
-	}
+	constructor(campDeLaPiece,x,y){
+        super(campDeLaPiece,x,y);
+    }
 
 	toString(){
 		return "GeneralArgent "+this.campDeLaPiece;
@@ -14,87 +13,72 @@ export default class GeneralArgent {
 		return "GeneralArgent";
 	}
 
-	// ça a l'air correct
-	isAuthorizedMovementPlayer1(x,y,j,k){	
-		
-		if ( (x == j && y + 1 == k && y + 1 < 9) || (x - 1 == j && y - 1 == k && x - 1 > -1 && y - 1 > -1)  || (x + 1 == j && y - 1 == k && x + 1 < 9 && y - 1 > -1)
-			|| (x - 1 == j && y + 1 == k && x - 1 > -1 && y + 1 < 9) || (x + 1 == j && y + 1 == k && x + 1 < 9 && y + 1 < 9)){
+	isAuthorizedMovementPlayer(j,k,echequier){
+        var raison = false;
 
-			return true;
-
-		}
-
-		return false;
-	}
-
-	isAuthorizedMovementPlayer2(x,y,j,k){	
-		
-		if ((x == j && y - 1 == k && y - 1 > -1) || (x + 1 == j && y + 1 == k && x + 1 < 9 && y + 1 < 9)  || (x - 1 == j && y + 1 == k && x - 1 > -1 && y + 1 < 9)
-			|| (x + 1 == j && y - 1 == k && x + 1 < 9 && y - 1 > -1) || (x - 1 == j && y - 1 == k && x - 1 > -1 && y - 1 > -1)){
-
-			return true;
-
-		}
-
-		return false;
-	}
-
-	getCampDeLaPiece(){
-        return this.campDeLaPiece;
+        this.getAttackPositions(echequier).forEach(position => {
+            
+            if ((position[0] == j) && (position[1] == k)) {
+                
+                // Je ne comprends pas pourquoi mais si je fais un return ici, ça n'arrête pas ma fonction
+                raison = true;
+            }
+        });
+        return raison;
     }
 
 	href(){
 		return 'image/generalArgent.png';
 	}
 
-	printImgPiece(x,y){
-		return "<img src='image/generalArgent.png' id='x,y' draggable='true' ondragstart='onDragStart(event);'></img>";
+	printImgPiece(){
+		return "<img src='image/generalArgent.png' id='this.x,this.y' draggable='true' ondragstart='onDragStart(event);'></img>";
 	}
 
 	isEvolve(){
 		return false;
 	}
 
-	getAttackPositions(echequier,x,y){
+	getAttackPositions(echequier){
 		var attackPosition = [];
 
-		if (x - 1 > -1 && y - 1 > -1){
-			if (echequier.getPieceCellule()[x-1][y-1] == null || echequier.getPieceCellule()[x-1][y-1].getCampDeLaPiece != 2){
-				attackPosition.push([x-1,y-1]);
+		if (this.x - 1 > -1 && this.y - 1 > -1){
+			if (echequier.getPieceCellule()[this.y-1][this.x-1] == null || echequier.getPieceCellule()[this.y-1][this.x-1].getCampDeLaPiece != 2){
+				attackPosition.push([this.x-1,this.y-1]);
 			}
 		}
 
-		if (x + 1 < 9 && y - 1 > -1){
-			if (echequier.getPieceCellule()[x+1][y-1] == null || echequier.getPieceCellule()[x+1][y-1].getCampDeLaPiece != 2){
-				attackPosition.push([x+1,y-1]);
+		if (this.x + 1 < 9 && this.y - 1 > -1){
+			if (echequier.getPieceCellule()[this.y-1][this.x+1] == null || echequier.getPieceCellule()[this.y-1][this.x+1].getCampDeLaPiece != 2){
+				attackPosition.push([this.x+1,this.y-1]);
 			}
 		}
 
-		if (x - 1 > -1 && y + 1 < 9){
-			if (echequier.getPieceCellule()[x-1][y+1] == null || echequier.getPieceCellule()[x-1][y+1].getCampDeLaPiece != 2){
-				attackPosition.push([x-1,y+1]);
+		if (this.x - 1 > -1 && this.y + 1 < 9){
+			if (echequier.getPieceCellule()[this.y+1][this.x-1] == null || echequier.getPieceCellule()[this.y+1][this.x-1].getCampDeLaPiece != 2){
+				attackPosition.push([this.x-1,this.y+1]);
 			}
 		}
 
-		if (x + 1 < 9 && y + 1 < 9){
-			if (echequier.getPieceCellule()[x+1][y+1] == null || echequier.getPieceCellule()[x+1][y+1].getCampDeLaPiece != 2){
-				attackPosition.push([x+1,y-1]);
+		if (this.x + 1 < 9 && this.y + 1 < 9){
+			if (echequier.getPieceCellule()[this.y+1][this.x+1] == null || echequier.getPieceCellule()[this.y+1][this.x+1].getCampDeLaPiece != 2){
+				attackPosition.push([this.x+1,this.y+1]);
 			}
 		}
 		
 
 		if (this.campDeLaPiece == 2){
-			if (y - 1 > -1){
-				if (echequier.getPieceCellule()[x][y-1] == null || echequier.getPieceCellule()[x][y-1].getCampDeLaPiece != 2){
-					attackPosition.push([x,y-1]);
+			if (this.y - 1 > -1){
+				if (echequier.getPieceCellule()[this.y-1][this.x] == null || echequier.getPieceCellule()[this.y-1][this.x].getCampDeLaPiece != 2){
+					attackPosition.push([this.x,this.y-1]);
 				}
 			}
 		}
 			
 		else {
-			if (y + 1 < 9){
-				if (echequier.getPieceCellule()[x][y+1] == null || echequier.getPieceCellule()[x][y+1].getCampDeLaPiece != 2){
-					attackPosition.push([x,y+1]);
+			if (this.y + 1 < 9){
+				if (echequier.getPieceCellule()[this.y+1][this.x] == null || echequier.getPieceCellule()[this.y+1][this.x].getCampDeLaPiece != 2){
+					attackPosition.push([this.x,this.y+1]);
 				}
 			}
 		}
