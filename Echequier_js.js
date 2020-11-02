@@ -137,6 +137,7 @@ export default class Echequier {
     
     // En parametre le numéro du joueur, donc soit 1, soit 2
     piecesPlayerAlive(playerNum){
+        
         var piecesAlive = [];
         this.pieceCellule.forEach(ligne => {
             ligne.forEach(piece =>{
@@ -152,11 +153,14 @@ export default class Echequier {
     // Elle ne va pas être optimisé au début mais faire une fonction qui regarde chacune des pièces d'un côté ou de l'autre, les positions ou elles peuvent arriver.
     // Compliqué, il manque les arguments dans la méthodes getAttackPositions. Réfléchir ...
     allPosiblePositions(playerNum){
+        
         var piecesAlive = this.piecesPlayerAlive(playerNum);
         var allPossiblePositions = [];
         piecesAlive.forEach(piece => {
+            // C'est le getAttackPosition qui embete car on regarde par la meme occasion si le roi a joue et donc appel récursif
             allPossiblePositions.push(piece.getAttackPositions(this));
         });
+        
 
         return allPossiblePositions;
     }
@@ -182,11 +186,10 @@ export default class Echequier {
         return [x,y];
     }
 
-    isAttacked(x,y,numPlayer){
+    isAttacked(x,y,allPositions){
 
-        var raison = false;
+        var raison;
 
-        var allPositions = this.allPosiblePositions(numPlayer);
         allPositions.forEach(position => {
             position.forEach( coordonne => {
                 if (coordonne[0] == x && coordonne[1] == y) raison = true;
