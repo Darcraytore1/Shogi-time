@@ -9,17 +9,30 @@ border : 1px solid #000000;
 background-color: #efd7b8;
 }
 
+.caseMorte{
+	height : 80px;
+	width : 80px;
+	border : 1px solid #000000;
+	background-color: #efd7b8;
+}
+
+.caseMorte2{
+	height : 80px;
+	width : 80px;
+	border : 1px solid #000000;
+	background-color: #efd7b8;
+}
+
 .caseGreen{
 	border : 1px solid #6DB65B;
 	background-color: #6DB65B;
 }
 
-.bancPiece{
-	height : 120px;
-	width : 300px;
-	border : 1px solid #000000;
-	background-color: #efd7b8;
+.caseGreenBanc{
+	border : 1px solid #6DB65B;
+	background-color: #6DB65B;
 }
+
 
 .reverse {
 	-webkit-transform: scaleY(-1);
@@ -29,6 +42,10 @@ background-color: #efd7b8;
 .active {
 	-webkit-transform: scaleY(-1);
 	transform: scaleY(-1);
+}
+
+.isDied {
+	opacity: 0.9;
 }
 
 .example-parent {

@@ -79,6 +79,8 @@ export default class Fou extends Piece{
 
 			for (i = 1;i< compteur + 1 ;i++){
 
+				console.log("prout");
+				console.log(echequier.getPieceCellule());
 				if(echequier.getPieceCellule()[this.y + i][this.x + i] != null){
 					if (echequier.getPieceCellule()[this.y + i][this.x + i].getCampDeLaPiece() != this.campDeLaPiece){
 						attackPosition.push([this.x+i,this.y+i]);
@@ -101,7 +103,8 @@ export default class Fou extends Piece{
 				compteur = 8-this.y;
 			}
 			for (i = 1;i < compteur + 1;i++){
-				
+				console.log("caca");
+				console.log(echequier.getPieceCellule());
 				if(echequier.getPieceCellule()[this.y + i][this.x - i] != null){
 					if (echequier.getPieceCellule()[this.y + i][this.x - i].getCampDeLaPiece() != this.campDeLaPiece){
 						attackPosition.push([this.x-i,this.y+i]);

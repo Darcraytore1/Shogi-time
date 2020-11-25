@@ -29,4 +29,9 @@ export default class Piece {
     getCampDeLaPiece(){
         return this.campDeLaPiece;
     }
+
+    setCampDeLaPiece(){
+        if (this.campDeLaPiece == 1) this.campDeLaPiece = 2;
+        else this.campDeLaPiece = 1;
+    }
 }

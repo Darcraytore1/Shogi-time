@@ -59,6 +59,7 @@ export default class Echequier {
         this.pieceCellule[y][x] = value;
     }
 
+
     createImg(piece,x,y){
 
         var img = null;
@@ -69,6 +70,21 @@ export default class Echequier {
         img.setAttribute("camp",piece.getCampDeLaPiece());
         if (piece.getCampDeLaPiece() == 1) img.classList.add("reverse");
         img.id = x+","+y;
+        return img
+        
+    }
+
+    createImgReverse(piece,x,y){
+
+        var img = null;
+        img = document.createElement('img');
+        img.src = piece.href();
+        img.setAttribute("x",""+x);
+        img.setAttribute("y",""+y);
+        img.setAttribute("camp",piece.getCampDeLaPiece());
+        if (piece.getCampDeLaPiece() == 1) img.classList.add("reverse");
+        img.id = x+","+y;
+        img.classList.add("reverse");
         return img
         
     }
@@ -165,7 +181,7 @@ export default class Echequier {
         return allPossiblePositions;
     }
     
-    positionRoi(){
+    positionRoi(playerNum){
         var i;
         var j;
         var x;
@@ -175,7 +191,7 @@ export default class Echequier {
             for (j = 0; j < this.pieceCellule[i].length;j++){
 
                 if (this.pieceCellule[i][j] != null){
-                    if (this.pieceCellule[i][j].toString() == "Roi 1"){
+                    if (this.pieceCellule[i][j].toString() == "Roi "+ playerNum){
                         x = j;
                         y = i;
                     }
@@ -200,16 +216,28 @@ export default class Echequier {
     }
 
 
-    isFinish(){
+    isEchec(playerNum){
         // exemple pour le joueur 1
-        var positionRoi = this.positionRoi();
-        console.log(positionRoi);
-        var allPositions = allPossiblePositions(1);
-        allPositions.forEach(position => {
+        // Faire pour la prochaine fois 
+        var raison = false;
+        var positionRoi = this.positionRoi(playerNum);
 
-        })
+        var roi = this.pieceCellule[positionRoi[1]][positionRoi[0]]
+        if (roi.getCampDeLaPiece() == 2){
+            var allPossiblePositions = this.allPosiblePositions(1);
+        }
+        else {
+            var allPossiblePositions = this.allPosiblePositions(2);
+        }
 
+        if (this.isAttacked(positionRoi[0],positionRoi[1],allPossiblePositions)) raison = true;
+        return raison;
     }
 
-    
+    simulation(playerNum){
+        while (this.isEchec(playerNum) == true) {
+            // Doit jouer un coup si ce coup, ne le sort pas de son echec, ce n'est pas un coup faisable
+            
+        }
+    }  
 }

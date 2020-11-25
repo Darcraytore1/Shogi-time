@@ -19,13 +19,19 @@ import Cavalier_u from "./Piece_js/Cavalier_u.js";
 export default class Player {
 
     echequier;
+    // Voir à réduire en une seul liste 
     listePieceGagne;
+    whoPlay
 
-    constructor(echequier){
+    constructor(echequier,whoPlay){
         this.echequier = echequier;
-        this.listePieceGagne = [];
+        this.whoPlay = whoPlay;
+        this.listePieceGagne = new Map();
     }
 
+    /*
+    Permet de faire évoluer une pièces qui arrive sur l'une des 3 dernières cases du plateau 
+    */
     evolvePiece(x,y,j,k,piece,sure){
         if (!(piece.type() == "Roi" || piece.type() == "GeneralOr")){
 
@@ -102,9 +108,12 @@ export default class Player {
     }
 
     
-    // Joue une piece et doit influencer en consequence l'echequier
-    // x et y sont les coordonnees de la piece choisi et j, k sont 
-    // les coordonnees de l'endroit ou on veut que la piece aille 
+    /*  Joue une piece et doit influencer en consequence l'echequier
+        x et y sont les coordonnees de la piece choisi et j, k sont 
+        les coordonnees de l'endroit ou on veut que la piece aille 
+        doit également gérer les échecs 
+        Return un booléen, true si le mouvement est possible et a été effectué sinon renvoie false.
+    */
     Player1playPiece(x,y,j,k){
         var piece;
         var string;
@@ -121,21 +130,40 @@ export default class Player {
         }
 
         string = "le mouvement demande n'est pas authorise par cette piece";
-        console.log(piece);
+        //console.log(piece);
         if (piece.isAuthorizedMovementPlayer(j,k,this.echequier)){		// Si le mouvement qu'essaie de faire la piece est authorise par rapport a la piece choisie
             string = "la case de destination n'est pas vide";
 
             if (this.echequier.getPieceCellule()[k][j] == null || this.echequier.getPieceCellule()[k][j].getCampDeLaPiece() != this.echequier.getPieceCellule()[y][x].getCampDeLaPiece()){		// Si l'endroit ou veut aller la piece n'a pas deja une piece sur cette position ou bien si c'est une piece ennemi
 
-                if (this.echequier.getPieceCellule()[k][j] == null){
+                if (this.echequier.isEchec(piece.getCampDeLaPiece()) == true){
+
+                    var piece2 = this.echequier.getPieceCellule()[k][j];
+                    this.echequier.changeCellule(j,k,piece);
+                    this.echequier.changeCellule(x,y,null);
+                    console.log("Vous êtes échec");
+                    if (this.echequier.isEchec(piece.getCampDeLaPiece()) == true) {
+
+                        console.log("ça ne règle pas votre échec");
+                        this.echequier.changeCellule(j,k,piece2);
+                        this.echequier.changeCellule(x,y,piece);
+                        return false;
+                    }
+                }
+
+                else if (this.echequier.getPieceCellule()[k][j] == null){
                     this.echequier.changeCellule(j,k,piece);
                     this.echequier.changeCellule(x,y,null);
 
                 }
-
+                
                 else{
-
-                    this.listePieceGagne.push(this.echequier.getPieceCellule()[k][j]);
+                    var type = this.echequier.getPieceCellule()[k][j].type();
+                    console.log(this.listePieceGagne.get(type) == undefined);
+                    if (this.listePieceGagne.get(type) == undefined) this.listePieceGagne.set(type,1);
+                    else this.listePieceGagne.set(type,this.listePieceGagne.get(type)+1);
+                    
+                    
                     this.echequier.changeCellule(j,k,piece);
                     this.echequier.changeCellule(x,y,null);
                 }
@@ -160,7 +188,7 @@ export default class Player {
             }
         }
 
-        console.log( string);
+        console.log(string);
 
 
         return (false);
@@ -188,8 +216,23 @@ export default class Player {
 
             if (this.echequier.getPieceCellule()[k][j] == null || this.echequier.getPieceCellule()[k][j].getCampDeLaPiece() != this.echequier.getPieceCellule()[y][x].getCampDeLaPiece()){		// Si l'endroit ou veut aller la piece n'a pas deja une piece sur cette position ou bien si c'est une piece ennemi
 
-                
-                if (this.echequier.getPieceCellule()[k][j] == null){
+                if (this.echequier.isEchec(piece.getCampDeLaPiece()) == true){
+
+                    var piece2 = this.echequier.getPieceCellule()[k][j];
+                    this.echequier.changeCellule(j,k,piece);
+                    this.echequier.changeCellule(x,y,null);
+                    console.log("Vous êtes échec");
+                    // Indiqué d'une manière ou d'une autre que le joueur est échec
+                    if (this.echequier.isEchec(piece.getCampDeLaPiece()) == true) {
+
+                        console.log("ça ne règle pas votre échec");
+                        this.echequier.changeCellule(j,k,piece2);
+                        this.echequier.changeCellule(x,y,piece);
+                        return false;
+                    }
+                }
+
+                else if (this.echequier.getPieceCellule()[k][j] == null){
 
                     this.echequier.changeCellule(j,k,piece);
                     this.echequier.changeCellule(x,y,null);
@@ -197,8 +240,12 @@ export default class Player {
                 }
 
                 else{
+                    // Ici on met la banque des pièces 
+                    // this.echequier.getPieceCellule()[k][j].setX(this.listePieceGagne.length);
+                    var type = this.echequier.getPieceCellule()[k][j].type();
+                    if (this.listePieceGagne.get(type) == undefined) this.listePieceGagne.set(type,1);
+                    else this.listePieceGagne.set(type,this.listePieceGagne.get(type)+1);
 
-                    this.listePieceGagne.push(this.echequier.getPieceCellule()[k][j]);
                     this.echequier.changeCellule(j,k,piece);
                     this.echequier.changeCellule(x,y,null);
                 }
@@ -233,24 +280,29 @@ export default class Player {
         
     }
 
-    // Parachute une piece et doit influencer en consequence l'echequier
-    parachutagePiece(x,y){
+    isParachutable(x,y){
+        if (this.echequier.getPieceCellule()[y][x] == null) console.log("La place pour être parachuté est libre");
+        else console.log("La place pour être parachuté est déjà prise");
+        return this.echequier.getPieceCellule()[y][x] == null;
+    }
 
-        console.log(x,y)
+    // Parachute une piece et doit influencer en consequence l'echequier à l'indice x,y, le camp indique le camp que devra avoir la nouvelle pieces, le nomPiece indique la
+    // pièce qui devra être créée
+    parachutagePiece(x,y,camp,nomPiece){
 
-        var piece = this.echequier.getPieceCellule()[y][x];
+        //console.log(x,y);
+        //console.log(nomPiece);
 
-        if (piece == null){
-            console.log( "La piece selectionne n'existe pas");
-            return false;
-        }
+
+        if (nomPiece == "Pion") var piecePlace = new Pion(camp,x,y);
+        if (nomPiece == "Lancier") var piecePlace = new Lancier(camp,x,y);
+        if (nomPiece == "Fou") var piecePlace = new Fou(camp,x,y);
+        if (nomPiece == "Tour") var piecePlace = new Tour(camp,x,y);
+        if (nomPiece == "GeneralOr") var piecePlace = new GeneralOr(camp,x,y);
+        if (nomPiece == "GeneralArgent") var piecePlace = new GeneralArgent(camp,x,y);
+        if (nomPiece == "Cavalier") var piecePlace = new Cavalier(camp,x,y);
         
-        if(this.echequier.getPieceCellule()[y][x] == null && in_array(piece, this.listePieceGagne)){
-            this.echequier.changeCellule(x,y,piece);
-            return true;
-        }
-
-        return false;
+        this.echequier.changeCellule(x,y,piecePlace);
     }
 
     getEchequier(){
@@ -259,12 +311,25 @@ export default class Player {
 
     toString(){
         var string = "";
-        for (var value of this.listePieceGagne) {
-
-            string += value+" ,";
-        }
+        listePieceGagne.forEach(function(key,value,map){
+            string += key + value + "\n";
+        });
 
         return string;
+    }
+
+    // renvoie un string si la p
+    get(string){
+        this.listePieceGagne.get(string);
+    }
+
+    changeWhoPlay(){
+        if (this.whoPlay) this.whoPlay = false;
+        else this.whoPlay = true;
+    }
+
+    getWhoPlay(){
+        return this.whoPlay;
     }
 }
 

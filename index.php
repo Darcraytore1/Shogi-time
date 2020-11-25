@@ -43,16 +43,32 @@
 			<?php
 			}
 			?>
+
+			<table>
+				<tr>
+					<td><div class="caseMorte" type = "Pion" id = "pion1"></div></td>
+					<td><div class="caseMorte" type = "Fou" id = "fou1"></div></td>
+					<td><div class="caseMorte" type = "GeneralOr" id = "generalOr1"></div></td>
+					<td><div class="caseMorte" type = "GeneralArgent" id = "generalArgent1"></div></td>
+					<td><div class="caseMorte" type = "Tour" id = "tour1"></div></td>
+					<td><div class="caseMorte" type = "Cavalier" id = "cavalier1"></div></td>
+					<td><div class="caseMorte" type = "Lancier" id = "lancier1"></div></td>
+				</tr>
 			</table>
+			
+			
 			<br><br>
-			<div class="bancPiece">
-
-			</div>
-
-			<br><br>
-			<div class="bancPiece">
-
-			</div>
+			<table>
+				<tr>
+					<td><div class="caseMorte2" type = "Pion" id = "pion2"></div></td>
+					<td><div class="caseMorte2" type = "Fou" id = "fou2"></div></td>
+					<td><div class="caseMorte2" type = "GeneralOr" id = "generalOr2"></div></td>
+					<td><div class="caseMorte2" type = "GeneralArgent" id = "generalArgent2"></div></td>
+					<td><div class="caseMorte2" type = "Tour" id = "tour2"></div></td>
+					<td><div class="caseMorte2" type = "Cavalier" id = "cavalier2"></div></td>
+					<td><div class="caseMorte2" type = "Lancier" id = "lancier2"></div></td>
+				</tr>
+			</table>
 			<?php
 		}
 
