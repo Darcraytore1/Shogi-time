@@ -6,6 +6,14 @@
 	<title></title>
 </head>
 <body>
+	<figure>
+		<figcaption>Shogi music</figcaption>
+		<audio controls loop src="SHOGI_DESUNE.mp3">
+				Your browser does not support the
+				<code>audio</code> element.
+		</audio>
+	</figure>
+
 	<table id ="echequier">
 
 	<?php

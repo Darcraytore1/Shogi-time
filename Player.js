@@ -149,6 +149,7 @@ export default class Player {
                         this.echequier.changeCellule(x,y,piece);
                         return false;
                     }
+
                 }
 
                 else if (this.echequier.getPieceCellule()[k][j] == null){
@@ -158,7 +159,16 @@ export default class Player {
                 }
                 
                 else{
+                    console.log("chiottttte");
                     var type = this.echequier.getPieceCellule()[k][j].type();
+                    // Pour incrémenter la bonne case dans la map
+                    if (type == "Pion_u") type = "Pion";
+                    if (type == "Lancier_u") type = "Lancier";
+                    if (type == "GeneralArgent_u") type = "GeneralArgent";
+                    if (type == "Tour_u") type = "Tour";
+                    if (type == "Fou_u") type = "Fou";
+                    if (type == "Cavalier_u") type = "Cavalier";
+
                     console.log(this.listePieceGagne.get(type) == undefined);
                     if (this.listePieceGagne.get(type) == undefined) this.listePieceGagne.set(type,1);
                     else this.listePieceGagne.set(type,this.listePieceGagne.get(type)+1);
@@ -230,6 +240,7 @@ export default class Player {
                         this.echequier.changeCellule(x,y,piece);
                         return false;
                     }
+
                 }
 
                 else if (this.echequier.getPieceCellule()[k][j] == null){
@@ -242,7 +253,16 @@ export default class Player {
                 else{
                     // Ici on met la banque des pièces 
                     // this.echequier.getPieceCellule()[k][j].setX(this.listePieceGagne.length);
+
                     var type = this.echequier.getPieceCellule()[k][j].type();
+                    console.log("prise de la pièces = " + type);
+                    if (type == "Pion_u") type = "Pion";
+                    if (type == "Lancier_u") type = "Lancier";
+                    if (type == "GeneralArgent_u") type = "GeneralArgent";
+                    if (type == "Tour_u") type = "Tour";
+                    if (type == "Fou_u") type = "Fou";
+                    if (type == "Cavalier_u") type = "Cavalier";
+
                     if (this.listePieceGagne.get(type) == undefined) this.listePieceGagne.set(type,1);
                     else this.listePieceGagne.set(type,this.listePieceGagne.get(type)+1);
 

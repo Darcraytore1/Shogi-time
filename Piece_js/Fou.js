@@ -51,14 +51,15 @@ export default class Fou extends Piece{
 		var compteur = 0;
 
 		// Normalement cette condition if est inutile, je sais pas pourquoi je l'enlève pas d'ailleurs, je crois qu'elle me fait plaisir, elle me soulage.
-		
-		if (this.x - 1 > -1 && this.y - 1 > -1){
+		console.log()
+		if ((this.x - 1 > -1) && (this.y - 1 > -1)){
 
 			if (this.x > this.y) compteur = this.x;
 			else compteur = this.y;
 
 			for (i = 1;i< compteur + 1;i++){
 
+				if (this.y - i == -1 || this.x -i == -1) break;
 				if(echequier.getPieceCellule()[this.y - i][this.x - i] != null){
 					if (echequier.getPieceCellule()[this.y - i][this.x - i].getCampDeLaPiece() != this.campDeLaPiece){
 						attackPosition.push([this.x-i,this.y-i]);
@@ -79,8 +80,8 @@ export default class Fou extends Piece{
 
 			for (i = 1;i< compteur + 1 ;i++){
 
-				console.log("prout");
-				console.log(echequier.getPieceCellule());
+
+				if (this.y + i == 9 || this.x + i == 9) break;
 				if(echequier.getPieceCellule()[this.y + i][this.x + i] != null){
 					if (echequier.getPieceCellule()[this.y + i][this.x + i].getCampDeLaPiece() != this.campDeLaPiece){
 						attackPosition.push([this.x+i,this.y+i]);

@@ -3,6 +3,22 @@
 import Player from "./Player.js";
 import Echequier from "./Echequier_js.js";
 
+import Lancier from "./Piece_js/Lancier.js";
+import Fou from "./Piece_js/Fou.js";
+import GeneralArgent from "./Piece_js/GeneralArgent.js";
+import GeneralOr from "./Piece_js/GeneralOr.js";
+import Tour from "./Piece_js/Tour.js";
+import Pion from "./Piece_js/Pion.js";
+import Cavalier from "./Piece_js/Cavalier.js";
+import Roi from "./Piece_js/Roi.js";
+
+import Lancier_u from "./Piece_js/Lancier_u.js";
+import Fou_u from "./Piece_js/Fou_u.js";
+import GeneralArgent_u from "./Piece_js/GeneralArgent_u.js";
+import Tour_u from "./Piece_js/Tour_u.js";
+import Pion_u from "./Piece_js/Pion_u.js";
+import Cavalier_u from "./Piece_js/Cavalier_u.js";
+
 var echequier = new Echequier();
 var player = new Player(echequier,true);
 var player2 = new Player(echequier,false);
@@ -12,8 +28,6 @@ echequier.affiche();
 //console.log(player.getEchequier());
 //console.log(player);
 
-//Test clique sur une case, tp sur une autre, fonctionne, reste a ajouter les contraintes de mouvements des pièces
-// Enfin je peux tenter d'implémenter les contraintes de deplacements des pieces
 
 var caseBlanc = document.querySelectorAll(".caseBlanc");
 //console.log(activeBanc);
@@ -99,25 +113,70 @@ var movePiece = function(){
 					this.firstElementChild.setAttribute("camp","1");
 					//this.firstElementChild.setAttribute("x",player.listePieceGagnelength());
 					this.firstElementChild.classList.add("reverse");
-					console.log("prise d'une pièce");
 					
 					//console.log(echequier.getPieceCellule()[x2][y2]);
 					console.log(player.get("Pion"));
 
 					// Soit on déplace la pièce dans l'endroit ou elle doit aller, soit il y en a déjà une donc on la supprime carrément
+					if ((player.listePieceGagne.get("Pion") - 1 == 0) && oldTypePiece == "Pion_u") {
+						this.firstElementChild.remove();
+						var img = echequier.createImgReverse(new Pion(0,0,0),x,y);
+						bancPieces2[0].append(img);
+					} else if (oldTypePiece == "Pion_u") this.firstElementChild.remove();
 
 					if ((player.listePieceGagne.get("Pion") - 1 == 0) && oldTypePiece == "Pion") bancPieces2[0].append(this.firstElementChild);
 					else if (oldTypePiece == "Pion") this.firstElementChild.remove();
+
+					console.log((player.listePieceGagne.get("Fou") - 1 == 0));
+					if ((player.listePieceGagne.get("Fou") - 1 == 0) && oldTypePiece == "Fou_u") {
+						console.log("problème");
+						this.firstElementChild.remove();
+						var img = echequier.createImgReverse(new Fou(0,0,0),x,y);
+						bancPieces2[1].append(img);
+					} else if (oldTypePiece == "Fou_u") this.firstElementChild.remove();
+
 					if ((player.listePieceGagne.get("Fou") - 1 == 0) && oldTypePiece == "Fou") bancPieces2[1].append(this.firstElementChild);
 					else if (oldTypePiece == "Fou") this.firstElementChild.remove();
+
+					if ((player.listePieceGagne.get("Tour") - 1 == 0) && oldTypePiece == "Tour_u") {
+						this.firstElementChild.remove();
+						var img = echequier.createImgReverse(new Tour(0,0,0),x,y);
+						bancPieces2[4].append(img);
+					} else if (oldTypePiece == "Tour_u") this.firstElementChild.remove();
+
 					if ((player.listePieceGagne.get("Tour") - 1 == 0) && oldTypePiece == "Tour") bancPieces2[4].append(this.firstElementChild);
 					else if (oldTypePiece == "Tour") this.firstElementChild.remove();
+
+					
+					if ((player.listePieceGagne.get("Cavalier") - 1 == 0) && oldTypePiece == "Cavalier_u") {
+						this.firstElementChild.remove();
+						var img = echequier.createImgReverse(new Cavalier(0,0,0),x,y);
+						bancPieces2[5].append(img);
+					} else if (oldTypePiece == "Cavalier_u") this.firstElementChild.remove();
+
 					if ((player.listePieceGagne.get("Cavalier") - 1 == 0) && oldTypePiece == "Cavalier") bancPieces2[5].append(this.firstElementChild);
 					else if (oldTypePiece == "Cavalier") this.firstElementChild.remove();
+
 					if ((player.listePieceGagne.get("GeneralOr") - 1 == 0) && oldTypePiece == "GeneralOr") bancPieces2[2].append(this.firstElementChild);
 					else if (oldTypePiece == "GeneralOr") this.firstElementChild.remove();
+
+					
+					if ((player.listePieceGagne.get("GeneralArgent") - 1 == 0) && oldTypePiece == "GeneralArgent_u") {
+						this.firstElementChild.remove();
+						var img = echequier.createImgReverse(new GeneralArgent(0,0,0),x,y);
+						bancPieces2[3].append(img);
+					} else if (oldTypePiece == "GeneralArgent_u") this.firstElementChild.remove();
+
 					if ((player.listePieceGagne.get("GeneralArgent") - 1 == 0) && oldTypePiece == "GeneralArgent") bancPieces2[3].append(this.firstElementChild);
 					else if (oldTypePiece == "GeneralArgent") this.firstElementChild.remove();
+
+					
+					if ((player.listePieceGagne.get("Lancier") - 1 == 0) && oldTypePiece == "Lancier_u") {
+						this.firstElementChild.remove();
+						var img = echequier.createImgReverse(new Lancier(0,0,0),x,y);
+						bancPieces2[6].append(img);
+					} else if (oldTypePiece == "Lancier_u") this.firstElementChild.remove();
+
 					if ((player.listePieceGagne.get("Lancier") - 1 == 0) && oldTypePiece == "Lancier" )  bancPieces2[6].append(this.firstElementChild);
 					else if (oldTypePiece == "Lancier") this.firstElementChild.remove();
 					//this.firstElementChild.remove();
@@ -139,25 +198,66 @@ var movePiece = function(){
 					this.firstElementChild.setAttribute("camp","2");
 					//this.firstElementChild.setAttribute("x",player.listePieceGagnelength());
 					this.firstElementChild.classList.remove("reverse");
-					console.log("prise d'une pièce");
-					//console.log(player.get("Pion"));
-					console.log(x2,y2);
+
 					
 					console.log(player2.listePieceGagne.get("Pion") - 1);
 
+					if ((player2.listePieceGagne.get("Pion") - 1 == 0) && oldTypePiece == "Pion_u") {
+						this.firstElementChild.remove();
+						var img = echequier.createImg(new Pion(0,0,0),x,y);
+						bancPieces[0].append(img);
+					} else if (oldTypePiece == "Pion_u") this.firstElementChild.remove();
 
 					if ((player2.listePieceGagne.get("Pion") - 1 == 0) && oldTypePiece == "Pion") bancPieces[0].append(this.firstElementChild);
 					else if (oldTypePiece == "Pion") this.firstElementChild.remove();
+
+					console.log(player2.listePieceGagne.get("Fou"));
+					if ((player2.listePieceGagne.get("Fou") - 1 == 0) && oldTypePiece == "Fou_u") {
+
+						this.firstElementChild.remove();
+						var img = echequier.createImg(new Fou(0,0,0),x,y);
+						bancPieces[1].append(img);
+					} else if (oldTypePiece == "Fou_u") this.firstElementChild.remove();
+
 					if ((player2.listePieceGagne.get("Fou") - 1 == 0) && oldTypePiece == "Fou") bancPieces[1].append(this.firstElementChild);
 					else if (oldTypePiece == "Fou") this.firstElementChild.remove();
+
+					if ((player2.listePieceGagne.get("Tour") - 1 == 0) && oldTypePiece == "Tour_u") {
+						this.firstElementChild.remove();
+						var img = echequier.createImg(new Tour(0,0,0),x,y);
+						bancPieces[4].append(img);
+					} else if (oldTypePiece == "Tour_u") this.firstElementChild.remove();
+
 					if ((player2.listePieceGagne.get("Tour") - 1 == 0) && oldTypePiece == "Tour") bancPieces[4].append(this.firstElementChild);
 					else if (oldTypePiece == "Tour") this.firstElementChild.remove();
+
+					if ((player2.listePieceGagne.get("Cavalier") - 1 == 0) && oldTypePiece == "Cavalier_u") {
+						this.firstElementChild.remove();
+						var img = echequier.createImg(new Cavalier(0,0,0),x,y);
+						bancPieces[5].append(img);
+					} else if (oldTypePiece == "Cavalier_u") this.firstElementChild.remove();
+
 					if ((player2.listePieceGagne.get("Cavalier") - 1 == 0) && oldTypePiece == "Cavalier") bancPieces[5].append(this.firstElementChild);
 					else if (oldTypePiece == "Cavalier") this.firstElementChild.remove();
+
 					if ((player2.listePieceGagne.get("GeneralOr") - 1 == 0) && oldTypePiece == "GeneralOr") bancPieces[2].append(this.firstElementChild);
 					else if (oldTypePiece == "GeneralOr") this.firstElementChild.remove();
+
+					if ((player2.listePieceGagne.get("GeneralArgent") - 1 == 0) && oldTypePiece == "GeneralArgent_u") {
+						this.firstElementChild.remove();
+						var img = echequier.createImg(new GeneralArgent(0,0,0),x,y);
+						bancPieces[3].append(img);
+					} else if (oldTypePiece == "GeneralArgent_u") this.firstElementChild.remove();
+
 					if ((player2.listePieceGagne.get("GeneralArgent") - 1 == 0) && oldTypePiece == "GeneralArgent") bancPieces[3].append(this.firstElementChild);
 					else if (oldTypePiece == "GeneralArgent") this.firstElementChild.remove();
+
+					if ((player2.listePieceGagne.get("Lancier") - 1 == 0) && oldTypePiece == "Lancier_u") {
+						this.firstElementChild.remove();
+						var img = echequier.createImg(new Lancier(0,0,0),x,y);
+						bancPieces[6].append(img);
+					} else if (oldTypePiece == "Lancier_u") this.firstElementChild.remove();
+
 					if ((player2.listePieceGagne.get("Lancier") - 1 == 0) && oldTypePiece == "Lancier" )  bancPieces[6].append(this.firstElementChild);
 					else if (oldTypePiece == "Lancier") this.firstElementChild.remove();
 
@@ -534,154 +634,3 @@ bancPieceTour1.addEventListener("click",parachutageTour1);
 bancPieceFou1.addEventListener("click",parachutageFou1);
 bancPieceCavalier1.addEventListener("click",parachutageCavalier1);
 
-
-
-//console.log(caseBlanc[9].firstElementChild);
-
-/*
-document.addEventListener("click",function{
-
-})
-*/
-
-// Test drag and drop
-/*
-function onDragStart(event) {
-
-  event
-      .dataTransfer
-      .setData('text/plain', event.target.id);
-
-  
-  //event.currentTarget.style.backgroundColor = 'yellow';
-
-}
-*/
-
-/*
-var pieces = document.querySelector("img")[0];
-console.log(echequier);
-
-document.addEventListener("drag",function(event){
-  event
-  .dataTransfer
-  .setData('text/plain', event.target.id);
-})
-*/
-
-/*
-function onDragOver(event) {
-  
-  event.preventDefault();	
-
-}
-*/
-
-/*
-document.addEventListener("dragover",function(event){
-  event.preventDefault();
-})
-*/
-
-/*
-function onDrop(event) {
-  
-    // Mettre une condition if qui regarde si le mouvement est valide 
-    // Je vais mettre des conditions en php dans le code pour l'instant mais à voir, c'est surement pas le mieux à faire 
-
-    //document.write(echequier); // On ne peut pas faire rentrer des objects php 
-
-    const id = event.dataTransfer.getData('text');
-    const draggableElement = document.getElementById(id);
-
-    const dropzone = event.target;
-
-    // Possibilite de mettre un if avec le joueur qui soit devenue une class js
-
-    // Valeurs cases departs
-    const x1 = draggableElement.getAttribute("x");
-    const y1 = draggableElement.getAttribute("y");
-
-    // Les valeurs de la case d'arrivee
-    const x2 = dropzone.getAttribute("x");
-    const y2 = dropzone.getAttribute("y");
-
-    //player.Player1playPiece(x1,y1,x2,y2);
-
-
-    draggableElement.setAttribute("x",x2);
-
-    //document.write(draggableElement.getAttribute("x"));
-    
-    //document.write(x);
-    //document.write(y);
-
-    //const x = event;
-    //document.write(x);
-    
-    //document.write(draggableElement);
-    //x = dropzone.getData(x);
-    //const y = dropzone.getData.y();
-
-    dropzone.appendChild(draggableElement);
-
-    event.dataTransfer.clearData();
-
-}
-*/
-
-/*
-document.addEventListener("drop",function(event){
-
-
-    const dropzone = event.target;
-
-    // Possibilite de mettre un if avec le joueur qui soit devenue une class js
-
-    // Valeurs cases departs
-    //const x1 = pieces.getAttribute("x");
-    //const y1 = pieces.getAttribute("y");
-
-    // Les valeurs de la case d'arrivee
-    //const x2 = dropzone.getAttribute("x");
-    //const y2 = dropzone.getAttribute("y");
-
-    pieces.setAttribute("x",x2);
-
-    document.write(pieces.getAttribute("x"));
-
-    dropzone.appendChild(pieces);
-
-    event.dataTransfer.clearData();
-})
-*/
-
-// Test position
-function position(x,y){
-  //document.write(x,y);
-}
-
-/*
-function onMouseOver(event) {
-  document.write("caca");
-}
-*/
-
-/*
-function onmouseover(x,y){
-  document.write("x,y");
-}
-*/
-
-// une methode pour rattraper les coordonnee après avoir clicke sur une case 
-/*
-test.addEventListener("click", function( event ) {   
-  // on met l'accent sur la cible de mouseenter
-  document.write("caca");
-
-  // on réinitialise la couleur après quelques instants
-  setTimeout(function() {
-    event.target.style.color = "";
-  }, 500);
-}, false);
-*/
