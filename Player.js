@@ -228,11 +228,15 @@ export default class Player {
 
                 if (this.echequier.isEchec(piece.getCampDeLaPiece()) == true){
 
+                    var type = this.echequier.getPieceCellule()[k][j].type();
+                    
                     var piece2 = this.echequier.getPieceCellule()[k][j];
                     this.echequier.changeCellule(j,k,piece);
                     this.echequier.changeCellule(x,y,null);
                     console.log("Vous êtes échec");
                     // Indiqué d'une manière ou d'une autre que le joueur est échec
+
+                    console.log("Que se passe t'il ?");
                     if (this.echequier.isEchec(piece.getCampDeLaPiece()) == true) {
 
                         console.log("ça ne règle pas votre échec");
@@ -240,6 +244,21 @@ export default class Player {
                         this.echequier.changeCellule(x,y,piece);
                         return false;
                     }
+
+                    
+                    console.log("prise de la pièces = " + type);
+                    if (type == "Pion_u") type = "Pion";
+                    if (type == "Lancier_u") type = "Lancier";
+                    if (type == "GeneralArgent_u") type = "GeneralArgent";
+                    if (type == "Tour_u") type = "Tour";
+                    if (type == "Fou_u") type = "Fou";
+                    if (type == "Cavalier_u") type = "Cavalier";
+
+                    if (this.listePieceGagne.get(type) == undefined) this.listePieceGagne.set(type,1);
+                    else this.listePieceGagne.set(type,this.listePieceGagne.get(type)+1);
+
+                    this.echequier.changeCellule(j,k,piece);
+                    this.echequier.changeCellule(x,y,null);
 
                 }
 
