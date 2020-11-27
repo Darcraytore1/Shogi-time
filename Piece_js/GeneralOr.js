@@ -99,4 +99,8 @@ export default class GeneralOr extends Piece{
         
         return attackPosition;
     }
+
+    numBanc(){
+        return 2;
+    }
 }

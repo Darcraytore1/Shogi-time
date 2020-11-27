@@ -85,4 +85,8 @@ export default class GeneralArgent extends Piece{
 
 		return attackPosition;
 	}
+
+	numBanc(){
+		return 3;
+	}
  }

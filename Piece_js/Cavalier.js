@@ -73,5 +73,9 @@ export default class Cavalier extends Piece{
 
 		return attackPosition;
 	}
+
+	numBanc(){
+		return 5;
+	}
 }
 

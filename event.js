@@ -96,17 +96,23 @@ var movePiece = function(){
 
 
 		else if (caseGreen.firstElementChild.getAttribute("camp") != this.firstElementChild.getAttribute("camp")){
-			
+
+
+			// Case verte, donc coordonnée de la case cliqué en première 
 			var x1 = parseInt(caseGreen.firstElementChild.getAttribute("x"));
 			var y1 = parseInt(caseGreen.firstElementChild.getAttribute("y"));
 
+			// deuxième case cliqué donc celle de destination pour la case verte actuelle
 			var x2 = parseInt(this.getAttribute("x"),10);
 			var y2 = parseInt(this.getAttribute("y"),10);
+
+			// Les deux bancs de morts des pièces
 			var bancPieces = document.querySelectorAll(".caseMorte");
 			var bancPieces2 = document.querySelectorAll(".caseMorte2");
 
 			var oldTypePiece = echequier.getPieceCellule()[y2][x2].type();
-			console.log(oldTypePiece);
+			var oldPiece = echequier.getPieceCellule()[y2][x2];
+
 			if (player.getWhoPlay()){
 				if (player.Player1playPiece(x1,y1,x2,y2)){
 
@@ -115,71 +121,17 @@ var movePiece = function(){
 					this.firstElementChild.classList.add("reverse");
 					
 					//console.log(echequier.getPieceCellule()[x2][y2]);
-					console.log(player.get("Pion"));
+					console.log(player.get(oldTypePiece));
 
 					// Soit on déplace la pièce dans l'endroit ou elle doit aller, soit il y en a déjà une donc on la supprime carrément
-					if ((player.listePieceGagne.get("Pion") - 1 == 0) && oldTypePiece == "Pion_u") {
+
+					if (player.listePieceGagne.get(oldTypePiece) - 1 == 0){
 						this.firstElementChild.remove();
-						var img = echequier.createImgReverse(new Pion(0,0,0),x,y);
-						bancPieces2[0].append(img);
-					} else if (oldTypePiece == "Pion_u") this.firstElementChild.remove();
-
-					if ((player.listePieceGagne.get("Pion") - 1 == 0) && oldTypePiece == "Pion") bancPieces2[0].append(this.firstElementChild);
-					else if (oldTypePiece == "Pion") this.firstElementChild.remove();
-
-					console.log((player.listePieceGagne.get("Fou") - 1 == 0));
-					if ((player.listePieceGagne.get("Fou") - 1 == 0) && oldTypePiece == "Fou_u") {
-						console.log("problème");
-						this.firstElementChild.remove();
-						var img = echequier.createImgReverse(new Fou(0,0,0),x,y);
-						bancPieces2[1].append(img);
-					} else if (oldTypePiece == "Fou_u") this.firstElementChild.remove();
-
-					if ((player.listePieceGagne.get("Fou") - 1 == 0) && oldTypePiece == "Fou") bancPieces2[1].append(this.firstElementChild);
-					else if (oldTypePiece == "Fou") this.firstElementChild.remove();
-
-					if ((player.listePieceGagne.get("Tour") - 1 == 0) && oldTypePiece == "Tour_u") {
-						this.firstElementChild.remove();
-						var img = echequier.createImgReverse(new Tour(0,0,0),x,y);
-						bancPieces2[4].append(img);
-					} else if (oldTypePiece == "Tour_u") this.firstElementChild.remove();
-
-					if ((player.listePieceGagne.get("Tour") - 1 == 0) && oldTypePiece == "Tour") bancPieces2[4].append(this.firstElementChild);
-					else if (oldTypePiece == "Tour") this.firstElementChild.remove();
+						var img = echequier.createImgReverse(oldPiece,x,y);
+						bancPieces2[oldPiece.numBanc()].append(img);
+					} else this.firstElementChild.remove();
 
 					
-					if ((player.listePieceGagne.get("Cavalier") - 1 == 0) && oldTypePiece == "Cavalier_u") {
-						this.firstElementChild.remove();
-						var img = echequier.createImgReverse(new Cavalier(0,0,0),x,y);
-						bancPieces2[5].append(img);
-					} else if (oldTypePiece == "Cavalier_u") this.firstElementChild.remove();
-
-					if ((player.listePieceGagne.get("Cavalier") - 1 == 0) && oldTypePiece == "Cavalier") bancPieces2[5].append(this.firstElementChild);
-					else if (oldTypePiece == "Cavalier") this.firstElementChild.remove();
-
-					if ((player.listePieceGagne.get("GeneralOr") - 1 == 0) && oldTypePiece == "GeneralOr") bancPieces2[2].append(this.firstElementChild);
-					else if (oldTypePiece == "GeneralOr") this.firstElementChild.remove();
-
-					
-					if ((player.listePieceGagne.get("GeneralArgent") - 1 == 0) && oldTypePiece == "GeneralArgent_u") {
-						this.firstElementChild.remove();
-						var img = echequier.createImgReverse(new GeneralArgent(0,0,0),x,y);
-						bancPieces2[3].append(img);
-					} else if (oldTypePiece == "GeneralArgent_u") this.firstElementChild.remove();
-
-					if ((player.listePieceGagne.get("GeneralArgent") - 1 == 0) && oldTypePiece == "GeneralArgent") bancPieces2[3].append(this.firstElementChild);
-					else if (oldTypePiece == "GeneralArgent") this.firstElementChild.remove();
-
-					
-					if ((player.listePieceGagne.get("Lancier") - 1 == 0) && oldTypePiece == "Lancier_u") {
-						this.firstElementChild.remove();
-						var img = echequier.createImgReverse(new Lancier(0,0,0),x,y);
-						bancPieces2[6].append(img);
-					} else if (oldTypePiece == "Lancier_u") this.firstElementChild.remove();
-
-					if ((player.listePieceGagne.get("Lancier") - 1 == 0) && oldTypePiece == "Lancier" )  bancPieces2[6].append(this.firstElementChild);
-					else if (oldTypePiece == "Lancier") this.firstElementChild.remove();
-					//this.firstElementChild.remove();
 					caseGreen.firstElementChild.setAttribute("x",x2);
 					caseGreen.firstElementChild.setAttribute("y",y2);
 
@@ -192,7 +144,7 @@ var movePiece = function(){
 			}
 
 			if (player2.getWhoPlay()){
-				if (player2.Player2playPiece(x1,y1,x2,y2)){
+				if (player2.Player1playPiece(x1,y1,x2,y2)){
 
 					
 					this.firstElementChild.setAttribute("camp","2");
@@ -200,66 +152,14 @@ var movePiece = function(){
 					this.firstElementChild.classList.remove("reverse");
 
 					
-					console.log(player2.listePieceGagne.get("Pion") - 1);
+					console.log(oldTypePiece);
+					console.log(player2.listePieceGagne);
 
-					if ((player2.listePieceGagne.get("Pion") - 1 == 0) && oldTypePiece == "Pion_u") {
+					if (player2.listePieceGagne.get(oldTypePiece) - 1 == 0){
 						this.firstElementChild.remove();
-						var img = echequier.createImg(new Pion(0,0,0),x,y);
-						bancPieces[0].append(img);
-					} else if (oldTypePiece == "Pion_u") this.firstElementChild.remove();
-
-					if ((player2.listePieceGagne.get("Pion") - 1 == 0) && oldTypePiece == "Pion") bancPieces[0].append(this.firstElementChild);
-					else if (oldTypePiece == "Pion") this.firstElementChild.remove();
-
-					console.log(player2.listePieceGagne.get("Fou"));
-					if ((player2.listePieceGagne.get("Fou") - 1 == 0) && oldTypePiece == "Fou_u") {
-
-						this.firstElementChild.remove();
-						var img = echequier.createImg(new Fou(0,0,0),x,y);
-						bancPieces[1].append(img);
-					} else if (oldTypePiece == "Fou_u") this.firstElementChild.remove();
-
-					if ((player2.listePieceGagne.get("Fou") - 1 == 0) && oldTypePiece == "Fou") bancPieces[1].append(this.firstElementChild);
-					else if (oldTypePiece == "Fou") this.firstElementChild.remove();
-
-					if ((player2.listePieceGagne.get("Tour") - 1 == 0) && oldTypePiece == "Tour_u") {
-						this.firstElementChild.remove();
-						var img = echequier.createImg(new Tour(0,0,0),x,y);
-						bancPieces[4].append(img);
-					} else if (oldTypePiece == "Tour_u") this.firstElementChild.remove();
-
-					if ((player2.listePieceGagne.get("Tour") - 1 == 0) && oldTypePiece == "Tour") bancPieces[4].append(this.firstElementChild);
-					else if (oldTypePiece == "Tour") this.firstElementChild.remove();
-
-					if ((player2.listePieceGagne.get("Cavalier") - 1 == 0) && oldTypePiece == "Cavalier_u") {
-						this.firstElementChild.remove();
-						var img = echequier.createImg(new Cavalier(0,0,0),x,y);
-						bancPieces[5].append(img);
-					} else if (oldTypePiece == "Cavalier_u") this.firstElementChild.remove();
-
-					if ((player2.listePieceGagne.get("Cavalier") - 1 == 0) && oldTypePiece == "Cavalier") bancPieces[5].append(this.firstElementChild);
-					else if (oldTypePiece == "Cavalier") this.firstElementChild.remove();
-
-					if ((player2.listePieceGagne.get("GeneralOr") - 1 == 0) && oldTypePiece == "GeneralOr") bancPieces[2].append(this.firstElementChild);
-					else if (oldTypePiece == "GeneralOr") this.firstElementChild.remove();
-
-					if ((player2.listePieceGagne.get("GeneralArgent") - 1 == 0) && oldTypePiece == "GeneralArgent_u") {
-						this.firstElementChild.remove();
-						var img = echequier.createImg(new GeneralArgent(0,0,0),x,y);
-						bancPieces[3].append(img);
-					} else if (oldTypePiece == "GeneralArgent_u") this.firstElementChild.remove();
-
-					if ((player2.listePieceGagne.get("GeneralArgent") - 1 == 0) && oldTypePiece == "GeneralArgent") bancPieces[3].append(this.firstElementChild);
-					else if (oldTypePiece == "GeneralArgent") this.firstElementChild.remove();
-
-					if ((player2.listePieceGagne.get("Lancier") - 1 == 0) && oldTypePiece == "Lancier_u") {
-						this.firstElementChild.remove();
-						var img = echequier.createImg(new Lancier(0,0,0),x,y);
-						bancPieces[6].append(img);
-					} else if (oldTypePiece == "Lancier_u") this.firstElementChild.remove();
-
-					if ((player2.listePieceGagne.get("Lancier") - 1 == 0) && oldTypePiece == "Lancier" )  bancPieces[6].append(this.firstElementChild);
-					else if (oldTypePiece == "Lancier") this.firstElementChild.remove();
+						var img = echequier.createNormalImg(oldPiece,x,y);
+						bancPieces[oldPiece.numBanc()].append(img);
+					} else this.firstElementChild.remove();
 
 					caseGreen.firstElementChild.setAttribute("x",x2);
 					caseGreen.firstElementChild.setAttribute("y",y2);
@@ -378,55 +278,25 @@ var movePiece = function(){
 		*/
 }
 
+// Les mouvement sur l'échequier 
 
 for (var i = 0; i<caseBlanc.length;i++){
 	caseBlanc[i].addEventListener('click',movePiece)
 }
 
-var bancPiecePion2 = document.querySelector("#pion1");
-var bancPieceFou2 = document.querySelector("#fou1");
-var bancPieceTour2 = document.querySelector("#tour1");
-var bancPieceLancier2 = document.querySelector("#lancier1");
-var bancPieceCavalier2 = document.querySelector("#cavalier1");
-var bancPieceGeneralOr2 = document.querySelector("#generalOr1");
-var bancPieceGeneralArgent2 = document.querySelector("#generalArgent1");
 
-var bancPiecePion1 = document.querySelector("#pion2");
-var bancPieceFou1 = document.querySelector("#fou2");
-var bancPieceTour1 = document.querySelector("#tour2");
-var bancPieceLancier1 = document.querySelector("#lancier2");
-var bancPieceCavalier1 = document.querySelector("#cavalier2");
-var bancPieceGeneralOr1 = document.querySelector("#generalOr2");
-var bancPieceGeneralArgent1 = document.querySelector("#generalArgent2");
-
-console.log(bancPiecePion1);
 // Dans cette methode rajouter une classe ou un attribut active, puis dans la deuxième fonction listener 
 // gérer le fait de placer une pièce sur les cases null 
 
 // Pour la prochaine fois gérer le parachutage de au mois le pion 
 
-var parachutagePion2 = function(){
+var parachutageBanc2 = function(){
 	
 	var caseGreen = document.querySelector(".caseGreen");
 	console.log(caseGreen);
-	console.log(this);
+	console.log(this.getAttribute('type'));
 
-	if (player2.getWhoPlay() && player2.listePieceGagne.get("Pion") >= 1){
-
-		if(caseGreen != null) {
-			caseGreen.classList.remove("caseGreen");
-		}
-		this.classList.add("caseGreenBanc");
-	}
-}
-
-var parachutagePion1 = function(){
-
-	var caseGreen = document.querySelector(".caseGreen");
-	console.log(caseGreen);
-	console.log(this);
-
-	if (player.getWhoPlay() && player.listePieceGagne.get("Pion") >= 1){
+	if (player2.getWhoPlay() && player2.listePieceGagne.get(this.getAttribute('type')) >= 1){
 
 		if(caseGreen != null) {
 			caseGreen.classList.remove("caseGreen");
@@ -435,178 +305,13 @@ var parachutagePion1 = function(){
 	}
 }
 
-var parachutageLancier2 = function(){
+var parachutageBanc1 = function(){
 	
 	var caseGreen = document.querySelector(".caseGreen");
 	console.log(caseGreen);
-	console.log(this);
+	console.log(this.getAttribute('type'));
 
-	if (player2.getWhoPlay() && player2.listePieceGagne.get("Lancier") >= 1){
-
-		if(caseGreen != null) {
-			caseGreen.classList.remove("caseGreen");
-		}
-		this.classList.add("caseGreenBanc");
-	}
-}
-
-var parachutageLancier1 = function(){
-
-	var caseGreen = document.querySelector(".caseGreen");
-	console.log(caseGreen);
-	console.log(this);
-
-	if (player.getWhoPlay() && player.listePieceGagne.get("Lancier") >= 1){
-
-		if(caseGreen != null) {
-			caseGreen.classList.remove("caseGreen");
-		}
-		this.classList.add("caseGreenBanc");
-	}
-}
-
-var parachutageGeneralOr2 = function(){
-	
-	var caseGreen = document.querySelector(".caseGreen");
-	console.log(caseGreen);
-	console.log(this);
-
-	if (player2.getWhoPlay() && player2.listePieceGagne.get("GeneralOr") >= 1){
-
-		if(caseGreen != null) {
-			caseGreen.classList.remove("caseGreen");
-		}
-		this.classList.add("caseGreenBanc");
-	}
-}
-
-var parachutageGeneralOr1 = function(){
-
-	var caseGreen = document.querySelector(".caseGreen");
-	console.log(caseGreen);
-	console.log(this);
-
-	if (player.getWhoPlay() && player.listePieceGagne.get("GeneralOr") >= 1){
-
-		if(caseGreen != null) {
-			caseGreen.classList.remove("caseGreen");
-		}
-		this.classList.add("caseGreenBanc");
-	}
-}
-
-var parachutageGeneralArgent2 = function(){
-	
-	var caseGreen = document.querySelector(".caseGreen");
-	console.log(caseGreen);
-	console.log(this);
-
-	if (player2.getWhoPlay() && player2.listePieceGagne.get("GeneralArgent") >= 1){
-
-		if(caseGreen != null) {
-			caseGreen.classList.remove("caseGreen");
-		}
-		this.classList.add("caseGreenBanc");
-	}
-}
-
-var parachutageGeneralArgent1 = function(){
-
-	var caseGreen = document.querySelector(".caseGreen");
-	console.log(caseGreen);
-	console.log(this);
-
-	if (player.getWhoPlay() && player.listePieceGagne.get("GeneralArgent") >= 1){
-
-		if(caseGreen != null) {
-			caseGreen.classList.remove("caseGreen");
-		}
-		this.classList.add("caseGreenBanc");
-	}
-}
-
-var parachutageTour2 = function(){
-	
-	var caseGreen = document.querySelector(".caseGreen");
-	console.log(caseGreen);
-	console.log(this);
-
-	if (player2.getWhoPlay() && player2.listePieceGagne.get("Tour") >= 1){
-
-		if(caseGreen != null) {
-			caseGreen.classList.remove("caseGreen");
-		}
-		this.classList.add("caseGreenBanc");
-	}
-}
-
-var parachutageTour1 = function(){
-
-	var caseGreen = document.querySelector(".caseGreen");
-	console.log(caseGreen);
-	console.log(this);
-
-	if (player.getWhoPlay() && player.listePieceGagne.get("Tour") >= 1){
-
-		if(caseGreen != null) {
-			caseGreen.classList.remove("caseGreen");
-		}
-		this.classList.add("caseGreenBanc");
-	}
-}
-
-var parachutageFou2 = function(){
-	
-	var caseGreen = document.querySelector(".caseGreen");
-	console.log(caseGreen);
-	console.log(this);
-
-	if (player2.getWhoPlay() && player2.listePieceGagne.get("Fou") >= 1){
-
-		if(caseGreen != null) {
-			caseGreen.classList.remove("caseGreen");
-		}
-		this.classList.add("caseGreenBanc");
-	}
-}
-
-var parachutageFou1 = function(){
-
-	var caseGreen = document.querySelector(".caseGreen");
-	console.log(caseGreen);
-	console.log(this);
-
-	if (player.getWhoPlay() && player.listePieceGagne.get("Fou") >= 1){
-
-		if(caseGreen != null) {
-			caseGreen.classList.remove("caseGreen");
-		}
-		this.classList.add("caseGreenBanc");
-	}
-}
-
-var parachutageCavalier2 = function(){
-	
-	var caseGreen = document.querySelector(".caseGreen");
-	console.log(caseGreen);
-	console.log(this);
-
-	if (player2.getWhoPlay() && player2.listePieceGagne.get("Cavalier") >= 1){
-
-		if(caseGreen != null) {
-			caseGreen.classList.remove("caseGreen");
-		}
-		this.classList.add("caseGreenBanc");
-	}
-}
-
-var parachutageCavalier1 = function(){
-
-	var caseGreen = document.querySelector(".caseGreen");
-	console.log(caseGreen);
-	console.log(this);
-
-	if (player.getWhoPlay() && player.listePieceGagne.get("Cavalier") >= 1){
+	if (player.getWhoPlay() && player.listePieceGagne.get(this.getAttribute('type')) >= 1){
 
 		if(caseGreen != null) {
 			caseGreen.classList.remove("caseGreen");
@@ -617,20 +322,14 @@ var parachutageCavalier1 = function(){
 
 // Les evenement sur les pièces mortes
 
-bancPiecePion2.addEventListener("click",parachutagePion2);
-bancPieceLancier2.addEventListener("click",parachutageLancier2);
-bancPieceGeneralArgent2.addEventListener("click",parachutageGeneralArgent2);
-bancPieceGeneralOr2.addEventListener("click",parachutageGeneralOr2);
-bancPieceTour2.addEventListener("click",parachutageTour2);
-bancPieceFou2.addEventListener("click",parachutageFou2);
-bancPieceCavalier2.addEventListener("click",parachutageCavalier2);
+var bancPieces = document.querySelectorAll(".caseMorte");
 
+for (var i = 0; i<bancPieces.length;i++){
+	bancPieces[i].addEventListener('click',parachutageBanc2);
+}
 
-bancPiecePion1.addEventListener("click",parachutagePion1);
-bancPieceLancier1.addEventListener("click",parachutageLancier1);
-bancPieceGeneralArgent1.addEventListener("click",parachutageGeneralArgent1);
-bancPieceGeneralOr1.addEventListener("click",parachutageGeneralOr1);
-bancPieceTour1.addEventListener("click",parachutageTour1);
-bancPieceFou1.addEventListener("click",parachutageFou1);
-bancPieceCavalier1.addEventListener("click",parachutageCavalier1);
+var bancPieces2 = document.querySelectorAll(".caseMorte2");
 
+for (var i = 0; i<bancPieces2.length;i++){
+	bancPieces2[i].addEventListener('click',parachutageBanc1);
+}

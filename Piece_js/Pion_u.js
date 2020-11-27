@@ -20,5 +20,6 @@ export default class Pion_u extends PieceEvolve{
 
     isEvolve(){
 		return true;
-	}
+    }
+    
 }

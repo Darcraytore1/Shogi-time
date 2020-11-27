@@ -90,4 +90,8 @@ export default class Lancier extends Piece{
 		return attackPosition;
 		
     }
+
+    numBanc(){
+        return 6;
+    }
  }

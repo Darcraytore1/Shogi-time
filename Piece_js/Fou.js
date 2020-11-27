@@ -142,4 +142,8 @@ export default class Fou extends Piece{
 		return attackPosition;
 		
 	}
+
+	numBanc(){
+		return 1;
+	}
 }

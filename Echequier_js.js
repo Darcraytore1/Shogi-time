@@ -82,11 +82,21 @@ export default class Echequier {
         img.setAttribute("x",""+x);
         img.setAttribute("y",""+y);
         img.setAttribute("camp",piece.getCampDeLaPiece());
-        if (piece.getCampDeLaPiece() == 1) img.classList.add("reverse");
-        img.id = x+","+y;
         img.classList.add("reverse");
+        img.id = x+","+y;
         return img
         
+    }
+
+    // La méthode create img est déjà utilisé pour le début de l'affichage j'uniformiserai le tout plus tard
+    createNormalImg(piece,x,y){
+        var img = null;
+        img = document.createElement('img');
+        img.src = piece.href();
+        img.setAttribute("x",""+x);
+        img.setAttribute("y",""+y);
+        img.setAttribute("camp",piece.getCampDeLaPiece());
+        return img
     }
 
     pieceEvolve(x,y,j,k,piece){

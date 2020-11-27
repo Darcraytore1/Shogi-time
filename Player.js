@@ -179,7 +179,7 @@ export default class Player {
                 }
 
                 if (piece.getCampDeLaPiece() == 1 && k == 8 && piece.isEvolve() == false){
-                    this.sureEvolvePiece(x,y,j,k,piece,true)
+                    this.evolvePiece(x,y,j,k,piece,true);
                 }
 
                 else if (piece.getCampDeLaPiece() == 1 && k > 5 && piece.isEvolve() == false){

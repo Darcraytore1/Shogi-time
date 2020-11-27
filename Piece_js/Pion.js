@@ -69,4 +69,8 @@ export default class Pion extends Piece{
 
 		return attackPosition;
     }
+
+    numBanc(){
+        return 0;
+    }
 }

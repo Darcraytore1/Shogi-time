@@ -14,13 +14,24 @@
 		</audio>
 	</figure>
 
+	<table>
+		<tr>
+			<td><div class="caseMorte2" type = "Pion" id = "pion2"></div></td>
+			<td><div class="caseMorte2" type = "Fou" id = "fou2"></div></td>
+			<td><div class="caseMorte2" type = "GeneralOr" id = "generalOr2"></div></td>
+			<td><div class="caseMorte2" type = "GeneralArgent" id = "generalArgent2"></div></td>
+			<td><div class="caseMorte2" type = "Tour" id = "tour2"></div></td>
+			<td><div class="caseMorte2" type = "Cavalier" id = "cavalier2"></div></td>
+			<td><div class="caseMorte2" type = "Lancier" id = "lancier2"></div></td>
+		</tr>
+	</table>
+	<br>
 	<table id ="echequier">
 
 	<?php
 	// Je pourrais directement le mettre dans echequier
 	function affichageEchequier() {
 		?>
-
 		<?php 
 		for($l=0; $l<9; $l++) { // creer 9 lignes 
 		
@@ -52,6 +63,8 @@
 			}
 			?>
 
+			
+
 			<table>
 				<tr>
 					<td><div class="caseMorte" type = "Pion" id = "pion1"></div></td>
@@ -65,18 +78,6 @@
 			</table>
 			
 			
-			<br><br>
-			<table>
-				<tr>
-					<td><div class="caseMorte2" type = "Pion" id = "pion2"></div></td>
-					<td><div class="caseMorte2" type = "Fou" id = "fou2"></div></td>
-					<td><div class="caseMorte2" type = "GeneralOr" id = "generalOr2"></div></td>
-					<td><div class="caseMorte2" type = "GeneralArgent" id = "generalArgent2"></div></td>
-					<td><div class="caseMorte2" type = "Tour" id = "tour2"></div></td>
-					<td><div class="caseMorte2" type = "Cavalier" id = "cavalier2"></div></td>
-					<td><div class="caseMorte2" type = "Lancier" id = "lancier2"></div></td>
-				</tr>
-			</table>
 			<?php
 		}
 

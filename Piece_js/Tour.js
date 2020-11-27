@@ -122,4 +122,8 @@ export default class Tour extends Piece{
 		return attackPosition;
 		
 	}
+
+	numBanc(){
+		return 4;
+	}
 }
