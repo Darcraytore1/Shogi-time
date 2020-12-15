@@ -65,6 +65,7 @@ export default class Echequier {
         var img = null;
         img = document.createElement('img');
         img.src = piece.href();
+        //img.classList.add('piece');
         img.setAttribute("x",""+x);
         img.setAttribute("y",""+y);
         img.setAttribute("camp",piece.getCampDeLaPiece());

@@ -24,35 +24,51 @@ var player = new Player(echequier,true);
 var player2 = new Player(echequier,false);
 echequier.affiche();
 
-//console.log(player.Player1playPiece(0,2,0,3));
-//console.log(player.getEchequier());
-//console.log(player);
 
 
 var caseBlanc = document.querySelectorAll(".caseBlanc");
-//console.log(activeBanc);
-//instantCase = caseBlanc[i];
-//var whoPlay = "1";
 
+function bougerSurCaseVide(x2,y2,casePiece,caseGreen) {
+	caseGreen.firstElementChild.setAttribute("x",x2);
+	caseGreen.firstElementChild.setAttribute("y",y2);
+
+	casePiece.append(caseGreen.firstElementChild);
+	caseGreen.classList.remove("caseGreen");
+
+	player.changeWhoPlay();
+	player2.changeWhoPlay();
+}
+
+
+// Permet de changer les coordonnées de la pièces pour avoir celle de la pièce prise 
+// Puis on enlève le fait que la case soit verte et on passe le tour
+function priseDePiece (x2,y2,casePiece,caseGreen){
+
+	caseGreen.firstElementChild.setAttribute("x",x2);
+	caseGreen.firstElementChild.setAttribute("y",y2);
+
+	casePiece.append(caseGreen.firstElementChild);
+	caseGreen.classList.remove("caseGreen");
+
+		
+	player.changeWhoPlay();
+	player2.changeWhoPlay();
+}
 
 var movePiece = function(){
 
-	console.log(player.getEchequier());
-	//console.log(player);
-	//console.log(player2);
-
-	console.log(player2.listePieceGagne);
+	// Regarde les pièces vertes, donc celle qui sont active 
 
 	var caseGreen = document.querySelector(".caseGreen");
 	var activeBanc = document.querySelector(".caseGreenBanc");
-	//console.log(echequier.isAttacked(0,0,1));
 
 	// Si il a une case qui est deja verte
 	if(caseGreen != null){
-	// Mettre une condition ou, si la pièce adversaire est dans le camp adverse
-	// caseGreen.getAttribute("camp") != this.firstElementChild.getAttribute()
+
+		// Si la case est vide on peut donc déplacer la pièce
 		if (this.firstElementChild == null){
 			
+			// Coordonnée de la pièce quelle pièce doit bouger et ou elle doit bouger avec des champs x et y placer en html, je pense qu'un autre moyen existe plus performant
 			var x1 = parseInt(caseGreen.firstElementChild.getAttribute("x"));
 			var y1 = parseInt(caseGreen.firstElementChild.getAttribute("y"));
 
@@ -60,38 +76,24 @@ var movePiece = function(){
 			var y2 = parseInt(this.getAttribute("y"),10);
 
 
-			// Possibilite de changer les methodes Player1playPiece et 2, pour qu'elle renvoie seulement
-			// un boolean et qu'elle ne fasse pas l'action par la meme occasion
+			// Si c'est au joueur 1 de jouer, on peut lui bouger sa pièce et passer le tour au joueur 2
+
 			if (player.getWhoPlay()){
 				if(player.Player1playPiece(x1,y1,x2,y2)){
-					caseGreen.firstElementChild.setAttribute("x",x2);
-					caseGreen.firstElementChild.setAttribute("y",y2);
 
-					this.append(caseGreen.firstElementChild);
-					caseGreen.classList.remove("caseGreen");
+					bougerSurCaseVide(x2,y2,this,caseGreen)
 
-					player.changeWhoPlay();
-					player2.changeWhoPlay();
 				}
 			}
 			
-			// a ajouter quand la methode Player2PlayPiece sera complete
+			// Pareil mais pour le joueur 2
 
 			else if (player2.getWhoPlay()){
-				if (player2.Player2playPiece(x1,y1,x2,y2)){
+				if (player2.Player1playPiece(x1,y1,x2,y2)){
 
-					caseGreen.firstElementChild.setAttribute("x",x2);
-					caseGreen.firstElementChild.setAttribute("y",y2);
-
-					this.append(caseGreen.firstElementChild);
-					caseGreen.classList.remove("caseGreen");
-
-					player.changeWhoPlay();
-					player2.changeWhoPlay();
+					bougerSurCaseVide(x2,y2,this,caseGreen)
 				}
 			}
-		
-
 		}
 
 
@@ -110,8 +112,11 @@ var movePiece = function(){
 			var bancPieces = document.querySelectorAll(".caseMorte");
 			var bancPieces2 = document.querySelectorAll(".caseMorte2");
 
+			// Le type de la pièce qui va être prise, et l'objet pièce lui même 
 			var oldTypePiece = echequier.getPieceCellule()[y2][x2].type();
 			var oldPiece = echequier.getPieceCellule()[y2][x2];
+
+			//Prise d'une pièce 
 
 			if (player.getWhoPlay()){
 				if (player.Player1playPiece(x1,y1,x2,y2)){
@@ -120,9 +125,6 @@ var movePiece = function(){
 					//this.firstElementChild.setAttribute("x",player.listePieceGagnelength());
 					this.firstElementChild.classList.add("reverse");
 					
-					//console.log(echequier.getPieceCellule()[x2][y2]);
-					console.log(player.get(oldTypePiece));
-
 					// Soit on déplace la pièce dans l'endroit ou elle doit aller, soit il y en a déjà une donc on la supprime carrément
 
 					if (player.listePieceGagne.get(oldTypePiece) - 1 == 0){
@@ -130,16 +132,12 @@ var movePiece = function(){
 						var img = echequier.createImgReverse(oldPiece,x,y);
 						bancPieces2[oldPiece.numBanc()].append(img);
 					} else this.firstElementChild.remove();
-
 					
-					caseGreen.firstElementChild.setAttribute("x",x2);
-					caseGreen.firstElementChild.setAttribute("y",y2);
+					// Seulement la moitié de la prise de piece
 
-					this.append(caseGreen.firstElementChild);
-					caseGreen.classList.remove("caseGreen");
-						
-					player.changeWhoPlay();
-					player2.changeWhoPlay();
+					priseDePiece(x2,y2,this,caseGreen);
+
+
 				}
 			}
 
@@ -151,9 +149,6 @@ var movePiece = function(){
 					//this.firstElementChild.setAttribute("x",player.listePieceGagnelength());
 					this.firstElementChild.classList.remove("reverse");
 
-					
-					console.log(oldTypePiece);
-					console.log(player2.listePieceGagne);
 
 					if (player2.listePieceGagne.get(oldTypePiece) - 1 == 0){
 						this.firstElementChild.remove();
@@ -161,18 +156,10 @@ var movePiece = function(){
 						bancPieces[oldPiece.numBanc()].append(img);
 					} else this.firstElementChild.remove();
 
-					caseGreen.firstElementChild.setAttribute("x",x2);
-					caseGreen.firstElementChild.setAttribute("y",y2);
+					priseDePiece(x2,y2,this,caseGreen);
 
-					this.append(caseGreen.firstElementChild);
-					caseGreen.classList.remove("caseGreen");
-
-					player.changeWhoPlay();
-					player2.changeWhoPlay();
 				}
 			}
-			console.log(player.listePieceGagne);
-			console.log(player2.listePieceGagne);
 		}
 
 		// Une autre case devient verte
@@ -231,8 +218,6 @@ var movePiece = function(){
 			activeBanc.firstElementChild.setAttribute("y",y);
 
 			player2.parachutagePiece(x,y,2,type);
-			// Si c'est un  pion
-			// this.append(activeBanc.firstElementChild);
 
 			var pieceCopy = echequier.createImg(echequier.getPieceCellule()[y][x],x,y);
 
@@ -244,6 +229,16 @@ var movePiece = function(){
 			player.changeWhoPlay();
 			player2.changeWhoPlay();
 			
+			// Si c'est un  pion
+			// this.append(activeBanc.firstElementChild);
+
+			// Baisser le compteur quand la pièce est posé 
+			/*
+			if (type == "Pion") {
+				var compteurPiece = document.getElementById('pionC1');
+				compteurPiece.innerHTML = player2.listePieceGagne.get(type)
+			}
+			*/
 		}
 
 		if (player.isParachutable(x,y) && player.getWhoPlay()){
@@ -271,6 +266,7 @@ var movePiece = function(){
 		}
 
 	}
+		// Il faudra rajouter tout de même une condition pour fêter la victoire car là le jeu est juste bloqué
 		/*
 		if (partieTermine == true){
 			console.log("termine");
