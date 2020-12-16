@@ -22,11 +22,13 @@ export default class Player {
     // Voir à réduire en une seul liste 
     listePieceGagne;
     whoPlay
+    playerNum
 
-    constructor(echequier,whoPlay){
+    constructor(echequier,whoPlay,playerNum){
         this.echequier = echequier;
         this.whoPlay = whoPlay;
         this.listePieceGagne = new Map();
+        this.playerNum = playerNum;
     }
 
     /*
@@ -178,11 +180,19 @@ export default class Player {
                     this.echequier.changeCellule(x,y,null);
                 }
 
-                if (piece.getCampDeLaPiece() == 1 && k == 8 && piece.isEvolve() == false){
+                if (piece.getCampDeLaPiece() == 1 && k == 8 && piece.isEvolve() == false && this.playerNum == 1){
                     this.evolvePiece(x,y,j,k,piece,true);
                 }
 
-                else if (piece.getCampDeLaPiece() == 1 && k > 5 && piece.isEvolve() == false){
+                else if (piece.getCampDeLaPiece() == 1 && k > 5 && piece.isEvolve() == false && this.playerNum == 1){
+                    this.evolvePiece(x,y,j,k,piece,false);
+                }
+
+                if (piece.getCampDeLaPiece() == 2 && k == 0 && piece.isEvolve() == false && this.playerNum == 0){
+                    this.evolvePiece(x,y,j,k,piece,true);
+                }
+
+                else if (piece.getCampDeLaPiece() == 2 && k < 3 && piece.isEvolve() == false && this.playerNum == 0){
                     this.evolvePiece(x,y,j,k,piece,false);
                 }
 

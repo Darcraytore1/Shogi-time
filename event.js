@@ -20,11 +20,11 @@ import Pion_u from "./Piece_js/Pion_u.js";
 import Cavalier_u from "./Piece_js/Cavalier_u.js";
 
 var echequier = new Echequier();
-var player = new Player(echequier,true);
-var player2 = new Player(echequier,false);
+var player = new Player(echequier,true,1);
+var player2 = new Player(echequier,false,0);
 echequier.affiche();
 
-
+console.log(player.playerNum)
 
 var caseBlanc = document.querySelectorAll(".caseBlanc");
 
